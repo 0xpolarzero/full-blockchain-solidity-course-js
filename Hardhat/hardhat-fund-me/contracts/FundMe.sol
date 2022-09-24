@@ -4,7 +4,13 @@ pragma solidity ^0.8.8;
 import "./PriceConverter.sol";
 
 // This is not inside the contract, so it won't take a storage slot
-error NotOwner();
+error FundMe__NotOwner();
+
+/**
+ * @title FundMe
+ * @author polarzero
+ * @notice Just a basic Fund Me contract
+ */
 
 contract FundMe {
     using PriceConverter for uint256;
@@ -24,10 +30,32 @@ contract FundMe {
 
     AggregatorV3Interface public priceFeed;
 
+    // Can use a modifier to modify any function
+    modifier onlyOwner() {
+        // require(msg.sender == i_owner, "Sender is not owner!");
+        // More gas efficient
+        if (msg.sender != i_owner) {
+            revert FundMe__NotOwner();
+        }
+        // Do what is under the "_" BEFORE the function that has "onlyOwner" in the declaration
+        _;
+        // Do what is under the "_" AFTER the function that has "onlyOwner" in the declaration
+    }
+
     // The constructor function gets called in the same tx as the contract creation
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
         priceFeed = AggregatorV3Interface(priceFeedAddress);
+    }
+
+    // What happens if someone sends this contract Eth without calling the "fund" function ?
+    // We can use some special functions -> receive() or fallback()
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
     }
 
     // We need to make the function payable so it can hold Eth
@@ -83,27 +111,5 @@ contract FundMe {
 
         ) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
-    }
-
-    // Can use a modifier to modify any function
-    modifier onlyOwner() {
-        // require(msg.sender == i_owner, "Sender is not owner!");
-        // More gas efficient
-        if (msg.sender != i_owner) {
-            revert NotOwner();
-        }
-        // Do what is under the "_" BEFORE the function that has "onlyOwner" in the declaration
-        _;
-        // Do what is under the "_" AFTER the function that has "onlyOwner" in the declaration
-    }
-
-    // What happens if someone sends this contract Eth without calling the "fund" function ?
-    // We can use some special functions -> receive() or fallback()
-    receive() external payable {
-        fund();
-    }
-
-    fallback() external payable {
-        fund();
     }
 }
