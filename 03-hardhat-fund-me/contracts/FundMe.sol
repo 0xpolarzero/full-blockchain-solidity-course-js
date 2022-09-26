@@ -15,20 +15,19 @@ error FundMe__NotOwner();
 contract FundMe {
     using PriceConverter for uint256;
 
-    uint256 public number;
     // "constant" keyword allows it to not take a storage spot + easier to read
     // constants are declared LIKE_THIS
     uint256 public constant MINIMUM_USD = 50 * 1e18;
 
-    address[] public funders;
-    mapping(address => uint256) public addressToAmountFunded;
+    address[] private s_funders;
+    mapping(address => uint256) private s_addressToAmountFunded;
 
     // owner is set only once, but declared in a different line
     // So not a "constant" but a "immutable"
     // That can be called i_likeThis
-    address public immutable i_owner;
+    address private immutable i_owner;
 
-    AggregatorV3Interface public priceFeed;
+    AggregatorV3Interface private s_priceFeed;
 
     // Can use a modifier to modify any function
     modifier onlyOwner() {
@@ -45,7 +44,7 @@ contract FundMe {
     // The constructor function gets called in the same tx as the contract creation
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
-        priceFeed = AggregatorV3Interface(priceFeedAddress);
+        s_priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
     // What happens if someone sends this contract Eth without calling the "fund" function ?
@@ -64,20 +63,20 @@ contract FundMe {
         // So number is not set to 5
         // BUT gas is spent for anything BEFORE the require
         // BUT the gas spent AFTER require, if not met, will be returned
-        number = 5;
+        // s_number = 5;
         // Set a minimum fund amount
         // This function requires the value (msg.value) to be > 1 Eth
         // require(getConversionRate(msg.value) >= minimumUsd, "Didn't send enough Eth!");
         // BUT now with the library ->
         require(
-            msg.value.getConversionRate(priceFeed) >= MINIMUM_USD,
+            msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD,
             "Didn't send enough Eth!"
         );
         // msg.value is considered as the parameter for getConversionRate
 
         // Add the funder to the list if it went through
-        funders.push(msg.sender);
-        addressToAmountFunded[msg.sender] = msg.value;
+        s_funders.push(msg.sender);
+        s_addressToAmountFunded[msg.sender] = msg.value;
     }
 
     // Before calling the function, do what is in "onlyOwner", THEN call the rest of the code
@@ -86,14 +85,14 @@ contract FundMe {
         // for (start index; end index; stem)
         for (
             uint256 funderIndex = 0;
-            funderIndex < funders.length;
+            funderIndex < s_funders.length;
             funderIndex++
         ) {
-            address funder = funders[funderIndex];
-            addressToAmountFunded[funder] = 0;
+            address funder = s_funders[funderIndex];
+            s_addressToAmountFunded[funder] = 0;
         }
         // Reset the array
-        funders = new address[](0);
+        s_funders = new address[](0);
 
         // Withdraw the funds
         // msg.sender is of type address
@@ -111,5 +110,43 @@ contract FundMe {
 
         ) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
+    }
+
+    // We need to minimize access/reading from storage to optimize gas
+    function cheaperWithdraw() public onlyOwner {
+        // We store the array in memory to avoid highly expensive storage reads
+        // We can't put a mapping in memory
+        address[] memory funders = s_funders;
+        for (
+            uint256 funderIndex = 0;
+            funderIndex < funders.length;
+            funderIndex++
+        ) {
+            address funder = funders[funderIndex];
+            s_addressToAmountFunded[funder] = 0;
+        }
+        s_funders = new address[](0);
+        (bool success, ) = i_owner.call{value: address(this).balance}("");
+        require(success);
+    }
+
+    function getOwner() public view returns (address) {
+        return i_owner;
+    }
+
+    function getFunder(uint256 index) public view returns (address) {
+        return s_funders[index];
+    }
+
+    function getAddressToAmountFunded(address funder)
+        public
+        view
+        returns (uint256)
+    {
+        return s_addressToAmountFunded[funder];
+    }
+
+    function getPriceFeed() public view returns (AggregatorV3Interface) {
+        return s_priceFeed;
     }
 }

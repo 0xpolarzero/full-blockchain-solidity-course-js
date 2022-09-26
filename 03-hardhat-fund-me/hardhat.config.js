@@ -1,7 +1,9 @@
 require('@nomiclabs/hardhat-waffle');
 require('@nomiclabs/hardhat-etherscan');
+require('hardhat-gas-reporter');
 require('dotenv').config();
 require('hardhat-deploy');
+require('solidity-coverage');
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -43,11 +45,11 @@ module.exports = {
     },
   },
   gasReporter: {
-    enabled: false,
+    enabled: true,
     outputFile: 'gas-report.txt',
     noColors: true,
     currency: 'USD',
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
-    // token: 'MATIC',
+    token: 'MATIC',
   },
 };
