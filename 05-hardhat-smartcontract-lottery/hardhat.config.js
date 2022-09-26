@@ -13,7 +13,16 @@ const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: '0.8.8',
+  solidity: {
+    compilers: [
+      {
+        version: '0.8.8',
+      },
+      {
+        version: '0.4.24',
+      },
+    ],
+  },
   defaultNetwork: 'hardhat',
   networks: {
     hardhat: {
