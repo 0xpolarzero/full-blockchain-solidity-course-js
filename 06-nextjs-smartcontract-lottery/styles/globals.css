@@ -1,9 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+  --main-font: 'Outfit', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--main-font);
 }
 
 a {
@@ -15,6 +24,59 @@ a {
   box-sizing: border-box;
 }
 
+button {
+  color: #fff;
+  background: rgb(240, 185, 11, 0.7);
+  font-family: var(--main-font);
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background: rgb(240, 185, 11, 0.9);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.lottery-entrance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.lottery-entrance > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.enter-raffle {
+  margin-bottom: 3rem;
+}
+
+.highlight {
+  font-size: larger;
+  color: #f0b90b;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -22,5 +84,8 @@ a {
   body {
     color: white;
     background: black;
+  }
+  .lottery-entrance {
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
