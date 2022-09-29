@@ -147,7 +147,7 @@ yarn hardhat coverage
 [![Remix]](https://remix.ethereum.org/)
 [![Chainlink]](https://chain.link/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 01: Ethers Simple Storage</a> (Lesson 5)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 01: Ethers - Simple Storage</a> (Lesson 5)
 
 ### Achievements
 
@@ -166,7 +166,7 @@ yarn hardhat coverage
 [![NodeJS]](https://nodejs.org/)
 [![Alchemy]](https://www.alchemy.com/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02a-hardhat-simple-storage" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 02: Hardhat Simple Storage</a> (Lesson 6)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02a-hardhat-simple-storage" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 02: Hardhat - Simple Storage</a> (Lesson 6)
 
 ### Achievements
 
@@ -187,7 +187,7 @@ yarn hardhat coverage
 [![Chai]](https://www.chaijs.com/)
 [![Mocha]](https://mochajs.org/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 03: Hardhat Fund Me</a> (Lesson 7)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 03: Hardhat - Fund Me</a> (Lesson 7)
 
 ### Achievements
 
@@ -206,7 +206,7 @@ yarn hardhat coverage
 [![Mocha]](https://mochajs.org/)
 [![Chainlink]](https://chain.link/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/04-html-fund-me" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 04: HTML Fund Me</a> (Lesson 8)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/04-html-fund-me" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 04: HTML - Fund Me</a> (Lesson 8)
 
 ### Achievements
 
@@ -220,7 +220,7 @@ yarn hardhat coverage
 [![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 [![EthersJS]](https://docs.ethers.io/v5/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/05-hardhat-smartcontract-lottery" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 05: Hardhat smart contract lottery</a> (Lesson 9)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/05-hardhat-smartcontract-lottery" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 05: Hardhat - Lottery smart contract</a> (Lesson 9)
 
 ### Achievements
 
@@ -238,7 +238,7 @@ yarn hardhat coverage
 [![Mocha]](https://mochajs.org/)
 [![Chainlink]](https://chain.link/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 06: Next.js Front End - smart contract lottery</a> (Lesson 10)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 06: Next.js Front End - Lottery smart contract</a> (Lesson 10)
 
 ### Achievements
 
@@ -259,6 +259,61 @@ yarn hardhat coverage
 [![NextJS]](https://nextjs.org/)
 [![Moralis]](https://moralis.io/)
 [![IPFS]](https://ipfs.tech/)
+
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/07-hardhat-erc20" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 07: Hardhat - ERC20 Token</a> (Lesson 12)
+
+### Achievements
+
+- Creating an ERC20 Token with the basic requirements
+- Using Openzeppelin to create the token
+- Usual unit testing for the inherited functions
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![Hardhat]](https://hardhat.org/)
+[![Chai]](https://www.chaijs.com/)
+[![Mocha]](https://mochajs.org/)
+
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/08-defi" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 08: DeFi</a> (Lesson 13)
+
+### Achievements
+
+- Using scripts for borrowing & lending with Aave
+  - Using the wETH token contract to exchange ETH for wETH
+  - Depositing wETH into Aave
+  - Borrowing DAI from Aave
+  - Repaying DAI to Aave
+- Forking mainnet with Hardhat
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![Hardhat]](https://hardhat.org/)
+[![Chai]](https://www.chaijs.com/)
+[![Mocha]](https://mochajs.org/)
+[![Aave]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/09-hardhat-nft" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 09: NFT - IPFS, fully on-chain, randomized, dynamic...</a> (Lesson 14)
+
+### Achievements
+
+- Deploying an ERC721 token & hosting the image on IPFS
+- Getting the data to be pinned with Pinata & upload the images URIs
+- Using Chainlink VRF to issue a verifiable random rarity when the NFT is minted
+- ...
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![Hardhat]](https://hardhat.org/)
+[![Chai]](https://www.chaijs.com/)
+[![Mocha]](https://mochajs.org/)
+[![Chainlink]](https://chain.link/)
+[![Pinata]](https://www.pinata.cloud/)
 
 # License
 
@@ -303,3 +358,5 @@ Thank you Patrick Collins
 [nextjs]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [ipfs]: https://img.shields.io/badge/IPFS-0A1B2B?style=for-the-badge&logo=ipfs
 [moralis]: https://custom-icon-badges.demolab.com/badge/Moralis-2559BB?style=for-the-badge&logo=moralis
+[aave]: https://custom-icon-badges.demolab.com/badge/Aave-1C202F?style=for-the-badge&logo=aave
+[pinata]: https://custom-icon-badges.demolab.com/badge/Pinata-350462?style=for-the-badge&logo=pinata
