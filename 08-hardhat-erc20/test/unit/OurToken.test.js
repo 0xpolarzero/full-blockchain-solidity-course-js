@@ -9,19 +9,19 @@ const { getNamedAccounts, deployments, network, ethers } = require('hardhat');
 
 !developmentChains.includes(network.name)
   ? describe.skip
-  : describe('OurToken unit tests', function () {
+  : describe('OurToken unit tests', function() {
       let deployer;
       let otherAccount;
       let ourToken;
 
-      before(async function () {
+      beforeEach(async function() {
         deployer = (await getNamedAccounts()).deployer;
         otherAccount = (await ethers.getSigners())[1].address;
         await deployments.fixture('all');
         ourToken = await ethers.getContract('OurToken', deployer);
       });
 
-      describe('constructor', function () {
+      describe('constructor', function() {
         it('Should initialize the specified supply for the token', async () => {
           const deployedSupply = await ourToken.totalSupply();
           assert(INITIAL_SUPPLY.toString() === deployedSupply.toString());
@@ -38,14 +38,14 @@ const { getNamedAccounts, deployments, network, ethers } = require('hardhat');
         });
       });
 
-      describe('balanceOf', function () {
+      describe('balanceOf', function() {
         it('Should return the correct balance for the specified address', async () => {
           const balance = await ourToken.balanceOf(deployer);
           assert(INITIAL_SUPPLY.toString() === balance.toString());
         });
       });
 
-      describe('transfer', function () {
+      describe('transfer', function() {
         it('Should transfer the specified amount from an address to another', async () => {
           const amount = '10000';
           const sender = deployer;
@@ -69,7 +69,7 @@ const { getNamedAccounts, deployments, network, ethers } = require('hardhat');
         });
       });
 
-      describe('allowance', function () {
+      describe('allowance', function() {
         it('Should return the correct allowance for the specified address after being approved', async () => {
           const amount = '10000';
           await ourToken.approve(otherAccount, amount);
@@ -79,7 +79,7 @@ const { getNamedAccounts, deployments, network, ethers } = require('hardhat');
         });
       });
 
-      describe('transferFrom', function () {
+      describe('transferFrom', function() {
         it('Should transfer the specified amount from an address to another after being approved', async () => {
           const amount = '10000';
           const senderBalanceBefore = await ourToken.balanceOf(deployer);
@@ -115,7 +115,7 @@ const { getNamedAccounts, deployments, network, ethers } = require('hardhat');
         });
       });
 
-      describe('increaseAllowance', function () {
+      describe('increaseAllowance', function() {
         it('Should increase an address allowance amount when called', async () => {
           const amount = '10000';
           const additionalAmount = '5000';
@@ -140,7 +140,7 @@ const { getNamedAccounts, deployments, network, ethers } = require('hardhat');
         });
       });
 
-      describe('decreaseAllowance', function () {
+      describe('decreaseAllowance', function() {
         it('Should decrease an address allowance amount when called', async () => {
           const amount = '10000';
           const substractedAmount = '5000';
