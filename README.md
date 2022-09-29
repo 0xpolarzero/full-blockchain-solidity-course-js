@@ -9,11 +9,11 @@
 
 <h2 align="center">Full Blockchain, Solidity & Full-Stack Web3 development with JavaScript </h3>
 
-  <h3 align="center">
+  <p align="center">
     Everything related to my progress through <a href="https://youtu.be/gyMwXuJrbJQ" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">this course from Patrick Collins</a>
     <br />
     <a href="https://youtu.be/gyMwXuJrbJQ" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent"><strong>Go to the video »</strong></a>
-  </h3>
+  </p>
 </div>
 
 <br />
@@ -270,8 +270,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [![Twitter][twitter]](https://twitter.com/0xpolarzero/)
 [![LinkedIn][linkedin]](https://www.linkedin.com/in/antton-lepretre/)
 [![Hashnode][hashnode]](https://polarzero.hashnode.dev/) <br />
-[![0xpolarzero@gmail.com][email]]()
-[![polarzero.eth][ethereum]]()
+[![0xpolarzero@gmail.com][email]](mailto:0xpolarzero@gmail.com)
+[![polarzero.eth][ethereum]](https://opensea.io/polarzero)
 
 Project Link: <strong><a href="https://github.com/polar0/full-blockchain-solidity-course-js" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">https://github.com/polar0/full-blockchain-solidity-course-js</a></strong>
 
