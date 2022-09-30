@@ -164,7 +164,7 @@ yarn hardhat coverage
 
 <!-- MISSION 02 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02a-hardhat-simple-storage" id="mission-02"><img src="https://shields.io/badge/Mission%2002%20-%20Hardhat%20●%20Simple%20Storage%20(Lesson%206)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02-hardhat-simple-storage" id="mission-02"><img src="https://shields.io/badge/Mission%2002%20-%20Hardhat%20●%20Simple%20Storage%20(Lesson%206)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 

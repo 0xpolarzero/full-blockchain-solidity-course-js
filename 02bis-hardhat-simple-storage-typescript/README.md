@@ -78,7 +78,7 @@ gasReporter: {
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02b-hardhat-simple-storage-typescript" id="mission-02"><img src="https://shields.io/badge/Mission%2002%20-%20Hardhat%20●%20Simple%20Storage%20(Lesson%206)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02bis-hardhat-simple-storage-typescript" id="mission-02"><img src="https://shields.io/badge/Mission%2002%20-%20Hardhat%20●%20Simple%20Storage%20(Lesson%206)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 This is the TypeScript version of the previous subdirectory. There is no major difference in the code.
 
