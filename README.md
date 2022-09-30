@@ -57,7 +57,7 @@
 
 While following this course, I frequently pushed my progress to GitHub, to keep track of it. The purpose of this resource is to document this growth, providing details at each step of the journey about the mission achieved, and the new skills acquired. Enjoy the glow up!
 
-<p>
+<p align="center">
 <img src="images/ethereum.svg" alt="Solidity" width="60" height="60">
 <img src="images/javascript.svg" alt="JavaScript" width="60" height="60">
 <img src="images/ethers.svg" alt="EthersJS" width="60" height="60">
