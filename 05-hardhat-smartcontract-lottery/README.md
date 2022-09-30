@@ -31,7 +31,7 @@
    ```
 2. Navigate into the subdirectory:
    ```sh
-   cd 03-hardhat-fund-me
+   cd 05-hardhat-smartcontract-lottery
    ```
 3. Install NPM packages using `yarn` or `npm install`.
 4. Create a `.env` file at the root of the project, and populate it with the following variables:
@@ -50,7 +50,7 @@ Deploy:
 yarn hardhat deploy
 ```
 
-You can specify the network to deploy to with the `--network` flag, e.g. `yarn hardhat deploy --network goerli`. You can use `polygon`, `goerli`, `hardhat`, `localhost`. The latter will require you to run a local node first with the following command.
+You can specify the network to deploy to with the `--network` flag, e.g. `yarn hardhat deploy --network goerli`. You can use `goerli`, `hardhat`, `localhost`. The latter will require you to run a local node first with the following command.
 
 Run a local node:
 
@@ -80,15 +80,14 @@ gasReporter: {
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" id="mission-03"><img src="https://shields.io/badge/Mission%2003%20-%20Hardhat%20●%20Fund%20Me%20(Lesson%207)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/05-hardhat-smartcontract-lottery" id="mission-05"><img src="https://shields.io/badge/Mission%2005%20-%20Hardhat%20●%20Lottery%20Smart%20Contract%20(Lesson%209)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
-- Deploying multiple/selected contracts with Hardhat
-- Mocking a Chainlink price feed for testing
-- Unit & Staging tests
-- Interacting with storage in Solidity
-- Gas optimization, using storage, immutable & constant variables
+- Write a provably fair raffle system using RNG with <a href="https://docs.chain.link/docs/vrf/v2/introduction/">Chainlink VRF</a> & <a href="https://docs.chain.link/docs/chainlink-automation/introduction/">Chainlink Keepers</a>
+- Using & testing Solidity Events
+- Using `evm_increaseTime` & `evm_mine` with Hardhat, special methods
+- More in depth staging tests
 
 ### Skills
 

@@ -31,12 +31,13 @@
    ```
 2. Navigate into the subdirectory:
    ```sh
-   cd 03-hardhat-fund-me
+   cd 08-defi
    ```
 3. Install NPM packages using `yarn` or `npm install`.
 4. Create a `.env` file at the root of the project, and populate it with the following variables:
    ```properties
     GOERLI_RPC_URL = goerli_rpc_from_provider
+    MAINNET_RPC_URL = mainnet_rpc_from_provider
     PRIVATE_KEY = your_wallet_private_key
     ETHERSCAN_API_KEY = your_etherscan_api_key
     COINMARKETCAP_API_KEY = your_coinmarketcap_api_key
@@ -44,51 +45,20 @@
 
 ## Usage
 
-Deploy:
-
-```sh
-yarn hardhat deploy
-```
-
-You can specify the network to deploy to with the `--network` flag, e.g. `yarn hardhat deploy --network goerli`. You can use `polygon`, `goerli`, `hardhat`, `localhost`. The latter will require you to run a local node first with the following command.
-
-Run a local node:
-
-```sh
-yarn hardhat node
-```
-
-Run tests:
-
-```sh
-yarn hardhat test
-```
-
-Report coverage:
-
-```sh
-yarn hardhat coverage
-```
-
-To get the gas usage report included or not, change `enabled` to `true` or `false` in the hardhat.config.js file.
-
-```properties
-gasReporter: {
-    enabled: true,
-}
-```
+Run `yarn hardhat run scripts/aaveBorrow.js` or `npm run hardhat run scripts/aaveBorrow.js` to run the script. It will exchange ETH for wETH, deposit it into Aave, borrow DAI, and repay the loan.
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" id="mission-03"><img src="https://shields.io/badge/Mission%2003%20-%20Hardhat%20●%20Fund%20Me%20(Lesson%207)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/08-defi" id="mission-08"><img src="https://shields.io/badge/Mission%2008%20-%20DeFi%20(Lesson%2013)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
-- Deploying multiple/selected contracts with Hardhat
-- Mocking a Chainlink price feed for testing
-- Unit & Staging tests
-- Interacting with storage in Solidity
-- Gas optimization, using storage, immutable & constant variables
+- Using scripts for borrowing & lending with Aave
+  - Using the wETH token contract to exchange ETH for wETH
+  - Depositing wETH into Aave
+  - Borrowing DAI from Aave
+  - Repaying DAI to Aave
+- Forking mainnet with Hardhat
 
 ### Skills
 
@@ -97,7 +67,7 @@ gasReporter: {
 [![Hardhat]](https://hardhat.org/)
 [![Chai]](https://www.chaijs.com/)
 [![Mocha]](https://mochajs.org/)
-[![Chainlink]](https://chain.link/)
+[![Aave]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 
 #
 
@@ -108,4 +78,4 @@ gasReporter: {
 [hardhat]: https://custom-icon-badges.demolab.com/badge/Hardhat-181A1F?style=for-the-badge&logo=hardhat
 [chai]: https://img.shields.io/badge/Chai-A30701.svg?style=for-the-badge&logo=Chai&logoColor=white
 [mocha]: https://custom-icon-badges.demolab.com/badge/Mocha-87694D?style=for-the-badge&logo=mocha&logoColor=white
-[chainlink]: https://img.shields.io/badge/Chainlink-375BD2.svg?style=for-the-badge&logo=Chainlink&logoColor=white
+[aave]: https://custom-icon-badges.demolab.com/badge/Aave-1C202F?style=for-the-badge&logo=aave

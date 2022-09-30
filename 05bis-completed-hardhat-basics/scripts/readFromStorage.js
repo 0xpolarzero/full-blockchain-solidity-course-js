@@ -1,15 +1,15 @@
 const { ethers } = require('hardhat');
 const { networks } = require('../hardhat.config');
 
-async function readFromStorage() {
-  const contractAddress = '0xB29eA9ad260B6DC980513bbA29051570b2115110';
-  const storageSlotNumber = 777;
+const CONTRACT_ADDRESS = '0xB29eA9ad260B6DC980513bbA29051570b2115110';
+const STORAGE_SLOT_NUMBER = 777;
 
+async function readFromStorage() {
   // Connect to arbitrum
   const provider = new ethers.providers.JsonRpcProvider(networks.arbitrum.url);
   const valueAtStorage = await provider.getStorageAt(
-    contractAddress,
-    storageSlotNumber,
+    CONTRACT_ADDRESS,
+    STORAGE_SLOT_NUMBER,
   );
 
   // If the value is a number

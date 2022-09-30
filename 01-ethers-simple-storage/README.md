@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/polar0/full-blockchain-solidity-course-js">
-    <img src="../../images/blockchain.png" alt="Logo" width="80" height="80">
+    <img src="../images/blockchain.png" alt="Logo" width="80" height="80">
   </a>
 
 <h2 align="center">Full Blockchain, Solidity & Full-Stack Web3 development with JavaScript </h3>

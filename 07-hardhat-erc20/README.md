@@ -31,7 +31,7 @@
    ```
 2. Navigate into the subdirectory:
    ```sh
-   cd 03-hardhat-fund-me
+   cd 07-hardhat-erc20
    ```
 3. Install NPM packages using `yarn` or `npm install`.
 4. Create a `.env` file at the root of the project, and populate it with the following variables:
@@ -50,7 +50,7 @@ Deploy:
 yarn hardhat deploy
 ```
 
-You can specify the network to deploy to with the `--network` flag, e.g. `yarn hardhat deploy --network goerli`. You can use `polygon`, `goerli`, `hardhat`, `localhost`. The latter will require you to run a local node first with the following command.
+You can specify the network to deploy to with the `--network` flag, e.g. `yarn hardhat deploy --network goerli`. You can use `goerli`, `hardhat`, `localhost`. The latter will require you to run a local node first with the following command.
 
 Run a local node:
 
@@ -80,15 +80,13 @@ gasReporter: {
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" id="mission-03"><img src="https://shields.io/badge/Mission%2003%20-%20Hardhat%20●%20Fund%20Me%20(Lesson%207)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/07-hardhat-erc20" id="mission-07"><img src="https://shields.io/badge/Mission%2007%20-%20Hardhat%20●%20ERC20%20Token%20(Lesson%2012)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
-- Deploying multiple/selected contracts with Hardhat
-- Mocking a Chainlink price feed for testing
-- Unit & Staging tests
-- Interacting with storage in Solidity
-- Gas optimization, using storage, immutable & constant variables
+- Creating an ERC20 Token with the basic requirements
+- Using Openzeppelin to create the token
+- Usual unit testing for the inherited functions
 
 ### Skills
 
@@ -97,7 +95,6 @@ gasReporter: {
 [![Hardhat]](https://hardhat.org/)
 [![Chai]](https://www.chaijs.com/)
 [![Mocha]](https://mochajs.org/)
-[![Chainlink]](https://chain.link/)
 
 #
 
@@ -108,4 +105,3 @@ gasReporter: {
 [hardhat]: https://custom-icon-badges.demolab.com/badge/Hardhat-181A1F?style=for-the-badge&logo=hardhat
 [chai]: https://img.shields.io/badge/Chai-A30701.svg?style=for-the-badge&logo=Chai&logoColor=white
 [mocha]: https://custom-icon-badges.demolab.com/badge/Mocha-87694D?style=for-the-badge&logo=mocha&logoColor=white
-[chainlink]: https://img.shields.io/badge/Chainlink-375BD2.svg?style=for-the-badge&logo=Chainlink&logoColor=white
