@@ -125,7 +125,7 @@ yarn hardhat coverage
 
 #
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage"><img src="https://shields.io/badge/Mission%2001%20-%20Ethers%20Simple%20Storage%20(Lesson%205)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage"><img src="https://shields.io/badge/Mission%2001%20-%20Ethers%20Simple%20Storage%20(Lesson%205)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
