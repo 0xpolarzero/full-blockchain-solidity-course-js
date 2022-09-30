@@ -10,9 +10,9 @@
 <h2 align="center">Full Blockchain, Solidity & Full-Stack Web3 development with JavaScript </h3>
 
   <p align="center">
-    Everything related to my progress through <a href="https://youtu.be/gyMwXuJrbJQ" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">this course from Patrick Collins</a>
+    Everything related to my progress through <a href="https://youtu.be/gyMwXuJrbJQ">this course from Patrick Collins</a>
     <br />
-    <a href="https://youtu.be/gyMwXuJrbJQ" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent"><strong>Go to the video »</strong></a>
+    <a href="https://youtu.be/gyMwXuJrbJQ"><strong>Go to the video »</strong></a>
   </p>
 </div>
 
@@ -66,26 +66,6 @@ While following this course, I frequently pushed my progress to GitHub, to keep 
 <img src="images/ipfs.svg" alt="IPFS" width="60" height="60">
 </p>
 
-Remix ☑
-Solidity ☑
-JavaScript ☑
-chainlink (oracles) ☑
-Hardhat ☑
-Node.js ☑
-Ganache ☑
-Ethers.js ☑
-Alchemy ☑
-Mocha (testing) ☑
-Mocking
-Moralis ☑
-Next.js ☑
-React.js ☑
-Tailwind ☑
-IPFS ☑
-DeFi (Aave) ☑
-NFTS (on chain, ipfs & pinata)
-... LESSON 15
-
 <!-- GETTING STARTED -->
 
 # Trying out / testing
@@ -99,15 +79,13 @@ NFTS (on chain, ipfs & pinata)
    ```sh
    git clone https://github.com/polar0/full-blockchain-solidity-course-js.git
    ```
-2. Install NPM packages using `yarn` or `npm install`.
+2. Navigate into a subdirectory:
+   ```sh
+   cd name-of-the-subdirectory
+   ```
+3. Install NPM packages using `yarn` or `npm install`.
 
-###Usage
-
-Navigate to one of the directories:
-
-```sh
-cd xx-name-of-the-directory
-```
+## Usage
 
 Deploy:
 
@@ -127,11 +105,9 @@ Test coverage:
 yarn hardhat coverage
 ```
 
-<!-- LICENSE -->
-
 # Lessons
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/00-remix-solidity-basics/contracts" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 00: Remix & Solidity Basics</a> (Lessons 2 - 4)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/00-remix-solidity-basics/contracts"><img src="https://shields.io/badge/Mission%2000%20-%20Remix%20&%20Solidity%20Basics%20(Lessons%202,%203,%204)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -147,7 +123,9 @@ yarn hardhat coverage
 [![Remix]](https://remix.ethereum.org/)
 [![Chainlink]](https://chain.link/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 01: Ethers - Simple Storage</a> (Lesson 5)
+#
+
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage"><img src="https://shields.io/badge/Mission%2001%20-%20Ethers%20Simple%20Storage%20(Lesson%205)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -166,7 +144,7 @@ yarn hardhat coverage
 [![NodeJS]](https://nodejs.org/)
 [![Alchemy]](https://www.alchemy.com/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02a-hardhat-simple-storage" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 02: Hardhat - Simple Storage</a> (Lesson 6)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02a-hardhat-simple-storage">Mission 02: Hardhat - Simple Storage</a> (Lesson 6)
 
 ### Achievements
 
@@ -187,7 +165,7 @@ yarn hardhat coverage
 [![Chai]](https://www.chaijs.com/)
 [![Mocha]](https://mochajs.org/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 03: Hardhat - Fund Me</a> (Lesson 7)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me">Mission 03: Hardhat - Fund Me</a> (Lesson 7)
 
 ### Achievements
 
@@ -206,7 +184,7 @@ yarn hardhat coverage
 [![Mocha]](https://mochajs.org/)
 [![Chainlink]](https://chain.link/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/04-html-fund-me" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 04: HTML - Fund Me</a> (Lesson 8)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/04-html-fund-me">Mission 04: HTML - Fund Me</a> (Lesson 8)
 
 ### Achievements
 
@@ -220,11 +198,11 @@ yarn hardhat coverage
 [![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 [![EthersJS]](https://docs.ethers.io/v5/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/05-hardhat-smartcontract-lottery" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 05: Hardhat - Lottery smart contract</a> (Lesson 9)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/05-hardhat-smartcontract-lottery">Mission 05: Hardhat - Lottery smart contract</a> (Lesson 9)
 
 ### Achievements
 
-- Write a provably fair raffle system using RNG with <a href="https://docs.chain.link/docs/vrf/v2/introduction/" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Chainlink VRF</a> & <a href="https://docs.chain.link/docs/chainlink-automation/introduction/" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Chainlink Keepers</a>
+- Write a provably fair raffle system using RNG with <a href="https://docs.chain.link/docs/vrf/v2/introduction/">Chainlink VRF</a> & <a href="https://docs.chain.link/docs/chainlink-automation/introduction/">Chainlink Keepers</a>
 - Using & testing Solidity Events
 - Using `evm_increaseTime` & `evm_mine` with Hardhat, special methods
 - More in depth staging tests
@@ -238,7 +216,7 @@ yarn hardhat coverage
 [![Mocha]](https://mochajs.org/)
 [![Chainlink]](https://chain.link/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 06: Next.js Front End - Lottery smart contract</a> (Lesson 10)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery">Mission 06: Next.js Front End - Lottery smart contract</a> (Lesson 10)
 
 ### Achievements
 
@@ -260,7 +238,7 @@ yarn hardhat coverage
 [![Moralis]](https://moralis.io/)
 [![IPFS]](https://ipfs.tech/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/07-hardhat-erc20" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 07: Hardhat - ERC20 Token</a> (Lesson 12)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/07-hardhat-erc20">Mission 07: Hardhat - ERC20 Token</a> (Lesson 12)
 
 ### Achievements
 
@@ -276,7 +254,7 @@ yarn hardhat coverage
 [![Chai]](https://www.chaijs.com/)
 [![Mocha]](https://mochajs.org/)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/08-defi" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 08: DeFi</a> (Lesson 13)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/08-defi">Mission 08: DeFi</a> (Lesson 13)
 
 ### Achievements
 
@@ -296,7 +274,7 @@ yarn hardhat coverage
 [![Mocha]](https://mochajs.org/)
 [![Aave]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/09-hardhat-nft" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">Mission 09: NFT - IPFS, fully on-chain, randomized, dynamic...</a> (Lesson 14)
+## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/09-hardhat-nft">Mission 09: NFT - IPFS, fully on-chain, randomized, dynamic...</a> (Lesson 14)
 
 ### Achievements
 
@@ -328,7 +306,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [![0xpolarzero@gmail.com][email]](mailto:0xpolarzero@gmail.com)
 [![polarzero.eth][ethereum]](https://opensea.io/polarzero)
 
-Project Link: <strong><a href="https://github.com/polar0/full-blockchain-solidity-course-js" style="text-decoration:none;background: linear-gradient(45deg,rgb(231, 95, 188) 0%,rgb(120, 146, 221) 70%,rgb(132, 245, 230) 100%);-webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent">https://github.com/polar0/full-blockchain-solidity-course-js</a></strong>
+Project Link: <strong><a href="https://github.com/polar0/full-blockchain-solidity-course-js">https://github.com/polar0/full-blockchain-solidity-course-js</a></strong>
 
 Thank you Patrick Collins
 
