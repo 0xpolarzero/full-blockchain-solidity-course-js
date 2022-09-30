@@ -19,7 +19,7 @@
 <br />
 
 <!-- TABLE OF CONTENTS -->
-<!-- <details> -->
+<details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
@@ -47,7 +47,7 @@
     <li><a href="#contact">Contact</a></li>
 
   </ol>
-<!-- </details> -->
+</details>
 
 <br />
 
@@ -141,7 +141,7 @@ yarn hardhat coverage
 
 <!-- MISSION 01 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage" id="mission-01"><img src="https://shields.io/badge/Mission%2001%20-%20Ethers%20.%20Simple%20Storage%20(Lesson%205)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage" id="mission-01"><img src="https://shields.io/badge/Mission%2001%20-%20Ethers%20●%20Simple%20Storage%20(Lesson%205)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -164,7 +164,7 @@ yarn hardhat coverage
 
 <!-- MISSION 02 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02a-hardhat-simple-storage" id="mission-02"><img src="https://shields.io/badge/Mission%2002%20-%20Hardhat%20.%20Simple%20Storage%20(Lesson%206)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/02a-hardhat-simple-storage" id="mission-02"><img src="https://shields.io/badge/Mission%2002%20-%20Hardhat%20●%20Simple%20Storage%20(Lesson%206)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -189,7 +189,7 @@ yarn hardhat coverage
 
 <!-- MISSION 03 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" id="mission-03"><img src="https://shields.io/badge/Mission%2003%20-%20Hardhat%20.%20Fund%20Me%20(Lesson%207)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/03-hardhat-fund-me" id="mission-03"><img src="https://shields.io/badge/Mission%2003%20-%20Hardhat%20●%20Fund%20Me%20(Lesson%207)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -212,7 +212,7 @@ yarn hardhat coverage
 
 <!-- MISSION 04 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/04-html-fund-me" id="mission-04"><img src="https://shields.io/badge/Mission%2004%20-%20HTML%20.%20Fund%20Me%20(Lesson%208)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/04-html-fund-me" id="mission-04"><img src="https://shields.io/badge/Mission%2004%20-%20HTML%20●%20Fund%20Me%20(Lesson%208)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -230,7 +230,7 @@ yarn hardhat coverage
 
 <!-- MISSION 05 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/05-hardhat-smartcontract-lottery" id="mission-05"><img src="https://shields.io/badge/Mission%2005%20-%20Hardhat%20.%20Lottery%20Smart%20Contract%20(Lesson%209)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/05-hardhat-smartcontract-lottery" id="mission-05"><img src="https://shields.io/badge/Mission%2005%20-%20Hardhat%20●%20Lottery%20Smart%20Contract%20(Lesson%209)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -252,7 +252,7 @@ yarn hardhat coverage
 
 <!-- MISSION 06 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery" id="mission-06"><img src="https://shields.io/badge/Mission%2006%20-%20Next.js%20Front%20End%20.%20Lottery%20Smart%20Contract%20(Lesson%2010)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery" id="mission-06"><img src="https://shields.io/badge/Mission%2006%20-%20Next.js%20Front%20End%20●%20Lottery%20Smart%20Contract%20(Lesson%2010)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -278,7 +278,7 @@ yarn hardhat coverage
 
 <!-- MISSION 07 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/07-hardhat-erc20" id="mission-07"><img src="https://shields.io/badge/Mission%2007%20-%20Hardhat%20.%20ERC20%20Token%20(Lesson%2012)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/07-hardhat-erc20" id="mission-07"><img src="https://shields.io/badge/Mission%2007%20-%20Hardhat%20●%20ERC20%20Token%20(Lesson%2012)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -322,7 +322,7 @@ yarn hardhat coverage
 
 <!-- MISSION 09 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/09-hardhat-nft" id="mission-09"><img src="https://shields.io/badge/Mission%2009%20-%20NFT%20.%20IPFS,%20fully%20on%20chain,%20randomized,%20dynamic...%20(Lesson%2014)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/09-hardhat-nft" id="mission-09"><img src="https://shields.io/badge/Mission%2009%20-%20NFT%20●%20IPFS,%20fully%20on%20chain,%20randomized,%20dynamic...%20(Lesson%2014)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
