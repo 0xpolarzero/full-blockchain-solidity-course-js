@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.8;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -61,6 +61,7 @@ contract RandomIpfsNft is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
         if (msg.value < i_mintFee) {
             revert RandomIpfsNft__NotEnoughETHToMint();
         }
+
         requestId = i_vrfCoordinator.requestRandomWords(
             i_gasLane,
             i_subscriptionId,
@@ -88,6 +89,14 @@ contract RandomIpfsNft is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
         emit NftMinted(dogBreed, dogOwner);
     }
 
+    function withdraw() public onlyOwner {
+        uint256 amount = address(this).balance;
+        (bool success, ) = msg.sender.call{value: amount}("");
+        if (!success) {
+            revert RandomIpfsNft__WithdrawFailed();
+        }
+    }
+
     function getBreedFromModdedRng(uint256 moddedRng)
         public
         pure
@@ -108,14 +117,6 @@ contract RandomIpfsNft is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
 
     function getChanceArray() public pure returns (uint256[3] memory) {
         return [MIN_CHANCE_VALUE, MID_CHANCE_VALUE, MAX_CHANCE_VALUE];
-    }
-
-    function withdraw() public onlyOwner {
-        uint256 amount = address(this).balance;
-        (bool success, ) = msg.sender.call{value: amount}("");
-        if (!success) {
-            revert RandomIpfsNft__WithdrawFailed();
-        }
     }
 
     function getMintFee() public view returns (uint256) {

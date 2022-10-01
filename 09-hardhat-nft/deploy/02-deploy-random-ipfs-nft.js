@@ -50,7 +50,7 @@ module.exports = async function({ getNamedAccounts, deployments }) {
     subscriptionId = txReceipt.events[0].args.subId;
     await vrfCoordinatorV2Mock.fundSubscription(subscriptionId, FUND_AMOUNT);
   } else {
-    vrfCoordinatorV2Address = networkConfig[chainId].vrfCoordinatorV2Address;
+    vrfCoordinatorV2Address = networkConfig[chainId].vrfCoordinatorV2;
     subscriptionId = networkConfig[chainId].subscriptionId;
   }
 
@@ -112,4 +112,4 @@ async function handleTokenUris() {
   return tokenUris;
 }
 
-module.exports.tags = ['all', 'random-ipfs-nft'];
+module.exports.tags = ['all', 'random-ipfs-nft', 'main'];
