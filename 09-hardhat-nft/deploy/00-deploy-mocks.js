@@ -25,4 +25,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     console.log('Mocks Deployed!');
   }
 };
-module.exports.tags = ['all', 'mocks', 'random-ipfs-nft', 'dynamic-svg-nft'];
+module.exports.tags = ['all', 'mocks', 'main'];
