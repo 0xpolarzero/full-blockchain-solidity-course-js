@@ -37,7 +37,7 @@ module.exports = {
     deployer: {
       default: 0,
     },
-    participant: {
+    user: {
       default: 1,
     },
   },
