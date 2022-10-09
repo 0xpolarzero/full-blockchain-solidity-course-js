@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Here we can't access the listings through the contracts because it would be very gas expensive. If it were an array, same issue.
+-> So we will index the events off-chain and then read them from the database
+-> So we need a server to listen for these events and store them in the database
+--> Exactly what Moralis & TheGraph do (respectively centralized & decentralized)
 
-## Getting Started
+To run locally with Moralis
 
-First, run the development server:
+1. Setup a local server
+2. Pass app ID & URL to the Provider
+3. Run the hh node & front end
+4. Go to Moralis Server `Network` > `Settings` > Need to install a reverse proxy
+5. In the frp folder -> run frpc to connect to the server
+6. Change `frpc.ini` with the right settings (Ganache/Hardhat)
 
-```bash
-npm run dev
-# or
-yarn dev
+OR
+
+4. Setup a script in `package.json` to run it with the moralis-admin-cli
+
+```json
+"moralis:sync": "moralis-admin-cli connect-local-devchain --chain hardhat --moralisSubdomain xxx.usemoralis.com --frpcPath ./frp/frpc"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Provide `moralisApiKey` and `moralisApiSecret` in the `.env` file (from Moralis > Account > Keys)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+--> Once it is running, we can run the `addEvents.js` script to configure the `Sync Smart Contract Events` in Moralis
+-- The local chain needs to be reset in Moralis dashboard if the hh node is reset.
+-- We can setup cloud functions to handle this kind of things (e.g. an item listed that has been sold needs to be updated -> removed from listings => Moralis Cloud).
+===> Here: `updateActiveItems` will create a new section that will run when an event is synced, and will add to the table when an item is listed, and remove it when it's bought.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+As usual, when dealing with a smart contract + front end:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Create a `update-front-end` deploy script in the smart contract folder
+2. Use the .env variable to update or not
+3. Create a `constants` folder and a file that will be updated (here with contract addresses) -> a `.json` file with an object (`{}`)
 
-## Learn More
+## Centralized dependancies:
 
-To learn more about Next.js, take a look at the following resources:
+- ipfs.io (but the URI is still hosted on IPFS nodes)
+- Moralis
+- Loading.io (icons)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Bonus achievements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- UI & UX customization
+- Use Rainbowkit & Wagmi for the wallet connection, transactions, etc
+- Use Antd for the UI (Modal, buttons, inputs)
+- NFT Minting page
+- Filters (All listings & User listings)
+  MAYBE LATER - Listening events for the NFT contract to track user's NFTs
