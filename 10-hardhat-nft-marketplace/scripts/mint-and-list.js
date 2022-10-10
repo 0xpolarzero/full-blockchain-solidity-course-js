@@ -12,6 +12,7 @@ async function mintAndList() {
   const mintTxReceipt = await mintTx.wait(1);
   const tokenId = mintTxReceipt.events[0].args.tokenId;
 
+  console.log('Approving the marketplace to spend the NFT...');
   const approvalTx = await basicNft.approve(nftMarketplace.address, tokenId);
   await approvalTx.wait(1);
 

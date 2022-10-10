@@ -201,7 +201,11 @@ contract NftMarketplace {
         return s_listings[nftAddress][tokenId];
     }
 
-    function getProceeds(address user) external view returns (uint256) {
+    function getProceeds(address user)
+        external
+        view
+        returns (uint256 proceeds)
+    {
         return s_proceeds[user];
     }
 }
