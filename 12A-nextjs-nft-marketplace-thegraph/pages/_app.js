@@ -13,6 +13,7 @@ import {
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
 
 const { chains, provider, webSocketProvider } = configureChains(
@@ -21,7 +22,7 @@ const { chains, provider, webSocketProvider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'NFT Marketplace - Moralis',
+  appName: 'NFT Marketplace - TheGraph',
   chains,
 });
 
@@ -30,6 +31,11 @@ const wagmiClient = createClient({
   webSocketProvider,
   autoConnect: true,
   connectors,
+});
+
+const apolloClient = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL,
 });
 
 function MyApp({ Component, pageProps }) {
@@ -56,7 +62,9 @@ function MyApp({ Component, pageProps }) {
             overlayBlur: 'small',
           })}
         >
-          <Component {...pageProps} />
+          <ApolloProvider client={apolloClient}>
+            <Component {...pageProps} />
+          </ApolloProvider>
         </RainbowKitProvider>
       </WagmiConfig>
       <ToastContainer theme='colored' progressStyle={{ background: '#fff' }} />

@@ -9,9 +9,8 @@ import { Skeleton } from 'antd';
 import { useAccount } from 'wagmi';
 import { useEffect, useState } from 'react';
 
-export default function NftCard({ nftAttributes }) {
-  const { marketplaceAddress, nftAddress, tokenId, price, seller } =
-    nftAttributes;
+export default function NftCard({ nftAttributes, marketplaceAddress }) {
+  const { nftAddress, tokenId, price, seller } = nftAttributes;
   const { address: userAddress } = useAccount();
   const [isURILoaded, setIsURILoaded] = useState(false);
   const [imageURI, setImageURI] = useState('');

@@ -6,7 +6,6 @@ import {
 } from '../systems/interactWithContract';
 import { roundEth } from '../utils/formatting';
 import { Modal } from 'antd';
-import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import { useAccount, useProvider } from 'wagmi';
 import { useEffect, useState } from 'react';
@@ -87,7 +86,9 @@ export default function ProceedsModal({ isVisible, hideModal }) {
         <div className='price'>
           <div className='value highlight'>
             <i className='fa-brands fa-ethereum'></i>{' '}
-            <span>{roundEth(userProceeds.toString() || '0')}</span>
+            <span>
+              {userProceeds && roundEth(userProceeds.toString() || '0')}
+            </span>
           </div>
         </div>
       </div>

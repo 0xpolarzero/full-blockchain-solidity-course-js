@@ -1,24 +1,22 @@
 {
-  "name": "11-nextjs-nft-marketplace-moralis",
+  "name": "12a-nextjs-nft-marketplace-thegraph",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "moralis:sync": "moralis-admin-cli connect-local-devchain --chain hardhat --moralisSubdomain ejj0azd2324y.usemoralis.com --frpcPath ./frp/frpc",
-    "moralis:cloud": "moralis-admin-cli watch-cloud-folder --moralisSubdomain ejj0azd2324y.usemoralis.com --autoSave 1 --moralisCloudfolder ./cloudFunctions"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.0",
     "@fortawesome/fontawesome-free": "^6.2.0",
     "@rainbow-me/rainbowkit": "^0.7.1",
     "antd": "^4.23.4",
-    "moralis-v1": "^1.11.0",
+    "graphql": "^16.6.0",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-moralis": "^1.4.2",
     "react-toastify": "^9.0.8"
   },
   "devDependencies": {

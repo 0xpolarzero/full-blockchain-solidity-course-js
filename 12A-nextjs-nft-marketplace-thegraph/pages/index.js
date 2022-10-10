@@ -3,36 +3,50 @@ import styles from '../styles/Home.module.css';
 import NftCard from '../components/NftCard';
 import SellingModal from '../components/SellingModal';
 import ProceedsModal from '../components/ProceedsModal';
+import networkMapping from '../constants/networkMapping.json';
+import GET_ACTIVE_ITEMS from '../constants/subgraphQueries';
 import { Radio } from 'antd';
-import { useAccount } from 'wagmi';
-import { useMoralisQuery } from 'react-moralis';
+import { chain, useAccount, useProvider } from 'wagmi';
+import { useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { isDisconnected, address: userAddress } = useAccount();
-  const { data: listedNfts, isFetching: fetchingListedNfts } = useMoralisQuery(
-    'ActiveItem',
-    (query) => query.limit(10).descending('tokenId'),
-  );
+  const { network } = useProvider();
   const [shownNfts, setShownNfts] = useState('');
   const [isSellingModalOpen, setIsSellingModalOpen] = useState(false);
   const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
+  const [marketplaceAddress, setMarketplaceAddress] = useState('');
+
+  const chainId = network.chainId ? network.chainId.toString() : '31337';
+
+  const {
+    loading: fetchingListedNfts,
+    error,
+    data: listedNfts,
+  } = useQuery(GET_ACTIVE_ITEMS);
 
   function handleChange(e) {
     if (e.target.value === 'a') {
-      setShownNfts(listedNfts);
+      setShownNfts(listedNfts.activeItems);
     } else {
       setShownNfts(
-        listedNfts.filter(
-          (nft) =>
-            nft.attributes.seller.toLowerCase() === userAddress.toLowerCase(),
+        listedNfts.activeItems.filter(
+          (nft) => nft.seller.toLowerCase() === userAddress.toLowerCase(),
         ),
       );
     }
   }
 
   useEffect(() => {
-    setShownNfts(listedNfts);
+    if (networkMapping[chainId]) {
+      setMarketplaceAddress(networkMapping[chainId]['NftMarketplace'][0]);
+    }
+  });
+
+  useEffect(() => {
+    listedNfts && setShownNfts(listedNfts.activeItems);
+    console.log(shownNfts);
   }, [listedNfts]);
 
   return (
@@ -56,7 +70,7 @@ export default function Home() {
             <div className='home-actions'>
               {!isDisconnected &&
               !fetchingListedNfts &&
-              !(listedNfts.length === 0) ? (
+              !(listedNfts.activeItems.length === 0) ? (
                 <div className='action-filters'>
                   <div className='title'>
                     <div>Filters</div>
@@ -99,20 +113,22 @@ export default function Home() {
             {!isDisconnected ? (
               fetchingListedNfts ? (
                 <div className='loader'></div>
-              ) : listedNfts.length === 0 ? (
+              ) : listedNfts.activeItems.length === 0 ? (
                 <div className='box-container error'>
                   No NFT listed on the marketplace yet.
                 </div>
               ) : (
                 <div className='home-nft'>
-                  {shownNfts.map((nft) => {
-                    return (
-                      <NftCard
-                        key={`${nft.attributes.nftAddress}${nft.attributes.tokenId}`}
-                        nftAttributes={nft.attributes}
-                      />
-                    );
-                  })}
+                  {listedNfts &&
+                    shownNfts.map((nft) => {
+                      return (
+                        <NftCard
+                          key={`${nft.nftAddress}${nft.tokenId}`}
+                          nftAttributes={nft}
+                          marketplaceAddress={marketplaceAddress}
+                        />
+                      );
+                    })}
                 </div>
               )
             ) : (
