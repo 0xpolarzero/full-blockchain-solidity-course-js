@@ -253,6 +253,11 @@ nav .links::after {
   gap: 1rem;
 }
 
+.home-actions-btns {
+  display: flex;
+  gap: 1rem;
+}
+
 .action-filters {
   display: flex;
   align-items: center;
@@ -448,7 +453,7 @@ nav .links::after {
   font-weight: 500;
 }
 
-.buy-item .price {
+.price {
   display: flex;
   align-items: end;
   gap: 0.5rem;
@@ -459,7 +464,7 @@ nav .links::after {
   font-weight: 500;
 }
 
-.buy-item .price .value {
+.price .value {
   font-size: 1.2rem;
   font-weight: 400;
 }
@@ -493,7 +498,7 @@ nav .links::after {
   gap: 1rem;
 }
 
-.mint-btn {
+.mint-btn:not(.action-withdraw) {
   /* Override antd CSS */
   background: var(--main-gradient) !important;
   box-shadow: rgba(50, 45, 71, 0.5) 2px 1000px 1px inset !important;

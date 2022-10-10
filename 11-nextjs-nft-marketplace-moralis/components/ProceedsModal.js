@@ -1,9 +1,11 @@
 import marketplaceAbi from '../constants/NftMarketplace.json';
 import networkMapping from '../constants/networkMapping.json';
-import { writeToContract } from '../systems/interactWithContract';
+import {
+  writeToContract,
+  readFromContract,
+} from '../systems/interactWithContract';
 import { roundEth } from '../utils/formatting';
-import { Modal, Input, InputNumber, Tooltip } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import { useAccount, useProvider } from 'wagmi';
@@ -13,52 +15,34 @@ export default function ProceedsModal({ isVisible, hideModal }) {
   const { address: userAddress } = useAccount();
   const { network } = useProvider();
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
-  const [nftAddress, setNftAddress] = useState(null);
   const [isWalletOpen, setIsWalletOpen] = useState(false);
-  const [tokenId, setTokenId] = useState('');
-  const [price, setPrice] = useState('');
-  const [formattedPrice, setFormattedPrice] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const { write: approveMarketplace, isLoading: isApproveLoading } =
+  const { write: withdrawProceeds, isLoading: isWithdrawLoading } =
     writeToContract(
-      nftAddress,
-      nftAbi,
-      'approve',
-      [marketplaceAddress, tokenId],
-      { onSuccess: handleApproveSuccess, onError: handleError },
+      marketplaceAddress,
+      marketplaceAbi,
+      'withdrawProceeds',
+      [],
+      { onSuccess: handleSuccess, onError: handleError },
     );
 
-  const { write: listItem, isLoading: isListItemLoading } = writeToContract(
+  const userProceeds = readFromContract(
     marketplaceAddress,
     marketplaceAbi,
-    'listItem',
-    [nftAddress, tokenId, formattedPrice],
-    { onSuccess: handleListingSuccess, onError: handleError },
-    false,
+    'getProceeds',
+    [userAddress],
   );
 
-  function copyNftAddress() {
-    navigator.clipboard.writeText(nftAddress);
-    toast.info('NFT Contract address copied to clipboard!');
-  }
-
   function handleSubmit(e) {
-    approveMarketplace();
+    withdrawProceeds();
     setIsWalletOpen(true);
     e.stopPropagation();
   }
 
-  async function handleApproveSuccess(tx) {
+  async function handleSuccess(tx) {
     const txReceipt = await tx.wait(1);
-    toast.success('Item approved for sale.');
-    listItem();
-  }
-
-  async function handleListingSuccess(tx) {
-    const txReceipt = await tx.wait(1);
-    toast.success('Item listed!');
+    toast.success('Proceeds withdrawn!');
     handleCancel();
   }
 
@@ -67,7 +51,7 @@ export default function ProceedsModal({ isVisible, hideModal }) {
     if (err.code === 'ACTION_REJECTED') {
       toast.error('Transaction rejected.');
     } else {
-      toast.error('Error listing item.');
+      toast.error('Error withdrawing proceeds.');
     }
     handleCancel();
   }
@@ -75,26 +59,7 @@ export default function ProceedsModal({ isVisible, hideModal }) {
   function handleCancel(e) {
     hideModal();
     setIsWalletOpen(false);
-    setTokenId('');
-    setPrice('');
     e && e.stopPropagation();
-  }
-
-  async function handleChange(value, type) {
-    setErrorMessage('');
-
-    if (value === null) {
-      setIsFormValid(false);
-      return;
-    }
-
-    if (type === 'tokenId') {
-      setTokenId(value);
-    } else if (type === 'price') {
-      setPrice(value);
-      const priceInWei = ethers.utils.parseEther(value.toString());
-      setFormattedPrice(priceInWei.toString());
-    }
   }
 
   useEffect(() => {
@@ -102,87 +67,32 @@ export default function ProceedsModal({ isVisible, hideModal }) {
       const currentMarketplaceAddress =
         networkMapping[network.chainId]['NftMarketplace'][0] || '';
       setMarketplaceAddress(currentMarketplaceAddress);
-      const currentNftAddress =
-        networkMapping[network.chainId]['BasicNft'][0] || '';
-      setNftAddress(currentNftAddress);
     }
   }, [network.chainId]);
 
   return (
     <Modal
-      title='List item'
+      title='Withdraw Proceeds'
       open={isVisible}
       onOk={handleSubmit}
       onCancel={handleCancel}
       onClose={hideModal}
       okButtonProps={{
-        loading: isListItemLoading || isWalletOpen,
-        // disabled: !isBalanceEnough,
+        loading: isWithdrawLoading || isWalletOpen,
       }}
-      okText='List'
+      okText='Withdraw'
     >
-      <div className='list-item'>
-        <div className='list-address'>
-          <label htmlFor='list-address-input'>NFT Address</label>
-          <Input
-            id='list-address-input'
-            type='text'
-            value={nftAddress}
-            // prefix='#'
-            suffix={
-              <div className='nft-address-tooltip'>
-                <i className='fa-solid fa-copy' onClick={copyNftAddress}></i>
-                <Tooltip title='The address of the NFT Contract'>
-                  <InfoCircleOutlined
-                    style={{ color: 'rgba(255,255,255,.75)' }}
-                  />
-                </Tooltip>
-              </div>
-            }
-            disabled={true}
-          />
+      <div className='withdraw-proceeds'>
+        <div className='title'>Your proceeds</div>
+        <div className='price'>
+          <div className='value highlight'>
+            <i className='fa-brands fa-ethereum'></i>{' '}
+            <span>{roundEth(userProceeds.toString() || '0')}</span>
+          </div>
         </div>
-        <div className='list-token-id'>
-          <label htmlFor='list-token-id-input'>Token ID</label>
-          <InputNumber
-            id='list-token-id-input'
-            type='number'
-            autoFocus={true}
-            placeholder='0'
-            prefix='#'
-            addonAfter={
-              <Tooltip title='Enter the ID of the token you want to list'>
-                <InfoCircleOutlined
-                  style={{ color: 'rgba(255,255,255,.75)' }}
-                />
-              </Tooltip>
-            }
-            onChange={(e) => handleChange(e, 'tokenId')}
-            min={0}
-            value={tokenId}
-          />
-        </div>
-        <div className='list-price'>
-          <label htmlFor='list-price-input'>Price</label>
-          <InputNumber
-            id='list-price-input'
-            type='number'
-            placeholder='0'
-            prefix={<i className='fa-brands fa-ethereum'></i>}
-            addonAfter={
-              <Tooltip title='Enter the price for the NFT (in ETH)'>
-                <InfoCircleOutlined
-                  style={{ color: 'rgba(255,255,255,.75)' }}
-                />
-              </Tooltip>
-            }
-            onChange={(e) => handleChange(e, 'price')}
-            min={0}
-            value={price}
-          />
-        </div>
-        <div className='error-message'>{errorMessage}</div>
       </div>
+
+      <div className='error-message'>{errorMessage}</div>
     </Modal>
   );
 }

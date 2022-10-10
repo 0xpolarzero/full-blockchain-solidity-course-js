@@ -76,7 +76,6 @@ export default function BuyingModal({ props, isVisible, hideModal }) {
         setAdditionalEthNeeded(0);
       }
     }
-    console.log(additionalEthNeeded);
   }, [price]);
 
   return (

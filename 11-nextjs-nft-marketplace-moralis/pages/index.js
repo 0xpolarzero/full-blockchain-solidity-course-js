@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import styles from '../styles/Home.module.css';
 import NftCard from '../components/NftCard';
 import SellingModal from '../components/SellingModal';
+import ProceedsModal from '../components/ProceedsModal';
 import { Radio } from 'antd';
 import { useAccount } from 'wagmi';
 import { useMoralisQuery } from 'react-moralis';
@@ -15,6 +16,7 @@ export default function Home() {
   );
   const [shownNfts, setShownNfts] = useState('');
   const [isSellingModalOpen, setIsSellingModalOpen] = useState(false);
+  const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
 
   function handleChange(e) {
     if (e.target.value === 'a') {
@@ -46,6 +48,10 @@ export default function Home() {
               isVisible={isSellingModalOpen}
               hideModal={() => setIsSellingModalOpen(false)}
             />
+            <ProceedsModal
+              isVisible={isProceedsModalOpen}
+              hideModal={setIsProceedsModalOpen}
+            />
 
             <div className='home-actions'>
               {!isDisconnected &&
@@ -74,12 +80,21 @@ export default function Home() {
                 <div></div>
               )}
 
-              <button
-                className='mint-btn action-sell'
-                onClick={() => setIsSellingModalOpen(true)}
-              >
-                Sell
-              </button>
+              <div className='home-actions-btns'>
+                <button
+                  className='mint-btn action-withdraw'
+                  onClick={() => setIsProceedsModalOpen(true)}
+                >
+                  Proceeds
+                </button>
+
+                <button
+                  className='mint-btn action-sell'
+                  onClick={() => setIsSellingModalOpen(true)}
+                >
+                  Sell
+                </button>
+              </div>
             </div>
             {!isDisconnected ? (
               fetchingListedNfts ? (
