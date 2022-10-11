@@ -47,8 +47,11 @@ export default function UpdateListingModal({ props, isVisible, hideModal }) {
   }
 
   async function handleSuccess(tx) {
-    const txReceipt = await tx.wait(1);
-    toast.success('Listing updated!');
+    const txReceipt = await toast.promise(tx.wait(1), {
+      pending: 'Updating listing...',
+      success: 'Listing updated!',
+      error: 'Error updating listing.',
+    });
     handleCancel();
     setInputPrice('0');
   }

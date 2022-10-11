@@ -26,28 +26,11 @@ export default function Home() {
     data: listedNfts,
   } = useQuery(GET_ACTIVE_ITEMS);
 
-  function handleChange(e) {
-    if (e.target.value === 'a') {
-      setShownNfts(listedNfts.activeItems);
-    } else {
-      setShownNfts(
-        listedNfts.activeItems.filter(
-          (nft) => nft.seller.toLowerCase() === userAddress.toLowerCase(),
-        ),
-      );
-    }
-  }
-
   useEffect(() => {
     if (networkMapping[chainId]) {
       setMarketplaceAddress(networkMapping[chainId]['NftMarketplace'][0]);
     }
   });
-
-  useEffect(() => {
-    listedNfts && setShownNfts(listedNfts.activeItems);
-    console.log(shownNfts);
-  }, [listedNfts]);
 
   return (
     <div>
@@ -68,32 +51,6 @@ export default function Home() {
             />
 
             <div className='home-actions'>
-              {!isDisconnected &&
-              !fetchingListedNfts &&
-              !(listedNfts.activeItems.length === 0) ? (
-                <div className='action-filters'>
-                  <div className='title'>
-                    <div>Filters</div>
-                    <i className='fa-solid fa-filter'></i>
-                  </div>
-                  <Radio.Group
-                    className='filter-group'
-                    onChange={handleChange}
-                    defaultValue='a'
-                    buttonStyle='solid'
-                  >
-                    <Radio.Button className='filter-btn' value='a'>
-                      All
-                    </Radio.Button>
-                    <Radio.Button className='filter-btn' value='b'>
-                      Your listings
-                    </Radio.Button>
-                  </Radio.Group>
-                </div>
-              ) : (
-                <div></div>
-              )}
-
               <div className='home-actions-btns'>
                 <button
                   className='mint-btn action-withdraw'
@@ -120,7 +77,7 @@ export default function Home() {
               ) : (
                 <div className='home-nft'>
                   {listedNfts &&
-                    shownNfts.map((nft) => {
+                    listedNfts.activeItems.map((nft) => {
                       return (
                         <NftCard
                           key={`${nft.nftAddress}${nft.tokenId}`}

@@ -59,15 +59,22 @@ export default function SellingModal({ isVisible, hideModal }) {
   }
 
   async function handleApproveSuccess(tx) {
-    const txReceipt = await tx.wait(1);
-    toast.success('Item approved for sale.');
+    const txReceipt = await toast.promise(tx.wait(1), {
+      pending: 'Approving marketplace...',
+      success: 'Item approved for marketplace. You can now list it.',
+      error: 'Error approving marketplace.',
+    });
     setIsItemApproved(true);
     setIsWalletOpen(false);
   }
 
   async function handleListingSuccess(tx) {
-    const txReceipt = await tx.wait(1);
-    toast.success('Item listed!');
+    console.log('here');
+    const txReceipt = await toast.promise(tx.wait(1), {
+      pending: 'Listing item...',
+      success: 'Item listed!',
+      error: 'Error listing item.',
+    });
     handleCancel();
   }
 

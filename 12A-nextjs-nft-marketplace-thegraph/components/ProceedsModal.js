@@ -40,8 +40,11 @@ export default function ProceedsModal({ isVisible, hideModal }) {
   }
 
   async function handleSuccess(tx) {
-    const txReceipt = await tx.wait(1);
-    toast.success('Proceeds withdrawn!');
+    const txreceipt = await toast.promise(tx.wait(1), {
+      pending: 'Withdrawing proceeds...',
+      success: 'Proceeds withdrawn!',
+      error: 'Error withdrawing proceeds',
+    });
     handleCancel();
   }
 

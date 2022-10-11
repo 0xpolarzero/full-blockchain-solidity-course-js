@@ -549,6 +549,12 @@ nav .links::after {
   margin-top: 1rem;
 }
 
+.Toastify__toast--default {
+  background: var(--main-gradient) !important;
+  box-shadow: rgba(50, 45, 71, 0.5) 2px 1000px 1px inset !important;
+  color: #fff !important;
+}
+
 .ant-modal-footer {
   display: grid;
   grid-template-columns: min-content auto;

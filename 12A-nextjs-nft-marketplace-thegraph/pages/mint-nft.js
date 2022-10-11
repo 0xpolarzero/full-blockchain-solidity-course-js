@@ -23,16 +23,15 @@ export default function MintNft() {
   );
 
   function handleSubmit() {
-    console.log(mintNft);
     mintNft();
     setIsWalletOpen(true);
   }
 
   async function handleSuccess(tx) {
-    const txReceipt = await tx.wait(1);
-    console.log(txReceipt);
-    toast.success('NFT minted!', {
-      icon: '🎉',
+    const txReceipt = await toast.promise(tx.wait(1), {
+      pending: 'Minting NFT...',
+      success: 'NFT minted!',
+      error: 'Error minting NFT.',
     });
     setIsWalletOpen(false);
   }

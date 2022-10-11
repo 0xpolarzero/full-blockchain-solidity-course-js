@@ -41,9 +41,10 @@ export default function BuyingModal({ props, isVisible, hideModal }) {
   }
 
   async function handleSuccess(tx) {
-    const txReceipt = await tx.wait(1);
-    toast.success('Item Bought!', {
-      icon: '🎉',
+    const txReceipt = await toast.promise(tx.wait(1), {
+      pending: 'Buying item...',
+      success: 'Item bought!',
+      error: 'Error buying item.',
     });
     handleCancel();
   }

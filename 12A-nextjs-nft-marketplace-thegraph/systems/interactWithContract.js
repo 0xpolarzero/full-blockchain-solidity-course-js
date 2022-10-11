@@ -61,6 +61,7 @@ function writeToContract(
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+    confirmations: 1,
   });
 
   return { write, isLoading, isSuccess };
