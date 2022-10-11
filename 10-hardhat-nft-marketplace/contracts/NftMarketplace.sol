@@ -44,7 +44,7 @@ contract NftMarketplace {
         uint256 price
     );
 
-    event ProceedsWithdrawn(address indexed seller, uint256 indexed proceeds);
+    // event ProceedsWithdrawn(address indexed seller, uint256 indexed proceeds);
 
     // Mappings
     mapping(address => mapping(uint256 => Listing)) private s_listings;
@@ -189,7 +189,7 @@ contract NftMarketplace {
         if (!success) {
             revert NftMarketplace__TransferFailed();
         }
-        emit ProceedsWithdrawn(msg.sender, proceeds);
+        // emit ProceedsWithdrawn(msg.sender, proceeds);
     }
 
     // Getter functions
