@@ -4,12 +4,12 @@ pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 // import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-error NftMarketplace__PriceMustBeAboveZero();
-error NftMarketplace__NotApprovedForMarketplace();
-error NftMarketplace__AlreadyListed(address nftAddress, uint256 tokenId);
-error NftMarketplace__NotListed(address nftAddress, uint256 tokenId);
-error NftMarketplace__NotOwner();
-error NftMarketplace__PriceNotMet(
+error NftMarketPlace__PriceMustBeAboveZero();
+error NftMarketPlace__NotApprovedForMarketplace();
+error NftMarketPlace__AlreadyListed(address nftAddress, uint256 tokenId);
+error NftMarketPlace__NotListed(address nftAddress, uint256 tokenId);
+error NftMarketPlace__NotOwner();
+error NftMarketPlace__PriceNotMet(
     address nftAddress,
     uint256 tokenId,
     uint256 price
@@ -58,7 +58,7 @@ contract NftMarketplace {
     ) {
         Listing memory listing = s_listings[nftAddress][tokenId];
         if (listing.price > 0) {
-            revert NftMarketplace__AlreadyListed(nftAddress, tokenId);
+            revert NftMarketPlace__AlreadyListed(nftAddress, tokenId);
         }
         _;
     }
@@ -66,7 +66,7 @@ contract NftMarketplace {
     modifier isListed(address nftAddress, uint256 tokenId) {
         Listing memory listing = s_listings[nftAddress][tokenId];
         if (listing.price <= 0) {
-            revert NftMarketplace__NotListed(nftAddress, tokenId);
+            revert NftMarketPlace__NotListed(nftAddress, tokenId);
         }
         _;
     }
@@ -78,7 +78,7 @@ contract NftMarketplace {
     ) {
         IERC721 nft = IERC721(nftAddress);
         if (nft.ownerOf(tokenId) != owner) {
-            revert NftMarketplace__NotOwner();
+            revert NftMarketPlace__NotOwner();
         }
         _;
     }
@@ -106,12 +106,12 @@ contract NftMarketplace {
         isOwner(nftAddress, tokenId, msg.sender)
     {
         if (price <= 0) {
-            revert NftMarketplace__PriceMustBeAboveZero();
+            revert NftMarketPlace__PriceMustBeAboveZero();
         }
 
         IERC721 nft = IERC721(nftAddress);
         if (nft.getApproved(tokenId) != address(this)) {
-            revert NftMarketplace__NotApprovedForMarketplace();
+            revert NftMarketPlace__NotApprovedForMarketplace();
         }
 
         s_listings[nftAddress][tokenId] = Listing(price, msg.sender);
@@ -138,7 +138,7 @@ contract NftMarketplace {
         isListed(nftAddress, tokenId)
     {
         if (newPrice <= 0) {
-            revert NftMarketplace__PriceMustBeAboveZero();
+            revert NftMarketPlace__PriceMustBeAboveZero();
         }
 
         s_listings[nftAddress][tokenId].price = newPrice;
@@ -154,7 +154,7 @@ contract NftMarketplace {
         Listing memory listedItem = s_listings[nftAddress][tokenId];
 
         if (msg.value < listedItem.price) {
-            revert NftMarketplace__PriceNotMet(
+            revert NftMarketPlace__PriceNotMet(
                 nftAddress,
                 tokenId,
                 listedItem.price

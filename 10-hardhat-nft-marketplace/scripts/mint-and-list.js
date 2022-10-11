@@ -1,5 +1,4 @@
 const { ethers } = require('hardhat');
-const { moveBlocks } = require('../utils/move-blocks');
 
 const PRICE = ethers.utils.parseEther('1');
 
@@ -24,10 +23,6 @@ async function mintAndList() {
   );
   await listingTx.wait(1);
   console.log('NFT listed on marketplace!');
-
-  if (network.config.chainId.toString() === '31337') {
-    await moveBlocks(1, (sleepAmount = 1000));
-  }
 }
 
 mintAndList()
