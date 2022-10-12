@@ -32,7 +32,7 @@ const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
 ]);
 
 const { connectors } = getDefaultWallets({
-  appName: 'NFT Marketplace - TheGraph',
+  appName: 'NFT Marketplace - The Graph',
   chains,
 });
 

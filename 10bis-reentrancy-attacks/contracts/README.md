@@ -20,9 +20,9 @@
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/09bis-evm-opcodes-encoding-calling" id="mission-09"><img src="https://shields.io/badge/Mission%2009bis%20-%20EVM%20Opcodes,%20encoding,%20calling%20(Lesson%2014)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/10bis-reentrancy-attacks" id="mission-10"><img src="https://shields.io/badge/Mission%2010bis%20-%20Reentrancy%20attacks%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
-These are just notes on the video, to get (and keep) a better understanding of opcodes, function selectors, `encode` & `encodePacked`, and ways to call any function at a lower level.
+These are just notes on the video, to keep track of good practices and things to remember to keep a smart contract secure and avoid this kind of frequent attacks.
 
 ### Skills
 

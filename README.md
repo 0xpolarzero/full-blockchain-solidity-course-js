@@ -252,7 +252,7 @@ yarn hardhat coverage
 
 <!-- MISSION 06 -->
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery" id="mission-06"><img src="https://shields.io/badge/Mission%2006%20-%20Next.js%20Front%20End%20●%20Lottery%20Smart%20Contract%20(Lesson%2010)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/06-nextjs-smartcontract-lottery" id="mission-06"><img src="https://shields.io/badge/Mission%2006%20-%20Next.js%20●%20Lottery%20Smart%20Contract%20Front%20End%20(Lesson%2010)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -329,7 +329,9 @@ yarn hardhat coverage
 - Deploying an ERC721 token & hosting the image on IPFS
 - Getting the data to be pinned with Pinata & upload the images URIs
 - Using Chainlink VRF to issue a verifiable random rarity when the NFT is minted
-- ONGOING
+- Deploy a smart contract to dynamically generate the NFT URI, based on on-chain price feeds
+- Base64 Encoding/Decoding
+- EVM opcodes, encoding & calling functions directly from contract
 
 ### Skills
 
@@ -340,6 +342,88 @@ yarn hardhat coverage
 [![Mocha]](https://mochajs.org/)
 [![Chainlink]](https://chain.link/)
 [![Pinata]](https://www.pinata.cloud/)
+
+<!-- MISSION 10 -->
+
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/10-hardhat-nft-marketplace" id="mission-10"><img src="https://shields.io/badge/Mission%2010%20-%20Hardhat%20●%20NFT%20Marketplace%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+
+### Achievements
+
+- Creating a marketplace for NFTs based on the ERC721 standard
+- Pull over push considerations, reentrancy attacks
+- Advanced events & modifiers, security improvements
+- Writing various scripts to interact with the contract
+
+### Bonus achievements
+
+- Deploying the marketplace & NFT contracts to Polygon (Mumbai) & Arbitrum (Goerli) (cf. Mission 12)
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![Hardhat]](https://hardhat.org/)
+[![Chai]](https://www.chaijs.com/)
+[![Mocha]](https://mochajs.org/)
+
+<!-- MISSION 11 -->
+
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/11-nextjs-nft-marketplace-moralis" id="mission-11"><img src="https://shields.io/badge/Mission%2011%20-%20Next.js%20&%20Moralis%20●%20NFT%20Marketplace%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+
+### Achievements
+
+- Connecting Moralis to a local hardhat node
+- Using Moralis CLI & Cloud fonctions, triggers & hooks
+- Moralis queries, fetching URIs & rendering the NFT images
+- Building a front end for buying, listing (updating, canceling) NFTs & witdrawing funds
+
+### Bonus achievements
+
+- Using Rainbowkit & Wagmi to interact with the blockchain (Wallet connection & transactions with the smart contract)
+- Using Antd Design for various components (Modal, Button, Input) & Skeleton for loading cards
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![ReactJS]](https://reactjs.org/)
+[![NextJS]](https://nextjs.org/)
+[![Moralis]](https://moralis.io/)
+[![Rainbow]](https://www.rainbowkit.com/)
+[![Wagmi]](https://wagmi.sh/)
+[![Antd]](https://ant.design/)
+
+<!-- MISSION 12 -->
+
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/12a-nextjs-nft-marketplace-thegraph" id="mission-12"><img src="https://shields.io/badge/Mission%2012%20-%20Next.js%20&%20TheGraph%20●%20NFT%20Marketplace%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+
+### Achievements
+
+- Building a subgraph to index the marketplace contract events (The Graph Studio)
+- Using The Graph CLI to deploy the subgraph
+- Querying the subgraph with GraphQL & Apollo client
+- HOSTING ---------------
+
+### Bonus achievements
+
+- Customizing the UI & UX
+- Building a minting page for the NFT that can be listed
+- Handling notifications: success, error & displaying pending transactions with React-Toastify
+- Displaying 3 different marketplace listing pages for the chains it's deployed on (Polygon, Arbitrum & Ethereum testnets)
+- Deploying 3 different subgraphs with The Graph Studio & Hosted Services on these 3 networks
+- Listings filtering (All & Owned by the user)
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![ReactJS]](https://reactjs.org/)
+[![NextJS]](https://nextjs.org/)
+[![TheGraph]](https://thegraph.com/en/)
+[![GraphQL]](https://graphql.org/)
+[![Rainbow]](https://www.rainbowkit.com/)
+[![Wagmi]](https://wagmi.sh/)
+[![Antd]](https://ant.design/)
 
 # License
 
@@ -388,3 +472,8 @@ A deep appreciation goes to Patrick Collins for this free and thorough course. T
 [moralis]: https://custom-icon-badges.demolab.com/badge/Moralis-2559BB?style=for-the-badge&logo=moralis
 [aave]: https://custom-icon-badges.demolab.com/badge/Aave-1C202F?style=for-the-badge&logo=aave
 [pinata]: https://custom-icon-badges.demolab.com/badge/Pinata-350462?style=for-the-badge&logo=pinata
+[rainbow]: https://custom-icon-badges.demolab.com/badge/Rainbowkit-032463?style=for-the-badge&logo=rainbow
+[wagmi]: https://custom-icon-badges.demolab.com/badge/Wagmi-1C1B1B?style=for-the-badge&logo=wagmi
+[antd]: https://img.shields.io/badge/Ant%20Design-0170FE.svg?style=for-the-badge&logo=Ant-Design&logoColor=white
+[thegraph]: https://custom-icon-badges.demolab.com/badge/TheGraph-0C0A1C?style=for-the-badge&logo=thegraph&logoColor=white
+[graphql]: https://img.shields.io/badge/GraphQL-E10098.svg?style=for-the-badge&logo=GraphQL&logoColor=white
