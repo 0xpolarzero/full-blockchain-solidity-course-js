@@ -99,7 +99,11 @@ function MyApp({ Component, pageProps }) {
           </ApolloProvider>
         </RainbowKitProvider>
       </WagmiConfig>
-      <ToastContainer theme='colored' progressStyle={{ background: '#fff' }} />
+      <ToastContainer
+        theme='colored'
+        progressStyle={{ background: '#fff' }}
+        position={'bottom-right'}
+      />
     </div>
   );
 }
