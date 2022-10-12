@@ -27,7 +27,10 @@ export default function Home({ updateApolloClient }) {
     data: listedNfts,
     client,
     networkStatus,
-  } = useQuery(GET_ACTIVE_ITEMS);
+  } = useQuery(GET_ACTIVE_ITEMS, {
+    pollInterval: 1000,
+    notifyOnNetworkStatusChange: true,
+  });
 
   function handleChange(e) {
     if (e.target.value === 'all') {
