@@ -5,11 +5,24 @@ import ProceedsModal from '../components/ProceedsModal';
 import networkMapping from '../constants/networkMapping';
 import GET_ACTIVE_ITEMS from '../constants/subgraphQueries';
 import { Button, Radio } from 'antd';
+import { createClient } from 'urql';
 import { useAccount, useProvider } from 'wagmi';
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
-export default function Home({ updateApolloClient }) {
+const clientGoerli = createClient({
+  url: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+});
+
+const clientMumbai = createClient({
+  url: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
+});
+
+const clientArbitrumGoerli = createClient({
+  url: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
+});
+
+export default function Home() {
   const { isDisconnected, address: userAddress } = useAccount();
   const { network } = useProvider();
   const [isItemsFiltered, setIsItemsFiltered] = useState(false);
@@ -17,13 +30,29 @@ export default function Home({ updateApolloClient }) {
   const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
+  const [activeClient, setActiveClient] = useState(clientGoerli);
+  const [activeItems, setActiveItems] = useState({});
+  const [isActiveItemsLoading, setIsActiveItemsLoading] = useState(true);
   const chainId = network.chainId ? network.chainId.toString() : '31337';
 
-  const {
-    loading: fetchingListedNfts,
-    error,
-    data: listedNfts,
-  } = useQuery(GET_ACTIVE_ITEMS);
+  async function fetchListedNfts() {
+    const data = await activeClient.query(GET_ACTIVE_ITEMS).toPromise();
+    setActiveItems({
+      data: data.data.activeItems,
+      isError: data.error,
+    });
+    setIsActiveItemsLoading(false);
+  }
+
+  function updateClient(network) {
+    if (network === 'maticmum') {
+      setActiveClient(clientMumbai);
+    } else if (network === 'arbitrum-goerli') {
+      setActiveClient(clientArbitrumGoerli);
+    } else {
+      setActiveClient(clientGoerli);
+    }
+  }
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -48,13 +77,17 @@ export default function Home({ updateApolloClient }) {
       setIsWrongNetwork(true);
     }
 
-    // updateApolloClient(network.name);
+    updateClient(network.name);
   }, [network.chainId]);
+
+  useEffect(() => {
+    fetchListedNfts();
+  }, []);
 
   return (
     <main className={styles.main}>
-      {!isDisconnected ? (
-        fetchingListedNfts || !listedNfts ? (
+      {/* {!isDisconnected ? (
+        isListedNftsLoading || !listedNfts ? (
           <div>Loading...</div>
         ) : (
           listedNfts.activeItems
@@ -62,7 +95,6 @@ export default function Home({ updateApolloClient }) {
             //   return !isItemsFiltered || nft.seller === userAddress;
             // })
             .map((nft) => {
-              console.log(listedNfts);
               return (
                 <NftCard
                   key={`${nft.nftAddress}${nft.tokenId}`}
@@ -74,8 +106,8 @@ export default function Home({ updateApolloClient }) {
         )
       ) : (
         <div>Please connect</div>
-      )}
-      {/* <div className='content'>
+      )} */}
+      <div className='content'>
         <div className='home-container'>
           <SellingModal
             isVisible={isSellingModalOpen}
@@ -88,9 +120,9 @@ export default function Home({ updateApolloClient }) {
 
           <div className='home-actions'>
             {!isDisconnected ? (
-              fetchingListedNfts ? (
+              isActiveItemsLoading ? (
                 ''
-              ) : listedNfts && listedNfts.activeItems.length === 0 ? (
+              ) : activeItems && activeItems.data.length === 0 ? (
                 <div></div>
               ) : (
                 <div className='action-filters'>
@@ -140,16 +172,16 @@ export default function Home({ updateApolloClient }) {
           </div>
           {!isDisconnected ? (
             !isWrongNetwork ? (
-              fetchingListedNfts ? (
+              isActiveItemsLoading ? (
                 <div className='loader'></div>
-              ) : listedNfts && listedNfts.activeItems.length === 0 ? (
+              ) : activeItems && activeItems.data.length === 0 ? (
                 <div className='box-container error'>
                   No NFT listed on the marketplace yet.
                 </div>
               ) : (
                 <div className='home-nft'>
-                  {listedNfts &&
-                    listedNfts.activeItems
+                  {activeItems &&
+                    activeItems.data
                       .filter((nft) => {
                         return !isItemsFiltered || nft.seller === userAddress;
                       })
@@ -176,7 +208,7 @@ export default function Home({ updateApolloClient }) {
             </div>
           )}
         </div>
-      </div> */}
+      </div>
     </main>
   );
 }
