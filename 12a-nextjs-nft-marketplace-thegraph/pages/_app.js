@@ -94,7 +94,7 @@ function MyApp({ Component, pageProps }) {
             overlayBlur: 'small',
           })}
         >
-          <ApolloProvider client={apolloClient}>
+          <ApolloProvider client={apolloClientGoerli}>
             <Component {...pageProps} updateApolloClient={updateApolloClient} />
           </ApolloProvider>
         </RainbowKitProvider>

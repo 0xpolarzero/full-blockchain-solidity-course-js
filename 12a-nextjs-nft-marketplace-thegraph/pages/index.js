@@ -24,7 +24,6 @@ export default function Home({ updateApolloClient }) {
   const {
     loading: fetchingListedNfts,
     error,
-    refetch: refetchListedNfts,
     data: listedNfts,
   } = useQuery(GET_ACTIVE_ITEMS);
 
@@ -33,15 +32,6 @@ export default function Home({ updateApolloClient }) {
       setIsItemsFiltered(false);
     } else {
       setIsItemsFiltered(true);
-    }
-  }
-
-  function fetchWithTimeout() {
-    if (fetchingListedNfts) {
-      setTimeout(() => {
-        refetchListedNfts();
-        fetchWithTimeout();
-      }, 5000);
     }
   }
 
@@ -62,10 +52,6 @@ export default function Home({ updateApolloClient }) {
 
     updateApolloClient(network.name);
   }, [network.chainId]);
-
-  useEffect(() => {
-    fetchWithTimeout();
-  }, []);
 
   return (
     <div className='page'>
