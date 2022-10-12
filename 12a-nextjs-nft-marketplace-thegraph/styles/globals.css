@@ -121,10 +121,6 @@ h1 {
   grid-template-rows: auto 1fr auto;
 }
 
-/* hsla(319, 74%, 64%, 1) 0%,
-    hsla(225, 60%, 67%, 1) 58%,
-    rgb(120, 146, 221) 100% */
-
 #container::before {
   content: '';
   position: absolute;
