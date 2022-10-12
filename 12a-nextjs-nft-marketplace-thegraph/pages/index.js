@@ -32,17 +32,20 @@ export default function Home() {
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
   const [activeClient, setActiveClient] = useState(clientGoerli);
-  const [activeItems, setActiveItems] = useState({});
+  const [activeItems, setActiveItems] = useState(null);
   const [isActiveItemsLoading, setIsActiveItemsLoading] = useState(true);
   const chainId = network.chainId ? network.chainId.toString() : '31337';
 
   async function fetchListedNfts() {
     const data = await activeClient.query(GET_ACTIVE_ITEMS).toPromise();
-    setActiveItems({
-      data: data.data.activeItems,
-      isError: data.error,
-    });
-    setIsActiveItemsLoading(false);
+    const activeItemsData = await Promise.all(data.data.activeItems);
+    console.log(data);
+    const active = data.data.activeItems;
+    setActiveItems(active);
+    if (data.data) {
+      console.log('yes');
+      setIsActiveItemsLoading(false);
+    }
   }
 
   function updateClient(network) {
@@ -84,11 +87,11 @@ export default function Home() {
   useEffect(() => {
     fetchListedNfts();
 
-    const interval = setInterval(() => {
-      console.log(activeItems);
-    }, 2000);
-
-    return () => clearInterval(interval);
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        console.log(activeItems);
+      }, 2000);
+    }, 3000);
   }, []);
 
   return (
@@ -127,9 +130,9 @@ export default function Home() {
 
           <div className='home-actions'>
             {!isDisconnected ? (
-              isActiveItemsLoading || activeItems.isError ? (
+              isActiveItemsLoading ? (
                 ''
-              ) : activeItems && activeItems.data.length === 0 ? (
+              ) : activeItems && activeItems?.length === 0 ? (
                 <div></div>
               ) : (
                 <div className='action-filters'>
@@ -181,15 +184,15 @@ export default function Home() {
             !isWrongNetwork ? (
               isActiveItemsLoading ? (
                 <div className='loader'></div>
-              ) : activeItems && activeItems.data.length === 0 ? (
+              ) : activeItems && activeItems?.length === 0 ? (
                 <div className='box-container error'>
                   No NFT listed on the marketplace yet.
                 </div>
               ) : (
                 <div className='home-nft'>
                   {activeItems &&
-                    activeItems.data
-                      .filter((nft) => {
+                    activeItems
+                      ?.filter((nft) => {
                         return !isItemsFiltered || nft.seller === userAddress;
                       })
                       .map((nft) => {
