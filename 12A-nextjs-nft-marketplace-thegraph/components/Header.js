@@ -1,15 +1,7 @@
 import Link from 'next/link';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useNetwork } from 'wagmi';
-import { useEffect, useState } from 'react';
 
 export default function Header() {
-  const { chain } = useNetwork();
-  const [currentChain, setCurrentChain] = useState('');
-  useEffect(() => {
-    chain && setCurrentChain(chain.name);
-  }, [chain]);
-
   return (
     <nav>
       <div className='title'>
@@ -28,7 +20,6 @@ export default function Header() {
         </Link>
       </div>
       <div className='connect-btn'>
-        {/* <div className={`chain ${currentChain}`}>{currentChain}</div> */}
         <ConnectButton
           showBalance={false}
           showNe
@@ -38,7 +29,7 @@ export default function Header() {
           }}
           chainStatus={{
             smallScreen: 'icon',
-            largeScreen: 'icon',
+            largeScreen: 'full',
           }}
         />
       </div>

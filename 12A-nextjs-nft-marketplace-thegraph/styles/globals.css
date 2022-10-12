@@ -80,6 +80,10 @@ button:active {
   background: var(--main-gradient-medium-transparent);
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 a {
   text-decoration: none;
   color: #fff;
@@ -133,6 +137,23 @@ h1 {
   background: linear-gradient(#e55d87, #5fc3e4);
   clip-path: circle(20% at 10% 10%);
   z-index: -100;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.react-icons {
+  width: 2rem !important;
+}
+
+.ant-input-number-prefix {
+  margin-right: 0.5rem !important;
+}
+
+.ant-input-number-prefix > svg {
+  width: 16 !important;
 }
 
 /* ------------------------------------------- */
@@ -414,6 +435,19 @@ nav .links::after {
   gap: 0.5rem;
 }
 
+.action-buy-item > div,
+.value,
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.action-buy-item > div > span,
+.action-buy-item > div > i {
+  margin-left: 0.5rem !important;
+}
+
 /* ------------------------------------------- */
 /* ----------------- MODAL ------------------- */
 /* ------------------------------------------- */
@@ -473,6 +507,12 @@ nav .links::after {
   opacity: 0.7;
 }
 
+.withdraw-proceeds {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .mint-container,
 .sell-container {
   /* Span all the height of the grid */
@@ -498,7 +538,7 @@ nav .links::after {
   gap: 1rem;
 }
 
-.mint-btn:not(.action-withdraw) {
+.mint-btn {
   /* Override antd CSS */
   background: var(--main-gradient) !important;
   box-shadow: rgba(50, 45, 71, 0.5) 2px 1000px 1px inset !important;
@@ -518,6 +558,18 @@ nav .links::after {
   flex-direction: column;
   align-items: start;
   gap: 1rem;
+}
+
+.instructions p {
+  margin-left: 0.5rem;
+}
+
+.caption {
+  font-family: 'Outfit';
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
 }
 
 .list-item {

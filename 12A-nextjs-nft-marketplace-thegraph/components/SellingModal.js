@@ -1,27 +1,31 @@
 import marketplaceAbi from '../constants/NftMarketplace.json';
 import nftAbi from '../constants/BasicNft.json';
-import networkMapping from '../constants/networkMapping.json';
-import { writeToContract } from '../systems/interactWithContract';
+import networkMapping from '../constants/networkMapping';
+import {
+  writeToContract,
+  writeToContractWithoutPrepare,
+} from '../systems/interactWithContract';
 import { roundEth } from '../utils/formatting';
 import { Modal, Input, InputNumber, Tooltip, Button } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { CryptoIcon } from 'next-crypto-icons';
+import { BsHash } from 'react-icons/bs';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
-import { useAccount, useProvider } from 'wagmi';
+import { useProvider } from 'wagmi';
 import { useEffect, useState } from 'react';
 
 export default function SellingModal({ isVisible, hideModal }) {
-  const { address: userAddress } = useAccount();
   const { network } = useProvider();
-  const [marketplaceAddress, setMarketplaceAddress] = useState('');
+  const [marketplaceAddress, setMarketplaceAddress] = useState(null);
   const [nftAddress, setNftAddress] = useState(null);
   const [isWalletOpen, setIsWalletOpen] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [isItemApproved, setIsItemApproved] = useState(false);
   const [tokenId, setTokenId] = useState('');
   const [price, setPrice] = useState('');
   const [formattedPrice, setFormattedPrice] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isItemApproved, setIsItemApproved] = useState(false);
 
   const { write: approveMarketplace, isLoading: isApproveLoading } =
     writeToContract(
@@ -32,13 +36,16 @@ export default function SellingModal({ isVisible, hideModal }) {
       { onSuccess: handleApproveSuccess, onError: handleError },
     );
 
-  const { write: listItem, isLoading: isListItemLoading } = writeToContract(
+  const {
+    write: listItem,
+    isLoading: isListItemLoading,
+    refetch: rePrepareListing,
+  } = writeToContract(
     marketplaceAddress,
     marketplaceAbi,
     'listItem',
     [nftAddress, tokenId, formattedPrice],
     { onSuccess: handleListingSuccess, onError: handleError },
-    false,
   );
 
   function copyNftAddress() {
@@ -46,9 +53,16 @@ export default function SellingModal({ isVisible, hideModal }) {
     toast.info('NFT Contract address copied to clipboard!');
   }
 
-  function handleSubmit(e, type) {
+  async function handleSubmit(e, type) {
     if (type === 'approveMarketplace' && !approveMarketplace) {
       toast.error('Please check if you own this NFT');
+      return;
+    }
+
+    if (type === 'listItem' && !listItem) {
+      toast.error(
+        'It looks like you have not approved the marketplace yet. Please wait for the approval to go through.',
+      );
       return;
     }
 
@@ -64,6 +78,7 @@ export default function SellingModal({ isVisible, hideModal }) {
       success: 'Item approved for marketplace. You can now list it.',
       error: 'Error approving marketplace.',
     });
+    rePrepareListing();
     setIsItemApproved(true);
     setIsWalletOpen(false);
   }
@@ -159,7 +174,7 @@ export default function SellingModal({ isVisible, hideModal }) {
           <Button
             key='approve'
             type='primary'
-            disabled={isItemApproved}
+            disabled={isItemApproved || !isFormValid}
             loading={isApproveLoading || isWalletOpen}
             onClick={(e) => handleSubmit(e, 'approveMarketplace')}
           >
@@ -170,7 +185,7 @@ export default function SellingModal({ isVisible, hideModal }) {
             type='primary'
             disabled={!isItemApproved}
             loading={isListItemLoading || isWalletOpen}
-            onClick={() => handleSubmit(this, 'listItem')}
+            onClick={(e) => handleSubmit(e, 'listItem')}
           >
             2 - List Item
           </Button>
@@ -206,7 +221,7 @@ export default function SellingModal({ isVisible, hideModal }) {
             type='number'
             autoFocus={true}
             placeholder='0'
-            prefix='#'
+            prefix={<BsHash />}
             addonAfter={
               <Tooltip title='Enter the ID of the token you want to list'>
                 <InfoCircleOutlined
@@ -225,9 +240,23 @@ export default function SellingModal({ isVisible, hideModal }) {
             id='list-price-input'
             type='number'
             placeholder='0'
-            prefix={<i className='fa-brands fa-ethereum'></i>}
+            prefix={
+              network.name === 'maticmum' ? (
+                <div className='icon-wrapper'>
+                  <CryptoIcon name='matic' width={16} style={'icon'} />
+                </div>
+              ) : (
+                <div className='icon-wrapper'>
+                  <CryptoIcon name='eth' width={16} style={'icon'} />
+                </div>
+              )
+            }
             addonAfter={
-              <Tooltip title='Enter the price for the NFT (in ETH)'>
+              <Tooltip
+                title={`Enter the price for the NFT (in ${
+                  network.name === 'maticmum' ? 'MATIC' : 'ETH'
+                })`}
+              >
                 <InfoCircleOutlined
                   style={{ color: 'rgba(255,255,255,.75)' }}
                 />

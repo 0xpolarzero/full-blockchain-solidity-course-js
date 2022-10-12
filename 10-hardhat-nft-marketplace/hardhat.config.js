@@ -33,6 +33,7 @@ module.exports = {
       accounts: [PRIVATE_KEY],
       chainId: 5,
       blockConfirmations: 5,
+      gasPrice: 10000000000,
     },
     mumbai: {
       url: MUMBAI_RPC_URL,

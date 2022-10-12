@@ -1,18 +1,19 @@
 import Header from '../components/Header';
 import styles from '../styles/Home.module.css';
 import nftAbi from '../constants/BasicNft.json';
-import networkMapping from '../constants/networkMapping.json';
+import networkMapping from '../constants/networkMapping';
 import { writeToContract } from '../systems/interactWithContract';
 import { Button } from 'antd';
 import { toast } from 'react-toastify';
 import { useAccount, useProvider } from 'wagmi';
 import { useEffect, useState } from 'react';
 
-export default function MintNft() {
+export default function MintNft({ updateApolloClient }) {
   const { isDisconnected } = useAccount();
   const { network } = useProvider();
-  const [nftAddress, setNftAddress] = useState('');
   const [isWalletOpen, setIsWalletOpen] = useState(false);
+  const [isWrongNetwork, setIsWrongNetwork] = useState(false);
+  const [nftAddress, setNftAddress] = useState('');
 
   const { write: mintNft, isLoading: isMintLoading } = writeToContract(
     nftAddress,
@@ -23,6 +24,7 @@ export default function MintNft() {
   );
 
   function handleSubmit() {
+    console.log(mintNft);
     mintNft();
     setIsWalletOpen(true);
   }
@@ -51,6 +53,14 @@ export default function MintNft() {
         networkMapping[network.chainId]['BasicNft'][0] || '';
       setNftAddress(currentAddress);
     }
+
+    if (network.name === 'goerli' || network.name === 'maticmum') {
+      setIsWrongNetwork(false);
+    } else {
+      setIsWrongNetwork(true);
+    }
+
+    updateApolloClient(network.name);
   }, [network.chainId]);
 
   return (
@@ -65,6 +75,7 @@ export default function MintNft() {
             <div className='wrapper mint-wrapper'>
               <h1>Mint your NFT</h1>
               <div className='instructions'>
+                <div className='caption'>Ethereum (Goerli)</div>
                 <p>
                   <span className='highlight'>1.</span> Get some{' '}
                   <span className='highlight bold'>Goerli ETH</span> from{' '}
@@ -75,7 +86,18 @@ export default function MintNft() {
                   >
                     Chainlink Faucets <i className='fa-solid fa-chain'></i>
                   </a>
-                  .
+                </p>
+                <div className='caption'>Polygon (Mumbai)</div>
+                <p>
+                  <span className='highlight'>1.</span> Get some{' '}
+                  <span className='highlight bold'>MATIC</span> from{' '}
+                  <a
+                    className='highlight bold'
+                    href='https://faucet.polygon.technology/'
+                    target={'_blank'}
+                  >
+                    Polygon Faucet <i className='fa-solid fa-chain'></i>
+                  </a>
                 </p>
                 <p>
                   <span className='highlight'>2.</span>{' '}
@@ -92,16 +114,23 @@ export default function MintNft() {
                 <Button
                   type='primary'
                   className='mint-btn'
-                  disabled={isDisconnected}
+                  disabled={isDisconnected || isWrongNetwork}
                   loading={isMintLoading || isWalletOpen}
                   onClick={handleSubmit}
                 >
                   Mint
                 </Button>
                 {isDisconnected ? (
-                  <div className='error not-connected'>
-                    You must connect your wallet to mint a NFT.
-                  </div>
+                  isWrongNetwork ? (
+                    <div className='error bold'>
+                      You are on an unsupported network. Please change to Goerli
+                      or Mumbai.
+                    </div>
+                  ) : (
+                    <div className='error bold'>
+                      You must connect your wallet to mint a NFT.
+                    </div>
+                  )
                 ) : (
                   ''
                 )}

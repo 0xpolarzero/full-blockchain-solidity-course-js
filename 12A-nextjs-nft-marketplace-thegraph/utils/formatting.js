@@ -4,7 +4,7 @@ const DECIMALS = 18;
 
 const roundEth = (value) => {
   const rounded = ethers.utils.formatUnits(value, DECIMALS);
-  return Number(parseFloat(rounded).toFixed(3));
+  return Number(parseFloat(rounded).toFixed(4));
 };
 
 const truncateAddress = (address) => {

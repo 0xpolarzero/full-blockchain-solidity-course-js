@@ -6,12 +6,15 @@ import BuyingModal from './BuyingModal';
 import { readFromContract } from '../systems/interactWithContract';
 import { roundEth, truncateAddress } from '../utils/formatting';
 import { Skeleton } from 'antd';
-import { useAccount } from 'wagmi';
+import { CryptoIcon } from 'next-crypto-icons';
+import { useAccount, useProvider } from 'wagmi';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function NftCard({ nftAttributes, marketplaceAddress }) {
   const { nftAddress, tokenId, price, seller } = nftAttributes;
   const { address: userAddress } = useAccount();
+  const { network } = useProvider();
   const [isURILoaded, setIsURILoaded] = useState(false);
   const [imageURI, setImageURI] = useState('');
   const [tokenName, setTokenName] = useState('');
@@ -29,11 +32,13 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
 
       // We need an IPFS Gateway, to transform an IPFS file to a usual URL
       const requestUrl = tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/');
-      const tokenURIResponse = await fetch(requestUrl);
+      const tokenURIResponse = await fetch(requestUrl).catch((err) => {
+        console.log(err);
+      });
 
       // Handle fetching if the user makes too many requests
       // e.g. refresh the page or change accounts too many times
-      if (tokenURIResponse.status === 429) {
+      if (tokenURIResponse && tokenURIResponse.status === 429) {
         console.log('Too many requests');
         tokenData.uri = '';
         tokenData.name = '';
@@ -44,7 +49,7 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
         setTimeout(() => {
           updateUI();
         }, 5000);
-      } else {
+      } else if (tokenURIResponse) {
         const tokenURIResponseJson = await tokenURIResponse.json();
         // Now that it is fetched, we do it again for the front end
         tokenData.uri = tokenURIResponseJson.image.replace(
@@ -54,6 +59,12 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
         tokenData.name = tokenURIResponseJson.name;
         tokenData.description = tokenURIResponseJson.description;
         setIsURILoaded(true);
+      } else {
+        tokenData.uri = '';
+        tokenData.name = '';
+        tokenData.description = '';
+        setIsURILoaded(false);
+        toast.error('Error fetching NFT data. Please refresh.');
       }
 
       setImageURI(tokenData.uri);
@@ -147,7 +158,11 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
       <div className='info'>
         {/* NFT Address: {nftAddress} */}
         <div className='price'>
-          <i className='fa-brands fa-ethereum'></i>
+          {network.name === 'maticmum' ? (
+            <CryptoIcon name='matic' width={20} style={'color'} />
+          ) : (
+            <i className='fa-brands fa-ethereum'></i>
+          )}
           {roundEth(price)}
         </div>
         <div className='seller'>
@@ -165,7 +180,13 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
         ) : (
           <div className='action-buy-item'>
             <div>
-              Buy (<i className='fa-brands fa-ethereum'></i> {roundEth(price)})
+              Buy{' '}
+              {network.name === 'maticmum' ? (
+                <CryptoIcon name='matic' width={20} style={'color'} />
+              ) : (
+                <i className='fa-brands fa-ethereum'></i>
+              )}
+              {roundEth(price)}
             </div>
             <i className='fa-solid fa-cart-shopping'></i>
           </div>

@@ -1,11 +1,12 @@
 import marketplaceAbi from '../constants/NftMarketplace.json';
-import networkMapping from '../constants/networkMapping.json';
+import networkMapping from '../constants/networkMapping';
 import {
   writeToContract,
   readFromContract,
 } from '../systems/interactWithContract';
 import { roundEth } from '../utils/formatting';
 import { Modal } from 'antd';
+import { CryptoIcon } from 'next-crypto-icons';
 import { toast } from 'react-toastify';
 import { useAccount, useProvider } from 'wagmi';
 import { useEffect, useState } from 'react';
@@ -34,6 +35,11 @@ export default function ProceedsModal({ isVisible, hideModal }) {
   );
 
   function handleSubmit(e) {
+    if (userProceeds.toString() === '0') {
+      toast.error('You have no proceeds to withdraw.');
+      return;
+    }
+
     withdrawProceeds();
     setIsWalletOpen(true);
     e.stopPropagation();
@@ -87,8 +93,12 @@ export default function ProceedsModal({ isVisible, hideModal }) {
       <div className='withdraw-proceeds'>
         <div className='title'>Your proceeds</div>
         <div className='price'>
-          <div className='value highlight'>
-            <i className='fa-brands fa-ethereum'></i>{' '}
+          <div className='value'>
+            {network.name === 'maticmum' ? (
+              <CryptoIcon name='matic' width={20} style={'icon'} />
+            ) : (
+              <CryptoIcon name='eth' width={20} style={'icon'} />
+            )}
             <span>
               {userProceeds && roundEth(userProceeds.toString() || '0')}
             </span>

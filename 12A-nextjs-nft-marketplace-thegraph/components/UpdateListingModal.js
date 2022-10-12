@@ -1,9 +1,11 @@
+import { writeToContract } from '../systems/interactWithContract';
 import { Input, Tooltip, Modal, Button } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { CryptoIcon } from 'next-crypto-icons';
 import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
+import { useProvider } from 'wagmi';
 import { ethers } from 'ethers';
-import { writeToContract } from '../systems/interactWithContract';
+import { useState } from 'react';
 
 export default function UpdateListingModal({ props, isVisible, hideModal }) {
   const {
@@ -18,6 +20,7 @@ export default function UpdateListingModal({ props, isVisible, hideModal }) {
   const [isInputValid, setIsInputValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isWalletOpen, setIsWalletOpen] = useState(false);
+  const { network } = useProvider();
 
   const { write: updateListing, isLoading: isUpdateLoading } = writeToContract(
     marketplaceAddress,
@@ -135,9 +138,19 @@ export default function UpdateListingModal({ props, isVisible, hideModal }) {
           type='number'
           autoFocus={true}
           placeholder='New price'
-          prefix={<i className='fa-brands fa-ethereum'></i>}
+          prefix={
+            network.name === 'maticmum' ? (
+              <CryptoIcon name='matic' width={20} style={'icon'} />
+            ) : (
+              <CryptoIcon name='eth' width={20} style={'icon'} />
+            )
+          }
           addonAfter={
-            <Tooltip title='Enter the new price in ETH'>
+            <Tooltip
+              title={`Enter the new price (in ${
+                network.name === 'maticmum' ? 'MATIC' : 'ETH'
+              })`}
+            >
               <InfoCircleOutlined style={{ color: 'rgba(255,255,255,.75)' }} />
             </Tooltip>
           }

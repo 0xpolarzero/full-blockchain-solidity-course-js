@@ -1,10 +1,11 @@
-import { Modal } from 'antd';
-import { toast } from 'react-toastify';
-import { useBalance, useAccount } from 'wagmi';
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
 import { writeToContract } from '../systems/interactWithContract';
 import { roundEth } from '../utils/formatting';
+import { Modal } from 'antd';
+import { CryptoIcon } from 'next-crypto-icons';
+import { toast } from 'react-toastify';
+import { ethers } from 'ethers';
+import { useBalance, useAccount, useProvider } from 'wagmi';
+import { useEffect, useState } from 'react';
 
 export default function BuyingModal({ props, isVisible, hideModal }) {
   const {
@@ -15,6 +16,7 @@ export default function BuyingModal({ props, isVisible, hideModal }) {
     tokenId,
     price,
   } = props;
+  const { network } = useProvider();
   const { address: userAddress } = useAccount();
   const { data: userBalance } = useBalance({
     addressOrName: userAddress,
@@ -98,14 +100,23 @@ export default function BuyingModal({ props, isVisible, hideModal }) {
           <div className='token-id'>#{tokenId}</div>
         </div>
         <div className='price'>
-          {/* <div className='label'>Price |</div> */}
-          <div className='value highlight'>
-            <i className='fa-brands fa-ethereum'></i> {roundEth(price)}
+          <div className='value'>
+            {network.name === 'maticmum' ? (
+              <CryptoIcon name='matic' width={20} style={'color'} />
+            ) : (
+              <CryptoIcon name='eth' width={20} style={'color'} />
+            )}
+            {roundEth(price)}
           </div>
         </div>
         {userBalance ? (
           <div className='balance'>
-            You have <i className='fa-brands fa-ethereum'></i>
+            You have
+            {network.name === 'maticmum' ? (
+              <CryptoIcon name='matic' width={20} style={'icon'} />
+            ) : (
+              <CryptoIcon name='eth' width={20} style={'icon'} />
+            )}
             <span className='ether-value'>
               {' '}
               {roundEth(userBalance.value.toString())}{' '}
@@ -120,7 +131,8 @@ export default function BuyingModal({ props, isVisible, hideModal }) {
           <div className='error-message'>
             You need{' '}
             <span className='ether-value'>{roundEth(additionalEthNeeded)}</span>{' '}
-            more ETH to buy this item.
+            more {network.name === 'maticmum' ? 'MATIC' : 'ETH'} to buy this
+            item.
           </div>
         )}
       </div>

@@ -1,1 +1,10 @@
-{}
+{
+  "5": {
+    "NftMarketplace": ["0x246fe124957897A2eb2E3Edd4d5AB3b726c993C6"],
+    "BasicNft": ["0x2EfeEfde77CB1af6310A5137C32840b74873F0a2"]
+  },
+  "80001": {
+    "NftMarketplace": ["0xc9F76d13D9695B0956072F150D12d83935f72eB1"],
+    "BasicNft": ["0x6e082e54A362d931526DB09b37a38E1747BEfdf0"]
+  }
+}

@@ -7,8 +7,8 @@ Most of the process is the same with TheGraph.
 
 - UI & UX customization
 - Use Rainbowkit & Wagmi for the wallet connection, transactions, etc
-- Use Antd for the UI (Modal, buttons, inputs)
+- Use Antd for the UI (Modal, buttons, inputs) + Skeleton for loading cards
 - NFT Minting page
 - Filters (All listings & User listings)
 - Pending tx, success & error handling with notifications (toast)
-  MAYBE LATER - Listening events for the NFT contract to track user's NFTs
+- Deploy contracts & subgraph to Polygon Mumbai, update the subgraph endpoint in the app when network changes

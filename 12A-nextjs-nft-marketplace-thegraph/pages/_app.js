@@ -15,9 +15,10 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
+import { useState } from 'react';
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.arbitrum, chain.goerli, chain.hardhat],
+  [chain.goerli, chain.polygonMumbai],
   [alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()],
 );
 
@@ -33,12 +34,27 @@ const wagmiClient = createClient({
   connectors,
 });
 
-const apolloClient = new ApolloClient({
+const apolloClientGoerli = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL,
+  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+});
+
+const apolloClientMumbai = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
 });
 
 function MyApp({ Component, pageProps }) {
+  const [apolloClient, setApolloClient] = useState(apolloClientGoerli);
+
+  function updateApolloClient(network) {
+    if (network === 'maticmum') {
+      setApolloClient(apolloClientMumbai);
+    } else {
+      setApolloClient(apolloClientGoerli);
+    }
+  }
+
   return (
     <div id='container'>
       <Head>
@@ -63,7 +79,7 @@ function MyApp({ Component, pageProps }) {
           })}
         >
           <ApolloProvider client={apolloClient}>
-            <Component {...pageProps} />
+            <Component {...pageProps} updateApolloClient={updateApolloClient} />
           </ApolloProvider>
         </RainbowKitProvider>
       </WagmiConfig>
