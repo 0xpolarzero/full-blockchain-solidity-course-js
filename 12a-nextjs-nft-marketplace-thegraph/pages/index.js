@@ -18,7 +18,6 @@ export default function Home({ updateApolloClient }) {
   const [isSellingModalOpen, setIsSellingModalOpen] = useState(false);
   const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
-  const [isQueryFetched, setIsQueryFetched] = useState(false);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
   const chainId = network.chainId ? network.chainId.toString() : '31337';
 
@@ -26,13 +25,7 @@ export default function Home({ updateApolloClient }) {
     loading: fetchingQueryItems,
     error,
     data: listedNfts,
-  } = useQuery(GET_ACTIVE_ITEMS, {
-    fetchPolicy: 'no-cache',
-    onCompleted: () => {
-      console.log(fetchingQueryItems);
-      setIsQueryFetched(true);
-    },
-  });
+  } = useQuery(GET_ACTIVE_ITEMS);
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -80,7 +73,7 @@ export default function Home({ updateApolloClient }) {
 
             <div className='home-actions'>
               {!isDisconnected ? (
-                !isQueryFetched ? (
+                fetchingQueryItems ? (
                   ''
                 ) : listedNfts && listedNfts.activeItems.length === 0 ? (
                   <div></div>
@@ -132,7 +125,7 @@ export default function Home({ updateApolloClient }) {
             </div>
             {!isDisconnected ? (
               !isWrongNetwork ? (
-                !isQueryFetched ? (
+                fetchingQueryItems ? (
                   <div className='loader'></div>
                 ) : listedNfts && listedNfts.activeItems.length === 0 ? (
                   <div className='box-container error'>
