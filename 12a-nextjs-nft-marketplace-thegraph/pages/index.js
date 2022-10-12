@@ -127,7 +127,7 @@ export default function Home() {
 
           <div className='home-actions'>
             {!isDisconnected ? (
-              isActiveItemsLoading ? (
+              isActiveItemsLoading || activeItems.isError ? (
                 ''
               ) : activeItems && activeItems.data.length === 0 ? (
                 <div></div>
