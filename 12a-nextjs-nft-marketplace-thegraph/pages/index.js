@@ -25,7 +25,9 @@ export default function Home({ updateApolloClient }) {
     loading: fetchingQueryItems,
     error,
     data: listedNfts,
-  } = useQuery(GET_ACTIVE_ITEMS);
+  } = useQuery(GET_ACTIVE_ITEMS, {
+    fetchPolicy: 'no-cache',
+  });
 
   function handleChange(e) {
     if (e.target.value === 'all') {
