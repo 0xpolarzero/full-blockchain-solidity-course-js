@@ -25,6 +25,8 @@ export default function Home({ updateApolloClient }) {
     loading: fetchingListedNfts,
     error,
     data: listedNfts,
+    client,
+    networkStatus,
   } = useQuery(GET_ACTIVE_ITEMS);
 
   function handleChange(e) {
@@ -33,6 +35,14 @@ export default function Home({ updateApolloClient }) {
     } else {
       setIsItemsFiltered(true);
     }
+  }
+
+  function logQueryInfos() {
+    console.log('fetchingListedNfts', fetchingListedNfts);
+    console.log('error', error);
+    console.log('listedNfts', listedNfts);
+    console.log('client', client);
+    console.log('networkStatus', networkStatus);
   }
 
   useEffect(() => {
@@ -52,6 +62,14 @@ export default function Home({ updateApolloClient }) {
 
     updateApolloClient(network.name);
   }, [network.chainId]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      logQueryInfos();
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className='page'>
