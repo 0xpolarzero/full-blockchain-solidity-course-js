@@ -25,7 +25,13 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
     useState(false);
   const [isBuyingModalOpen, setIsBuyingModalOpen] = useState(false);
 
-  const tokenURI = readFromContract(nftAddress, nftAbi, 'tokenURI', [tokenId]);
+  const tokenURI = readFromContract(
+    nftAddress,
+    nftAbi,
+    'tokenURI',
+    [tokenId],
+    tokenId,
+  );
   async function updateUI() {
     if (tokenURI) {
       let tokenData = {};
@@ -103,6 +109,7 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
       onClick={() => (isUserSeller ? showModal('update') : showModal('buy'))}
     >
       <UpdateListingModal
+        key={'update-listing-modal'}
         props={{
           marketplaceAddress,
           marketplaceAbi,
@@ -116,6 +123,7 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
       />
 
       <BuyingModal
+        key={'buying-modal'}
         props={{
           marketplaceAddress,
           marketplaceAbi,
@@ -135,6 +143,7 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
           <Image
             src={imageURI}
             loader={() => imageURI}
+            unoptimized
             width={300}
             height={300}
           />

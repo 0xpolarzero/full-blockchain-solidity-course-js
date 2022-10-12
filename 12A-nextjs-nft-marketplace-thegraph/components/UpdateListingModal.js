@@ -26,12 +26,13 @@ export default function UpdateListingModal({ props, isVisible, hideModal }) {
     marketplaceAddress,
     marketplaceAbi,
     'updateListing',
-    [
-      nftAddress,
-      tokenId,
-      ethers.utils.parseEther(inputPrice) || '10000000000000000',
-    ],
+    [nftAddress, tokenId, ethers.utils.parseEther(inputPrice)],
     { onSuccess: handleSuccess, onError: handleError },
+    isVisible &&
+      nftAddress &&
+      tokenId !== '' &&
+      inputPrice &&
+      inputPrice !== '0',
   );
 
   const { write: cancelListing, isLoading: isCancelLoading } = writeToContract(
@@ -40,6 +41,7 @@ export default function UpdateListingModal({ props, isVisible, hideModal }) {
     'cancelListing',
     [nftAddress, tokenId],
     { onSuccess: handleSuccess, onError: handleError },
+    isVisible && nftAddress && tokenId !== '',
   );
 
   function handleSubmit(e, type) {

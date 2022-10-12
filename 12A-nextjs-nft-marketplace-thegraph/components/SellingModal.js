@@ -1,10 +1,7 @@
 import marketplaceAbi from '../constants/NftMarketplace.json';
 import nftAbi from '../constants/BasicNft.json';
 import networkMapping from '../constants/networkMapping';
-import {
-  writeToContract,
-  writeToContractWithoutPrepare,
-} from '../systems/interactWithContract';
+import { writeToContract } from '../systems/interactWithContract';
 import { roundEth } from '../utils/formatting';
 import { Modal, Input, InputNumber, Tooltip, Button } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
@@ -34,6 +31,7 @@ export default function SellingModal({ isVisible, hideModal }) {
       'approve',
       [marketplaceAddress, tokenId],
       { onSuccess: handleApproveSuccess, onError: handleError },
+      isVisible && marketplaceAddress && tokenId !== '',
     );
 
   const {
@@ -46,6 +44,7 @@ export default function SellingModal({ isVisible, hideModal }) {
     'listItem',
     [nftAddress, tokenId, formattedPrice],
     { onSuccess: handleListingSuccess, onError: handleError },
+    nftAddress && tokenId !== '' && formattedPrice,
   );
 
   function copyNftAddress() {

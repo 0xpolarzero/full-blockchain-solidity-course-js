@@ -18,6 +18,14 @@ export default function ProceedsModal({ isVisible, hideModal }) {
   const [isWalletOpen, setIsWalletOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const userProceeds = readFromContract(
+    marketplaceAddress,
+    marketplaceAbi,
+    'getProceeds',
+    [userAddress],
+    userAddress,
+  );
+
   const { write: withdrawProceeds, isLoading: isWithdrawLoading } =
     writeToContract(
       marketplaceAddress,
@@ -25,14 +33,8 @@ export default function ProceedsModal({ isVisible, hideModal }) {
       'withdrawProceeds',
       [],
       { onSuccess: handleSuccess, onError: handleError },
+      isVisible && userProceeds && userProceeds.toString() !== '0',
     );
-
-  const userProceeds = readFromContract(
-    marketplaceAddress,
-    marketplaceAbi,
-    'getProceeds',
-    [userAddress],
-  );
 
   function handleSubmit(e) {
     if (userProceeds.toString() === '0') {

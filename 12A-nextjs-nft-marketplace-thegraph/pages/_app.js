@@ -17,10 +17,19 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
 import { useState } from 'react';
 
-const { chains, provider, webSocketProvider } = configureChains(
-  [chain.goerli, chain.polygonMumbai],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()],
-);
+const defaultChains = [
+  { ...chain.goerli },
+  { ...chain.polygonMumbai },
+  {
+    ...chain.arbitrumGoerli,
+    iconUrl: 'https://arbitrum.io/favicon.ico',
+  },
+];
+
+const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
+  alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }),
+  publicProvider(),
+]);
 
 const { connectors } = getDefaultWallets({
   appName: 'NFT Marketplace - TheGraph',
@@ -44,12 +53,19 @@ const apolloClientMumbai = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
 });
 
+const apolloClientArbitrumGoerli = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
+});
+
 function MyApp({ Component, pageProps }) {
   const [apolloClient, setApolloClient] = useState(apolloClientGoerli);
 
   function updateApolloClient(network) {
     if (network === 'maticmum') {
       setApolloClient(apolloClientMumbai);
+    } else if (network === 'arbitrum-goerli') {
+      setApolloClient(apolloClientArbitrumGoerli);
     } else {
       setApolloClient(apolloClientGoerli);
     }

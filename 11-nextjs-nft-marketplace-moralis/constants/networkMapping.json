@@ -6,5 +6,9 @@
   "80001": {
     "NftMarketplace": ["0xc9F76d13D9695B0956072F150D12d83935f72eB1"],
     "BasicNft": ["0x6e082e54A362d931526DB09b37a38E1747BEfdf0"]
+  },
+  "421613": {
+    "NftMarketplace": ["0xc9F76d13D9695B0956072F150D12d83935f72eB1"],
+    "BasicNft": ["0x6e082e54A362d931526DB09b37a38E1747BEfdf0"]
   }
 }

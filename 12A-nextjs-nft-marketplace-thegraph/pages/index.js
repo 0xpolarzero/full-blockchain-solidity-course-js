@@ -1,4 +1,5 @@
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
 import NftCard from '../components/NftCard';
 import SellingModal from '../components/SellingModal';
@@ -39,7 +40,11 @@ export default function Home({ updateApolloClient }) {
       setMarketplaceAddress(networkMapping[chainId]['NftMarketplace'][0]);
     }
 
-    if (network.name === 'goerli' || network.name === 'maticmum') {
+    if (
+      network.name === 'goerli' ||
+      network.name === 'maticmum' ||
+      network.name === 'arbitrum-goerli'
+    ) {
       setIsWrongNetwork(false);
     } else {
       setIsWrongNetwork(true);
@@ -49,7 +54,7 @@ export default function Home({ updateApolloClient }) {
   }, [network.chainId]);
 
   return (
-    <div>
+    <div className='page'>
       <header className={styles.header}>
         <Header />
       </header>
@@ -158,6 +163,8 @@ export default function Home({ updateApolloClient }) {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

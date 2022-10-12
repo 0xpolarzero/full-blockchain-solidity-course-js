@@ -1,4 +1,5 @@
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
 import nftAbi from '../constants/BasicNft.json';
 import networkMapping from '../constants/networkMapping';
@@ -54,7 +55,11 @@ export default function MintNft({ updateApolloClient }) {
       setNftAddress(currentAddress);
     }
 
-    if (network.name === 'goerli' || network.name === 'maticmum') {
+    if (
+      network.name === 'goerli' ||
+      network.name === 'maticmum' ||
+      network.name === 'arbitrum-goerli'
+    ) {
       setIsWrongNetwork(false);
     } else {
       setIsWrongNetwork(true);
@@ -64,7 +69,7 @@ export default function MintNft({ updateApolloClient }) {
   }, [network.chainId]);
 
   return (
-    <div>
+    <div className='page'>
       <header className={styles.header}>
         <Header />
       </header>
@@ -139,6 +144,8 @@ export default function MintNft({ updateApolloClient }) {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

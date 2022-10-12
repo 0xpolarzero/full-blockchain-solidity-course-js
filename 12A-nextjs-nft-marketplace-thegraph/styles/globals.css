@@ -115,6 +115,12 @@ h1 {
   text-decoration: underline;
 }
 
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 #container::before {
   content: '';
   position: absolute;
@@ -144,16 +150,18 @@ h1 {
   align-items: center;
 }
 
-.react-icons {
-  width: 2rem !important;
+.icon-footer {
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s linear;
 }
 
-.ant-input-number-prefix {
-  margin-right: 0.5rem !important;
-}
-
-.ant-input-number-prefix > svg {
-  width: 16 !important;
+.icon-footer:hover {
+  color: rgb(var(--alt-color-lighter));
+  transform: scale(1.2);
 }
 
 /* ------------------------------------------- */
@@ -489,7 +497,7 @@ nav .links::after {
 
 .price {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   gap: 0.5rem;
 }
 
@@ -518,7 +526,7 @@ nav .links::after {
   /* Span all the height of the grid */
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .box-container {
@@ -556,7 +564,7 @@ nav .links::after {
 .mint-container .action {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   gap: 1rem;
 }
 
@@ -620,4 +628,16 @@ nav .links::after {
 .ant-modal-close:active {
   color: #fff !important;
   background: none;
+}
+
+.ant-input-number-prefix {
+  margin-right: 0.5rem !important;
+}
+
+.ant-input-number-prefix > svg {
+  width: 16 !important;
+}
+
+.react-icons {
+  width: 2rem !important;
 }

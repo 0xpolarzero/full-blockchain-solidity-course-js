@@ -34,6 +34,8 @@ export default function BuyingModal({ props, isVisible, hideModal }) {
     'buyItem',
     [nftAddress, tokenId, { value: price }],
     { onSuccess: handleSuccess, onError: handleError },
+    // Prevent from trying to prepare contract & throwing errors if the modal is not open
+    isVisible && nftAddress && tokenId !== '' && price,
   );
 
   function handleSubmit(e) {

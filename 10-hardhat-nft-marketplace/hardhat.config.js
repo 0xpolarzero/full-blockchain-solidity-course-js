@@ -8,9 +8,11 @@ require('dotenv').config();
 
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
 const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL;
+const ARBITRUM_GOERLI_RPC_URL = process.env.ARBITRUM_GOERLI_RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
+const ARBISCAN_API_KEY = process.env.ARBISCAN_API_KEY;
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY;
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -41,6 +43,12 @@ module.exports = {
       chainId: 80001,
       blockConfirmations: 5,
     },
+    arbitrumGoerli: {
+      url: ARBITRUM_GOERLI_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      chainId: 421613,
+      blockConfirmations: 5,
+    },
   },
   namedAccounts: {
     deployer: {
@@ -54,6 +62,7 @@ module.exports = {
     apiKey: {
       goerli: ETHERSCAN_API_KEY,
       mumbai: POLYGONSCAN_API_KEY,
+      arbitrumGoerli: ARBISCAN_API_KEY,
     },
     customChains: [
       {
