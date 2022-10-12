@@ -19,25 +19,11 @@ export default function Home({ updateApolloClient }) {
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
   const chainId = network.chainId ? network.chainId.toString() : '31337';
 
-  // const {
-  //   loading: fetchingListedNfts,
-  //   error,
-  //   data: listedNfts,
-  //   networkStatus,
-  // } = useQuery(GET_ACTIVE_ITEMS, {
-  //   fetchPolicy: 'no-cache',
-  // });
-
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useQuery(GET_ACTIVE_ITEMS, {
-    onError: (err) => console.log(err),
-    onCompleted: (data) => {
-      setData(data);
-      setLoading(false);
-    },
-  });
+  const {
+    loading: fetchingListedNfts,
+    error,
+    data: listedNfts,
+  } = useQuery(GET_ACTIVE_ITEMS);
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -68,15 +54,15 @@ export default function Home({ updateApolloClient }) {
   return (
     <main className={styles.main}>
       {!isDisconnected ? (
-        loading ? (
+        fetchingListedNfts || !listedNfts ? (
           <div>Loading...</div>
         ) : (
-          data.activeItems
+          listedNfts.activeItems
             // .filter((nft) => {
             //   return !isItemsFiltered || nft.seller === userAddress;
             // })
             .map((nft) => {
-              console.log(data);
+              console.log(listedNfts);
               return (
                 <NftCard
                   key={`${nft.nftAddress}${nft.tokenId}`}
