@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,6 +48,7 @@ const wagmiClient = createClient({
 const apolloClientGoerli = new ApolloClient({
   cache: new InMemoryCache(),
   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+  connectToDevTools: true,
 });
 
 const apolloClientMumbai = new ApolloClient({
@@ -95,7 +98,14 @@ function MyApp({ Component, pageProps }) {
           })}
         >
           <ApolloProvider client={apolloClientGoerli}>
-            <Component {...pageProps} updateApolloClient={updateApolloClient} />
+            <div className='page'>
+              <Header />
+              <Component
+                {...pageProps}
+                updateApolloClient={updateApolloClient}
+              />
+              <Footer />
+            </div>
           </ApolloProvider>
         </RainbowKitProvider>
       </WagmiConfig>
