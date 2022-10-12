@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 const clientGoerli = createClient({
   url: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+  requestPolicy: 'network-only',
 });
 
 const clientMumbai = createClient({
@@ -82,6 +83,12 @@ export default function Home() {
 
   useEffect(() => {
     fetchListedNfts();
+
+    const interval = setInterval(() => {
+      console.log(activeItems);
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
