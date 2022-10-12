@@ -24,7 +24,9 @@ export default function Home({ updateApolloClient }) {
     error,
     data: listedNfts,
     networkStatus,
-  } = useQuery(GET_ACTIVE_ITEMS);
+  } = useQuery(GET_ACTIVE_ITEMS, {
+    fetchPolicy: 'no-cache',
+  });
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -63,6 +65,7 @@ export default function Home({ updateApolloClient }) {
             //   return !isItemsFiltered || nft.seller === userAddress;
             // })
             .map((nft) => {
+              console.log(listedNfts);
               return (
                 <NftCard
                   key={`${nft.nftAddress}${nft.tokenId}`}
