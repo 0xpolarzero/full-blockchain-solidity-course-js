@@ -20,9 +20,10 @@ import {
   InMemoryCache,
   ApolloLink,
   ApolloProvider,
+  createHttpLink,
 } from '@apollo/client';
-import { createHttpLink } from 'apollo-link-http';
 import { MultiAPILink } from '@habx/apollo-multi-endpoint-link';
+import { onError } from 'apollo-link-error';
 import { ToastContainer } from 'react-toastify';
 
 const defaultChains = [
@@ -51,17 +52,30 @@ const wagmiClient = createClient({
   connectors,
 });
 
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+      ),
+    );
+  }
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
+
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: ApolloLink.from([
+    errorLink,
     new MultiAPILink({
       endpoints: {
         goerli: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
         mumbai: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
         arbitrumGoerli: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
       },
+      defaultEndpoint: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+      createHttpLink: (endpoint) => createHttpLink({ uri: endpoint }),
       httpSuffix: '',
-      createHttpLink: () => createHttpLink(),
     }),
   ]),
 });
