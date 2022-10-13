@@ -48,6 +48,12 @@ const wagmiClient = createClient({
 const apolloClientGoerli = new ApolloClient({
   cache: new InMemoryCache(),
   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
 });
 
 // const apolloClientMumbai = new ApolloClient({
