@@ -96,10 +96,10 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
     if (userAddress) {
       updateUI();
     }
-    // Cancel the modal if the user changes accounts
+    // Cancel the modal if the user changes accounts or network
     setIsUpdateListingModalOpen(false);
     setIsBuyingModalOpen(false);
-  }, [userAddress]);
+  }, [userAddress, network.name]);
 
   return (
     <div

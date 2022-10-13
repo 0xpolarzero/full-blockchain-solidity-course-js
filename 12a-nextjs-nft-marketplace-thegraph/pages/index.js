@@ -3,14 +3,17 @@ import NftCard from '../components/NftCard';
 import SellingModal from '../components/SellingModal';
 import ProceedsModal from '../components/ProceedsModal';
 import networkMapping from '../constants/networkMapping';
-import GET_ACTIVE_ITEMS from '../constants/subgraphQueries';
+import {
+  GET_ACTIVE_ITEMS_GOERLI,
+  GET_ACTIVE_ITEMS_MUMBAI,
+  GET_ACTIVE_ITEMS_ARBITRUM_GOERLI,
+} from '../constants/subgraphQueries';
 import { Button, Radio } from 'antd';
+import { useQuery } from '@apollo/client';
 import { useAccount, useProvider } from 'wagmi';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
-export default function Home({ activeItems }) {
-  console.log(activeItems);
+export default function Home() {
   const { isDisconnected, address: userAddress } = useAccount();
   const { network } = useProvider();
   const [isItemsFiltered, setIsItemsFiltered] = useState(false);
@@ -20,6 +23,12 @@ export default function Home({ activeItems }) {
   const [activeItemsForNetwork, setActiveItemsForNetwork] = useState([]);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
   const chainId = network.chainId ? network.chainId.toString() : '31337';
+
+  let activeItems;
+
+  const { data: goerliData, loading: goerliDataLoading } = useQuery(
+    GET_ACTIVE_ITEMS_GOERLI,
+  );
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -44,16 +53,16 @@ export default function Home({ activeItems }) {
       setIsWrongNetwork(true);
     }
 
-    if (!!activeItems) {
-      if (network.name === 'maticmum') {
-        setActiveItemsForNetwork(activeItems.mumbai);
-      } else if (network.name === 'arbitrum-goerli') {
-        setActiveItemsForNetwork(activeItems.arbitrumGoerli);
-      } else {
-        setActiveItemsForNetwork(activeItems.goerli);
-      }
+    if (!goerliData || goerliDataLoading) return;
+
+    if (!!goerliData && network.name === 'maticmum') {
+      setActiveItemsForNetwork(activeItems.mumbai);
+    } else if (!!goerliData && network.name === 'arbitrum-goerli') {
+      setActiveItemsForNetwork(activeItems.arbitrumGoerli);
+    } else if (!!goerliData) {
+      setActiveItemsForNetwork(goerliData.activeItems);
     }
-  }, [network.chainId, activeItems]);
+  }, [network.chainId, goerliDataLoading]);
 
   return (
     <main className={styles.main}>
@@ -159,16 +168,16 @@ export default function Home({ activeItems }) {
   );
 }
 
-const apolloClientGoerli = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
-  defaultOptions: {
-    query: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'all',
-    },
-  },
-});
+// const apolloClientGoerli = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+//   defaultOptions: {
+//     query: {
+//       fetchPolicy: 'no-cache',
+//       errorPolicy: 'all',
+//     },
+//   },
+// });
 
 // const apolloClientMumbai = new ApolloClient({
 //   cache: new InMemoryCache(),
@@ -192,43 +201,43 @@ const apolloClientGoerli = new ApolloClient({
 //   },
 // });
 
-export async function getStaticProps() {
-  // const [activeClient, setActiveClient] = useState(apolloClientGoerli);
-  // const { network } = useProvider();
+// export async function getStaticProps() {
+// const [activeClient, setActiveClient] = useState(apolloClientGoerli);
+// const { network } = useProvider();
 
-  // function updateClient(network) {
-  //   if (network === 'maticmum') {
-  //     setActiveClient(apolloClientMumbai);
-  //   } else if (network === 'arbitrum-goerli') {
-  //     setActiveClient(apolloClientArbitrumGoerli);
-  //   } else {
-  //     setActiveClient(apolloClientGoerli);
-  //   }
-  // }
+// function updateClient(network) {
+//   if (network === 'maticmum') {
+//     setActiveClient(apolloClientMumbai);
+//   } else if (network === 'arbitrum-goerli') {
+//     setActiveClient(apolloClientArbitrumGoerli);
+//   } else {
+//     setActiveClient(apolloClientGoerli);
+//   }
+// }
 
-  // useEffect(() => {
-  //   network && updateClient(network.name);
-  // }, [network]);
+// useEffect(() => {
+//   network && updateClient(network.name);
+// }, [network]);
 
-  const { data: goerliData } = await apolloClientGoerli.query({
-    query: GET_ACTIVE_ITEMS,
-  });
+// const { data: goerliData } = await apolloClient.query({
+//   query: GET_ACTIVE_ITEMS_GOERLI,
+// });
 
-  const { data: mumbaiData } = await apolloClientGoerli.query({
-    query: GET_ACTIVE_ITEMS,
-  });
+// const { data: mumbaiData } = await apolloClient.query({
+//   query: GET_ACTIVE_ITEMS_GOERLI,
+// });
 
-  const { data: arbitrumGoerliData } = await apolloClientGoerli.query({
-    query: GET_ACTIVE_ITEMS,
-  });
+// const { data: arbitrumGoerliData } = await apolloClient.query({
+//   query: GET_ACTIVE_ITEMS_GOERLI,
+// });
 
-  return {
-    props: {
-      activeItems: {
-        goerli: goerliData.activeItems,
-        mumbai: mumbaiData.activeItems,
-        arbitrumGoerli: arbitrumGoerliData.activeItems,
-      },
-    },
-  };
-}
+//   return {
+//     props: {
+//       activeItems: {
+//         goerli: goerliData.activeItems,
+//         mumbai: mumbaiData.activeItems,
+//         arbitrumGoerli: arbitrumGoerliData.activeItems,
+//       },
+//     },
+//   };
+// }

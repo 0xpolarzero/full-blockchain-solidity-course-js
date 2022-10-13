@@ -15,6 +15,14 @@ import {
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloLink,
+  ApolloProvider,
+} from '@apollo/client';
+import { createHttpLink } from 'apollo-link-http';
+import { MultiAPILink } from '@habx/apollo-multi-endpoint-link';
 import { ToastContainer } from 'react-toastify';
 
 const defaultChains = [
@@ -43,6 +51,21 @@ const wagmiClient = createClient({
   connectors,
 });
 
+const apolloClient = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: ApolloLink.from([
+    new MultiAPILink({
+      endpoints: {
+        goerli: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+        mumbai: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
+        arbitrumGoerli: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
+      },
+      httpSuffix: '',
+      createHttpLink: () => createHttpLink(),
+    }),
+  ]),
+});
+
 function MyApp({ Component, pageProps }) {
   return (
     <div id='container'>
@@ -67,11 +90,13 @@ function MyApp({ Component, pageProps }) {
             overlayBlur: 'small',
           })}
         >
-          <div className='page'>
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-          </div>
+          <ApolloProvider client={apolloClient}>
+            <div className='page'>
+              <Header />
+              <Component {...pageProps} />
+              <Footer />
+            </div>
+          </ApolloProvider>
         </RainbowKitProvider>
       </WagmiConfig>
       <ToastContainer
