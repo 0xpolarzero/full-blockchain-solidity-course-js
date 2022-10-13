@@ -570,6 +570,7 @@ nav .links::after {
 
 .instructions p {
   margin-left: 0.5rem;
+  line-height: 1.4rem;
 }
 
 .caption {

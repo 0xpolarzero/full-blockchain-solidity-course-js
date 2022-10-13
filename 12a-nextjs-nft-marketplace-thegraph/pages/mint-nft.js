@@ -82,6 +82,7 @@ export default function MintNft() {
                   Chainlink Faucets <i className='fa-solid fa-chain'></i>
                 </a>
               </p>
+
               <div className='caption'>Polygon (Mumbai)</div>
               <p>
                 <span className='highlight'>1.</span> Get some{' '}
@@ -94,6 +95,21 @@ export default function MintNft() {
                   Polygon Faucet <i className='fa-solid fa-chain'></i>
                 </a>
               </p>
+
+              <div className='caption'>Arbitrum (Goerli)</div>
+              <p>
+                <span className='highlight'>1.</span> Follow the instructions in
+                the bio of{' '}
+                <a
+                  className='highlight bold'
+                  href='https://mobile.twitter.com/nitro_devnet'
+                  target={'_blank'}
+                >
+                  this account <i className='fa-solid fa-chain'></i>
+                </a>{' '}
+                to get some <span className='highlight bold'>Goerli ETH</span>
+              </p>
+
               <p>
                 <span className='highlight'>2.</span>{' '}
                 <span className='highlight bold'>Mint a NFT</span> or buy one
