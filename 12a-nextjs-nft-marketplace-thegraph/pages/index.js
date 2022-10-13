@@ -44,6 +44,8 @@ export default function Home({ activeItems }) {
       setIsWrongNetwork(true);
     }
 
+    if (!!activeItems) return;
+
     if (network.name === 'maticmum') {
       setActiveItemsForNetwork(activeItems.mumbai);
     } else if (network.name === 'arbitrum-goerli') {
@@ -51,7 +53,7 @@ export default function Home({ activeItems }) {
     } else {
       setActiveItemsForNetwork(activeItems.goerli);
     }
-  }, [network.chainId]);
+  }, [network.chainId, activeItems]);
 
   return (
     <main className={styles.main}>
