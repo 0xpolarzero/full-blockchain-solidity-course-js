@@ -15,8 +15,11 @@ export default function exampleQuery() {
   return (
     <div>
       {data.activeItems.map((item) => {
+        const interval = setInterval(() => {
+          console.log(data);
+        }, 3000);
         return (
-          <div>
+          <div key={item.tokenId}>
             <p>{item.tokenId}</p>
           </div>
         );

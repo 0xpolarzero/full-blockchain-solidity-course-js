@@ -96,13 +96,13 @@ function MyApp({ Component, pageProps }) {
             overlayBlur: 'small',
           })}
         >
-          <ApolloProvider client={apolloClientGoerli}>
-            <div className='page'>
-              <Header />
+          <div className='page'>
+            <Header />
+            <ApolloProvider client={apolloClientGoerli}>
               <Component {...pageProps} />
-              <Footer />
-            </div>
-          </ApolloProvider>
+            </ApolloProvider>
+            <Footer />
+          </div>
         </RainbowKitProvider>
       </WagmiConfig>
       <ToastContainer
