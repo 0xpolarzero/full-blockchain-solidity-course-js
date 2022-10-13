@@ -23,7 +23,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { MultiAPILink } from '@habx/apollo-multi-endpoint-link';
-import { onError } from 'apollo-link-error';
+import { onError } from '@apollo/client/link/error';
 import { ToastContainer } from 'react-toastify';
 
 const defaultChains = [
@@ -62,7 +62,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
-
+console.log(process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI);
+console.log(process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI);
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: ApolloLink.from([
