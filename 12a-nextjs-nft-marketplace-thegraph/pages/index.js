@@ -10,19 +10,19 @@ import {
 } from '../constants/subgraphQueries';
 import { Button, Radio } from 'antd';
 import { useLazyQuery } from '@apollo/client';
-import { useAccount, useProvider } from 'wagmi';
+import { useAccount, useProvider, useNetwork } from 'wagmi';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { isDisconnected, address: userAddress } = useAccount();
-  const { network } = useProvider();
+  const { chain } = useNetwork();
   const [isItemsFiltered, setIsItemsFiltered] = useState(false);
   const [isSellingModalOpen, setIsSellingModalOpen] = useState(false);
   const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
   const [activeItems, setActiveItems] = useState([]);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
-  const chainId = network.chainId ? network.chainId.toString() : '31337';
+  const chainId = chain ? chain.id.toString() : '31337';
 
   const [getGoerliData, { data: goerliData, refetch: refetchGoerliData }] =
     useLazyQuery(GET_ACTIVE_ITEMS_GOERLI);
@@ -46,22 +46,22 @@ export default function Home() {
       setMarketplaceAddress(networkMapping[chainId]['NftMarketplace'][0]);
     }
 
-    if (network.name === 'goerli') {
+    if (chain.id === 5) {
       refetchGoerliData();
       goerliData && setActiveItems(goerliData.activeItems);
       setIsWrongNetwork(false);
-    } else if (network.name === 'maticmum') {
+    } else if (chain.id === 80001) {
       refetchMumbaiData();
       mumbaiData && setActiveItems(mumbaiData.activeItems);
       setIsWrongNetwork(false);
-    } else if (network.name === 'arbitrum-goerli') {
+    } else if (chain.id === 421613) {
       refetchArbitrumGoerliData();
       arbitrumGoerliData && setActiveItems(arbitrumGoerliData.activeItems);
       setIsWrongNetwork(false);
     } else {
       setIsWrongNetwork(true);
     }
-  }, [network.chainId, goerliData, mumbaiData, arbitrumGoerliData]);
+  }, [chain, goerliData, mumbaiData, arbitrumGoerliData]);
 
   return (
     <main className={styles.main}>
@@ -152,8 +152,8 @@ export default function Home() {
               )
             ) : (
               <div className='box-container error'>
-                You are on an unsupported network. Please change to Goerli or
-                Mumbai.
+                You are on an unsupported network. Please change to Ethereum
+                Goerli, Polygon Mumbai or Arbitrum Goerli.
               </div>
             )
           ) : (

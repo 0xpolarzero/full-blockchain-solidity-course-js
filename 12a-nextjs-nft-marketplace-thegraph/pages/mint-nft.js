@@ -4,15 +4,16 @@ import networkMapping from '../constants/networkMapping';
 import { writeToContract } from '../systems/interactWithContract';
 import { Button } from 'antd';
 import { toast } from 'react-toastify';
-import { useAccount, useProvider } from 'wagmi';
+import { useAccount, useNetwork } from 'wagmi';
 import { useEffect, useState } from 'react';
 
 export default function MintNft() {
   const { isDisconnected } = useAccount();
-  const { network } = useProvider();
+  const { chain } = useNetwork();
   const [isWalletOpen, setIsWalletOpen] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
   const [nftAddress, setNftAddress] = useState('');
+  const chainId = chain ? chain.id.toString() : '31337';
 
   const { write: mintNft, isLoading: isMintLoading } = writeToContract(
     nftAddress,
@@ -46,22 +47,17 @@ export default function MintNft() {
   }
 
   useEffect(() => {
-    if (network.chainId && networkMapping[network.chainId]) {
-      const currentAddress =
-        networkMapping[network.chainId]['BasicNft'][0] || '';
+    if (chain && networkMapping[chainId]) {
+      const currentAddress = networkMapping[chainId]['BasicNft'][0] || '';
       setNftAddress(currentAddress);
     }
 
-    if (
-      network.name === 'goerli' ||
-      network.name === 'maticmum' ||
-      network.name === 'arbitrum-goerli'
-    ) {
+    if (chain.id === 5 || chain.id === 80001 || chain.id === 421613) {
       setIsWrongNetwork(false);
     } else {
       setIsWrongNetwork(true);
     }
-  }, [network.chainId]);
+  }, [chain]);
 
   return (
     <main className={styles.main}>
