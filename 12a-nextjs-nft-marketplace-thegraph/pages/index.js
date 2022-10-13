@@ -5,25 +5,11 @@ import ProceedsModal from '../components/ProceedsModal';
 import networkMapping from '../constants/networkMapping';
 import GET_ACTIVE_ITEMS from '../constants/subgraphQueries';
 import { Button, Radio } from 'antd';
-import { createClient } from 'urql';
 import { useAccount, useProvider } from 'wagmi';
-// import { useQuery } from '@apollo/client';
+import { useQuery, ApolloClient, InMemoryCache } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
-const clientGoerli = createClient({
-  url: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
-  requestPolicy: 'network-only',
-});
-
-const clientMumbai = createClient({
-  url: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
-});
-
-const clientArbitrumGoerli = createClient({
-  url: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
-});
-
-export default function Home() {
+export default function Home({ activeItems }) {
   const { isDisconnected, address: userAddress } = useAccount();
   const { network } = useProvider();
   const [isItemsFiltered, setIsItemsFiltered] = useState(false);
@@ -31,32 +17,17 @@ export default function Home() {
   const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
-  const [activeClient, setActiveClient] = useState(clientGoerli);
-  const [activeItems, setActiveItems] = useState(null);
-  const [isActiveItemsLoading, setIsActiveItemsLoading] = useState(true);
   const chainId = network.chainId ? network.chainId.toString() : '31337';
 
-  async function fetchListedNfts() {
-    const data = await activeClient.query(GET_ACTIVE_ITEMS).toPromise();
-    const activeItemsData = await Promise.all(data.data.activeItems);
-    console.log(data);
-    const active = data.data.activeItems;
-    setActiveItems(active);
-    if (data.data) {
-      console.log('yes');
-      setIsActiveItemsLoading(false);
-    }
-  }
-
-  function updateClient(network) {
-    if (network === 'maticmum') {
-      setActiveClient(clientMumbai);
-    } else if (network === 'arbitrum-goerli') {
-      setActiveClient(clientArbitrumGoerli);
-    } else {
-      setActiveClient(clientGoerli);
-    }
-  }
+  // function updateClient(network) {
+  //   if (network === 'maticmum') {
+  //     setActiveClient(clientMumbai);
+  //   } else if (network === 'arbitrum-goerli') {
+  //     setActiveClient(clientArbitrumGoerli);
+  //   } else {
+  //     setActiveClient(clientGoerli);
+  //   }
+  // }
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -81,43 +52,16 @@ export default function Home() {
       setIsWrongNetwork(true);
     }
 
-    updateClient(network.name);
+    // updateClient(network.name);
   }, [network.chainId]);
-
-  useEffect(() => {
-    fetchListedNfts();
-
-    setTimeout(() => {
-      const interval = setInterval(() => {
-        console.log(activeItems);
-      }, 2000);
-    }, 3000);
-  }, []);
 
   return (
     <main className={styles.main}>
-      {/* {!isDisconnected ? (
-        isListedNftsLoading || !listedNfts ? (
-          <div>Loading...</div>
-        ) : (
-          listedNfts.activeItems
-            // .filter((nft) => {
-            //   return !isItemsFiltered || nft.seller === userAddress;
-            // })
-            .map((nft) => {
-              return (
-                <NftCard
-                  key={`${nft.nftAddress}${nft.tokenId}`}
-                  nftAttributes={nft}
-                  marketplaceAddress={marketplaceAddress}
-                />
-              );
-            })
-        )
-      ) : (
-        <div>Please connect</div>
-      )} */}
-      <div className='content'>
+      <div>ok</div>
+      {activeItems.map((item) => {
+        return <div key={item.tokenId}>{item.tokenId}</div>;
+      })}
+      {/* <div className='content'>
         <div className='home-container'>
           <SellingModal
             isVisible={isSellingModalOpen}
@@ -218,7 +162,32 @@ export default function Home() {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </main>
   );
+}
+
+// import GET_ACTIVE_ITEMS from '../constants/subgraphQueries';
+
+const apolloClientGoerli = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
+});
+
+export async function getStaticProps() {
+  const { data } = await apolloClientGoerli.query({
+    query: GET_ACTIVE_ITEMS,
+  });
+
+  return {
+    props: {
+      activeItems: data.activeItems,
+    },
+  };
 }

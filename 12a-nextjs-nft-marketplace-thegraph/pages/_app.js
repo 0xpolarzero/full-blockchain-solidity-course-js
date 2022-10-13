@@ -45,16 +45,16 @@ const wagmiClient = createClient({
   connectors,
 });
 
-const apolloClientGoerli = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
-  defaultOptions: {
-    query: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'all',
-    },
-  },
-});
+// const apolloClientGoerli = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+//   defaultOptions: {
+//     query: {
+//       fetchPolicy: 'no-cache',
+//       errorPolicy: 'all',
+//     },
+//   },
+// });
 
 // const apolloClientMumbai = new ApolloClient({
 //   cache: new InMemoryCache(),
@@ -104,9 +104,9 @@ function MyApp({ Component, pageProps }) {
         >
           <div className='page'>
             <Header />
-            <ApolloProvider client={apolloClientGoerli}>
-              <Component {...pageProps} />
-            </ApolloProvider>
+            {/* <ApolloProvider client={apolloClientGoerli}> */}
+            <Component {...pageProps} />
+            {/* </ApolloProvider> */}
             <Footer />
           </div>
         </RainbowKitProvider>
