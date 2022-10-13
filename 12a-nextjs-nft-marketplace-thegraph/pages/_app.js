@@ -75,9 +75,12 @@ const apolloClient = new ApolloClient({
         arbitrumGoerli: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
       },
       defaultEndpoint: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
-      createHttpLink: (endpoint) => createHttpLink({ uri: endpoint }),
+      createHttpLink: () => createHttpLink(),
       httpSuffix: '',
     }),
+    // createHttpLink({
+    //   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+    // }),
   ]),
 });
 
