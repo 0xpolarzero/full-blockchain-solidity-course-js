@@ -44,15 +44,15 @@ export default function Home({ activeItems }) {
       setIsWrongNetwork(true);
     }
 
-    if (!!activeItems) return;
-
-    // if (network.name === 'maticmum') {
-    //   setActiveItemsForNetwork(activeItems.mumbai);
-    // } else if (network.name === 'arbitrum-goerli') {
-    //   setActiveItemsForNetwork(activeItems.arbitrumGoerli);
-    // } else {
-    setActiveItemsForNetwork(activeItems.goerli);
-    // }
+    if (!!activeItems) {
+      if (network.name === 'maticmum') {
+        setActiveItemsForNetwork(activeItems.mumbai);
+      } else if (network.name === 'arbitrum-goerli') {
+        setActiveItemsForNetwork(activeItems.arbitrumGoerli);
+      } else {
+        setActiveItemsForNetwork(activeItems.goerli);
+      }
+    }
   }, [network.chainId, activeItems]);
 
   return (
