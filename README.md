@@ -377,11 +377,6 @@ yarn hardhat coverage
 - Moralis queries, fetching URIs & rendering the NFT images
 - Building a front end for buying, listing (updating, canceling) NFTs & witdrawing funds
 
-### Bonus achievements
-
-- Using Rainbowkit & Wagmi to interact with the blockchain (Wallet connection & transactions with the smart contract)
-- Using Antd Design for various components (Modal, Button, Input) & Skeleton for loading cards
-
 ### Skills
 
 [![Solidity]](https://soliditylang.org/)
@@ -389,9 +384,6 @@ yarn hardhat coverage
 [![ReactJS]](https://reactjs.org/)
 [![NextJS]](https://nextjs.org/)
 [![Moralis]](https://moralis.io/)
-[![Rainbow]](https://www.rainbowkit.com/)
-[![Wagmi]](https://wagmi.sh/)
-[![Antd]](https://ant.design/)
 
 <!-- MISSION 12 -->
 
@@ -408,11 +400,13 @@ yarn hardhat coverage
 
 ### Bonus achievements
 
-- Customizing the UI & UX
-- Building a minting page for the NFT that can be listed
-- Handling notifications: success, error & displaying pending transactions with React-Toastify
+- Using Rainbowkit & Wagmi to interact with the blockchain (Wallet connection & transactions with the smart contract)
 - Displaying 3 different marketplace listing pages for the chains it's deployed on (Polygon, Arbitrum & Ethereum testnets)
 - Deploying 3 different subgraphs with The Graph Studio & Hosted Services on these 3 networks
+- Handling notifications: success, error & displaying pending transactions with React-Toastify
+- Building a minting page for the NFT that can be listed
+- Customizing the UI & UX
+- Using Antd Design for various components (Modal, Button, Input) & Skeleton for loading cards
 - Listings filtering (All & Owned by the user)
 
 ### Skills
@@ -421,11 +415,11 @@ yarn hardhat coverage
 [![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
 [![ReactJS]](https://reactjs.org/)
 [![NextJS]](https://nextjs.org/)
+[![Rainbow]](https://www.rainbowkit.com/)
+[![Wagmi]](https://wagmi.sh/)
 [![TheGraph]](https://thegraph.com/en/)
 [![ApolloGraphQL]](https://www.apollographql.com/)
 [![GraphQL]](https://graphql.org/)
-[![Rainbow]](https://www.rainbowkit.com/)
-[![Wagmi]](https://wagmi.sh/)
 [![Antd]](https://ant.design/)
 
 # License

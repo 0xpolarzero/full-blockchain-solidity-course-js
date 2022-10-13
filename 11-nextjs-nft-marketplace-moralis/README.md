@@ -71,11 +71,6 @@ To get it to work locally, you will need to navigate to `10-hardhat-nft-marketpl
 - Moralis queries, fetching URIs & rendering the NFT images
 - Building a front end for buying, listing (updating, canceling) NFTs & witdrawing funds
 
-### Bonus achievements
-
-- Using Rainbowkit & Wagmi to interact with the blockchain (Wallet connection & transactions with the smart contract)
-- Using Antd Design for various components (Modal, Button, Input) & Skeleton for loading cards
-
 ### Skills
 
 [![Solidity]](https://soliditylang.org/)
@@ -83,9 +78,6 @@ To get it to work locally, you will need to navigate to `10-hardhat-nft-marketpl
 [![ReactJS]](https://reactjs.org/)
 [![NextJS]](https://nextjs.org/)
 [![Moralis]](https://moralis.io/)
-[![Rainbow]](https://www.rainbowkit.com/)
-[![Wagmi]](https://wagmi.sh/)
-[![Antd]](https://ant.design/)
 
 #
 
@@ -96,9 +88,6 @@ To get it to work locally, you will need to navigate to `10-hardhat-nft-marketpl
 [reactjs]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [nextjs]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [moralis]: https://custom-icon-badges.demolab.com/badge/Moralis-2559BB?style=for-the-badge&logo=moralis
-[rainbow]: https://custom-icon-badges.demolab.com/badge/Rainbowkit-032463?style=for-the-badge&logo=rainbow
-[wagmi]: https://custom-icon-badges.demolab.com/badge/Wagmi-1C1B1B?style=for-the-badge&logo=wagmi
-[antd]: https://img.shields.io/badge/Ant%20Design-0170FE.svg?style=for-the-badge&logo=Ant-Design&logoColor=white
 
 #
 
