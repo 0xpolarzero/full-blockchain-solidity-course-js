@@ -57,11 +57,7 @@ export default function Home({ activeItems }) {
 
   return (
     <main className={styles.main}>
-      <div>ok</div>
-      {activeItems.map((item) => {
-        return <div key={item.tokenId}>{item.tokenId}</div>;
-      })}
-      {/* <div className='content'>
+      <div className='content'>
         <div className='home-container'>
           <SellingModal
             isVisible={isSellingModalOpen}
@@ -74,9 +70,7 @@ export default function Home({ activeItems }) {
 
           <div className='home-actions'>
             {!isDisconnected ? (
-              isActiveItemsLoading ? (
-                ''
-              ) : activeItems && activeItems?.length === 0 ? (
+              activeItems && activeItems?.length === 0 ? (
                 <div></div>
               ) : (
                 <div className='action-filters'>
@@ -126,9 +120,7 @@ export default function Home({ activeItems }) {
           </div>
           {!isDisconnected ? (
             !isWrongNetwork ? (
-              isActiveItemsLoading ? (
-                <div className='loader'></div>
-              ) : activeItems && activeItems?.length === 0 ? (
+              activeItems && activeItems?.length === 0 ? (
                 <div className='box-container error'>
                   No NFT listed on the marketplace yet.
                 </div>
@@ -136,7 +128,7 @@ export default function Home({ activeItems }) {
                 <div className='home-nft'>
                   {activeItems &&
                     activeItems
-                      ?.filter((nft) => {
+                      .filter((nft) => {
                         return !isItemsFiltered || nft.seller === userAddress;
                       })
                       .map((nft) => {
@@ -162,12 +154,10 @@ export default function Home({ activeItems }) {
             </div>
           )}
         </div>
-      </div> */}
+      </div>
     </main>
   );
 }
-
-// import GET_ACTIVE_ITEMS from '../constants/subgraphQueries';
 
 const apolloClientGoerli = new ApolloClient({
   cache: new InMemoryCache(),
