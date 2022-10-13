@@ -4,7 +4,10 @@ const DECIMALS = 18;
 
 const roundEth = (value) => {
   const rounded = ethers.utils.formatUnits(value, DECIMALS);
-  return Number(parseFloat(rounded).toFixed(4));
+
+  return Number(rounded) < 0.0001 && Number(rounded) !== 0
+    ? '< 0.0001'
+    : Number(Number(rounded).toFixed(4));
 };
 
 const truncateAddress = (address) => {
