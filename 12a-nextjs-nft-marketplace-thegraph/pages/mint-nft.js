@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { useAccount, useProvider } from 'wagmi';
 import { useEffect, useState } from 'react';
 
-export default function MintNft({ updateApolloClient }) {
+export default function MintNft() {
   const { isDisconnected } = useAccount();
   const { network } = useProvider();
   const [isWalletOpen, setIsWalletOpen] = useState(false);
@@ -25,7 +25,6 @@ export default function MintNft({ updateApolloClient }) {
   );
 
   function handleSubmit() {
-    console.log(mintNft);
     mintNft();
     setIsWalletOpen(true);
   }
@@ -64,8 +63,6 @@ export default function MintNft({ updateApolloClient }) {
     } else {
       setIsWrongNetwork(true);
     }
-
-    updateApolloClient(network.name);
   }, [network.chainId]);
 
   return (

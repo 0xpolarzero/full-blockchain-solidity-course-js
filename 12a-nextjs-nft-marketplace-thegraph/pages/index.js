@@ -6,7 +6,7 @@ import networkMapping from '../constants/networkMapping';
 import GET_ACTIVE_ITEMS from '../constants/subgraphQueries';
 import { Button, Radio } from 'antd';
 import { useAccount, useProvider } from 'wagmi';
-import { useQuery, ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
 export default function Home({ activeItems }) {
@@ -16,18 +16,9 @@ export default function Home({ activeItems }) {
   const [isSellingModalOpen, setIsSellingModalOpen] = useState(false);
   const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
+  const [activeItemsForNetwork, setActiveItemsForNetwork] = useState([]);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
   const chainId = network.chainId ? network.chainId.toString() : '31337';
-
-  // function updateClient(network) {
-  //   if (network === 'maticmum') {
-  //     setActiveClient(clientMumbai);
-  //   } else if (network === 'arbitrum-goerli') {
-  //     setActiveClient(clientArbitrumGoerli);
-  //   } else {
-  //     setActiveClient(clientGoerli);
-  //   }
-  // }
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -52,7 +43,13 @@ export default function Home({ activeItems }) {
       setIsWrongNetwork(true);
     }
 
-    // updateClient(network.name);
+    if (network.name === 'maticmum') {
+      setActiveItemsForNetwork(activeItems.mumbai);
+    } else if (network.name === 'arbitrum-goerli') {
+      setActiveItemsForNetwork(activeItems.arbitrumGoerli);
+    } else {
+      setActiveItemsForNetwork(activeItems.goerli);
+    }
   }, [network.chainId]);
 
   return (
@@ -70,7 +67,7 @@ export default function Home({ activeItems }) {
 
           <div className='home-actions'>
             {!isDisconnected ? (
-              activeItems && activeItems?.length === 0 ? (
+              activeItemsForNetwork && activeItemsForNetwork?.length === 0 ? (
                 <div></div>
               ) : (
                 <div className='action-filters'>
@@ -120,14 +117,14 @@ export default function Home({ activeItems }) {
           </div>
           {!isDisconnected ? (
             !isWrongNetwork ? (
-              activeItems && activeItems?.length === 0 ? (
+              activeItemsForNetwork && activeItemsForNetwork?.length === 0 ? (
                 <div className='box-container error'>
                   No NFT listed on the marketplace yet.
                 </div>
               ) : (
                 <div className='home-nft'>
-                  {activeItems &&
-                    activeItems
+                  {activeItemsForNetwork &&
+                    activeItemsForNetwork
                       .filter((nft) => {
                         return !isItemsFiltered || nft.seller === userAddress;
                       })
@@ -170,14 +167,65 @@ const apolloClientGoerli = new ApolloClient({
   },
 });
 
+const apolloClientMumbai = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
+});
+
+const apolloClientArbitrumGoerli = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
+});
+
 export async function getStaticProps() {
-  const { data } = await apolloClientGoerli.query({
+  // const [activeClient, setActiveClient] = useState(apolloClientGoerli);
+  // const { network } = useProvider();
+
+  // function updateClient(network) {
+  //   if (network === 'maticmum') {
+  //     setActiveClient(apolloClientMumbai);
+  //   } else if (network === 'arbitrum-goerli') {
+  //     setActiveClient(apolloClientArbitrumGoerli);
+  //   } else {
+  //     setActiveClient(apolloClientGoerli);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   network && updateClient(network.name);
+  // }, [network]);
+
+  const { data: goerliData } = await apolloClientGoerli.query({
+    query: GET_ACTIVE_ITEMS,
+  });
+
+  const { data: mumbaiData } = await apolloClientMumbai.query({
+    query: GET_ACTIVE_ITEMS,
+  });
+
+  const { data: arbitrumGoerliData } = await apolloClientArbitrumGoerli.query({
     query: GET_ACTIVE_ITEMS,
   });
 
   return {
     props: {
-      activeItems: data.activeItems,
+      activeItems: {
+        goerli: goerliData?.activeItems,
+        mumbai: mumbaiData?.activeItems,
+        arbitrumGoerli: arbitrumGoerliData?.activeItems,
+      },
     },
   };
 }

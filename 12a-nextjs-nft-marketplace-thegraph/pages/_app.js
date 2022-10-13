@@ -15,9 +15,7 @@ import {
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { ToastContainer } from 'react-toastify';
-import { useState } from 'react';
 
 const defaultChains = [
   { ...chain.goerli },
@@ -45,40 +43,7 @@ const wagmiClient = createClient({
   connectors,
 });
 
-// const apolloClientGoerli = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
-//   defaultOptions: {
-//     query: {
-//       fetchPolicy: 'no-cache',
-//       errorPolicy: 'all',
-//     },
-//   },
-// });
-
-// const apolloClientMumbai = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
-// });
-
-// const apolloClientArbitrumGoerli = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
-// });
-
 function MyApp({ Component, pageProps }) {
-  // const [apolloClient, setApolloClient] = useState(apolloClientGoerli);
-
-  // function updateApolloClient(network) {
-  //   if (network === 'maticmum') {
-  //     setApolloClient(apolloClientMumbai);
-  //   } else if (network === 'arbitrum-goerli') {
-  //     setApolloClient(apolloClientArbitrumGoerli);
-  //   } else {
-  //     setApolloClient(apolloClientGoerli);
-  //   }
-  // }
-
   return (
     <div id='container'>
       <Head>
@@ -104,9 +69,7 @@ function MyApp({ Component, pageProps }) {
         >
           <div className='page'>
             <Header />
-            {/* <ApolloProvider client={apolloClientGoerli}> */}
             <Component {...pageProps} />
-            {/* </ApolloProvider> */}
             <Footer />
           </div>
         </RainbowKitProvider>
