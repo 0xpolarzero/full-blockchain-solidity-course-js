@@ -20,9 +20,9 @@ import {
   InMemoryCache,
   ApolloLink,
   ApolloProvider,
-  createHttpLink,
 } from '@apollo/client';
 import { MultiAPILink } from '@habx/apollo-multi-endpoint-link';
+import { createHttpLink } from 'apollo-link-http';
 import { onError } from '@apollo/client/link/error';
 import { ToastContainer } from 'react-toastify';
 
@@ -62,8 +62,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
-console.log(process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI);
-console.log(process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI);
+
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: ApolloLink.from([
@@ -74,13 +73,10 @@ const apolloClient = new ApolloClient({
         mumbai: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
         arbitrumGoerli: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
       },
-      defaultEndpoint: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
+      // defaultEndpoint: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
       createHttpLink: () => createHttpLink(),
       httpSuffix: '',
     }),
-    // createHttpLink({
-    //   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
-    // }),
   ]),
 });
 

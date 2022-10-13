@@ -46,22 +46,23 @@ export default function Home() {
       setMarketplaceAddress(networkMapping[chainId]['NftMarketplace'][0]);
     }
 
-    if (
-      network.name === 'goerli' ||
-      network.name === 'maticmum' ||
-      network.name === 'arbitrum-goerli'
-    ) {
+    if (network.name === 'goerli' && goerliData) {
+      console.log('goerli');
+      console.log(goerliData);
+      setActiveItems(goerliData?.activeItems);
+      setIsWrongNetwork(false);
+    } else if (network.name === 'maticmum' && mumbaiData) {
+      console.log('mumbai');
+      console.log(mumbaiData);
+      setActiveItems(mumbaiData?.activeItems);
+      setIsWrongNetwork(false);
+    } else if (network.name === 'arbitrum-goerli' && arbitrumGoerliData) {
+      console.log('arbitrum');
+      console.log(arbitrumGoerliData);
+      setActiveItems(arbitrumGoerliData?.activeItems);
       setIsWrongNetwork(false);
     } else {
       setIsWrongNetwork(true);
-    }
-
-    if (network.name === 'goerli' && goerliData) {
-      setActiveItems(goerliData?.activeItems);
-    } else if (network.name === 'maticmum' && mumbaiData) {
-      setActiveItems(mumbaiData?.activeItems);
-    } else if (network.name === 'arbitrum-goerli' && arbitrumGoerliData) {
-      setActiveItems(arbitrumGoerliData?.activeItems);
     }
 
     // if (
@@ -192,77 +193,3 @@ export default function Home() {
     </main>
   );
 }
-
-// const apolloClientGoerli = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
-//   defaultOptions: {
-//     query: {
-//       fetchPolicy: 'no-cache',
-//       errorPolicy: 'all',
-//     },
-//   },
-// });
-
-// const apolloClientMumbai = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
-//   defaultOptions: {
-//     query: {
-//       fetchPolicy: 'no-cache',
-//       errorPolicy: 'all',
-//     },
-//   },
-// });
-
-// const apolloClientArbitrumGoerli = new ApolloClient({
-//   cache: new InMemoryCache(),
-//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
-//   defaultOptions: {
-//     query: {
-//       fetchPolicy: 'no-cache',
-//       errorPolicy: 'all',
-//     },
-//   },
-// });
-
-// export async function getStaticProps() {
-// const [activeClient, setActiveClient] = useState(apolloClientGoerli);
-// const { network } = useProvider();
-
-// function updateClient(network) {
-//   if (network === 'maticmum') {
-//     setActiveClient(apolloClientMumbai);
-//   } else if (network === 'arbitrum-goerli') {
-//     setActiveClient(apolloClientArbitrumGoerli);
-//   } else {
-//     setActiveClient(apolloClientGoerli);
-//   }
-// }
-
-// useEffect(() => {
-//   network && updateClient(network.name);
-// }, [network]);
-
-// const { data: goerliData } = await apolloClient.query({
-//   query: GET_ACTIVE_ITEMS_GOERLI,
-// });
-
-// const { data: mumbaiData } = await apolloClient.query({
-//   query: GET_ACTIVE_ITEMS_GOERLI,
-// });
-
-// const { data: arbitrumGoerliData } = await apolloClient.query({
-//   query: GET_ACTIVE_ITEMS_GOERLI,
-// });
-
-//   return {
-//     props: {
-//       activeItems: {
-//         goerli: goerliData.activeItems,
-//         mumbai: mumbaiData.activeItems,
-//         arbitrumGoerli: arbitrumGoerliData.activeItems,
-//       },
-//     },
-//   };
-// }
