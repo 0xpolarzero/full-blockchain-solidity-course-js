@@ -170,27 +170,27 @@ const apolloClientGoerli = new ApolloClient({
   },
 });
 
-const apolloClientMumbai = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
-  defaultOptions: {
-    query: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'all',
-    },
-  },
-});
+// const apolloClientMumbai = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
+//   defaultOptions: {
+//     query: {
+//       fetchPolicy: 'no-cache',
+//       errorPolicy: 'all',
+//     },
+//   },
+// });
 
-const apolloClientArbitrumGoerli = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
-  defaultOptions: {
-    query: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'all',
-    },
-  },
-});
+// const apolloClientArbitrumGoerli = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
+//   defaultOptions: {
+//     query: {
+//       fetchPolicy: 'no-cache',
+//       errorPolicy: 'all',
+//     },
+//   },
+// });
 
 export async function getStaticProps() {
   // const [activeClient, setActiveClient] = useState(apolloClientGoerli);
@@ -214,11 +214,11 @@ export async function getStaticProps() {
     query: GET_ACTIVE_ITEMS,
   });
 
-  const { data: mumbaiData } = await apolloClientMumbai.query({
+  const { data: mumbaiData } = await apolloClientGoerli.query({
     query: GET_ACTIVE_ITEMS,
   });
 
-  const { data: arbitrumGoerliData } = await apolloClientArbitrumGoerli.query({
+  const { data: arbitrumGoerliData } = await apolloClientGoerli.query({
     query: GET_ACTIVE_ITEMS,
   });
 
