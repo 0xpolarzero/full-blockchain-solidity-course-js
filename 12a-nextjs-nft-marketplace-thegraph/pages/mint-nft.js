@@ -52,7 +52,7 @@ export default function MintNft() {
       setNftAddress(currentAddress);
     }
 
-    if (chain.id === 5 || chain.id === 80001 || chain.id === 421613) {
+    if (chainId === '5' || chainId === '80001' || chainId === '421613') {
       setIsWrongNetwork(false);
     } else {
       setIsWrongNetwork(true);

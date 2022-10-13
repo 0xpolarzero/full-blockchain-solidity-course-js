@@ -46,15 +46,15 @@ export default function Home() {
       setMarketplaceAddress(networkMapping[chainId]['NftMarketplace'][0]);
     }
 
-    if (chain.id === 5) {
+    if (chainId === '5') {
       refetchGoerliData();
       goerliData && setActiveItems(goerliData.activeItems);
       setIsWrongNetwork(false);
-    } else if (chain.id === 80001) {
+    } else if (chainId === '80001') {
       refetchMumbaiData();
       mumbaiData && setActiveItems(mumbaiData.activeItems);
       setIsWrongNetwork(false);
-    } else if (chain.id === 421613) {
+    } else if (chainId === '421613') {
       refetchArbitrumGoerliData();
       arbitrumGoerliData && setActiveItems(arbitrumGoerliData.activeItems);
       setIsWrongNetwork(false);
