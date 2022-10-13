@@ -10,6 +10,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
 export default function Home({ activeItems }) {
+  console.log(activeItems);
   const { isDisconnected, address: userAddress } = useAccount();
   const { network } = useProvider();
   const [isItemsFiltered, setIsItemsFiltered] = useState(false);
@@ -222,9 +223,9 @@ export async function getStaticProps() {
   return {
     props: {
       activeItems: {
-        goerli: goerliData?.activeItems,
-        mumbai: mumbaiData?.activeItems,
-        arbitrumGoerli: arbitrumGoerliData?.activeItems,
+        goerli: goerliData.activeItems,
+        mumbai: mumbaiData.activeItems,
+        arbitrumGoerli: arbitrumGoerliData.activeItems,
       },
     },
   };
