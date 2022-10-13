@@ -20,15 +20,18 @@ export default function Home() {
   const [isSellingModalOpen, setIsSellingModalOpen] = useState(false);
   const [isProceedsModalOpen, setIsProceedsModalOpen] = useState(false);
   const [isWrongNetwork, setIsWrongNetwork] = useState(false);
-  const [activeItemsForNetwork, setActiveItemsForNetwork] = useState([]);
+  const [activeItems, setActiveItems] = useState([]);
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
   const chainId = network.chainId ? network.chainId.toString() : '31337';
-
-  let activeItems;
 
   const { data: goerliData, loading: goerliDataLoading } = useQuery(
     GET_ACTIVE_ITEMS_GOERLI,
   );
+  const { data: mumbaiData, loading: mumbaiDataLoading } = useQuery(
+    GET_ACTIVE_ITEMS_MUMBAI,
+  );
+  const { data: arbitrumGoerliData, loading: arbitrumGoerliDataLoading } =
+    useQuery(GET_ACTIVE_ITEMS_ARBITRUM_GOERLI);
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -53,16 +56,38 @@ export default function Home() {
       setIsWrongNetwork(true);
     }
 
-    if (!goerliData || goerliDataLoading) return;
-
-    if (!!goerliData && network.name === 'maticmum') {
-      setActiveItemsForNetwork(activeItems.mumbai);
-    } else if (!!goerliData && network.name === 'arbitrum-goerli') {
-      setActiveItemsForNetwork(activeItems.arbitrumGoerli);
-    } else if (!!goerliData) {
-      setActiveItemsForNetwork(goerliData.activeItems);
+    if (network.name === 'goerli' && goerliData) {
+      setActiveItems(goerliData?.activeItems);
+    } else if (network.name === 'maticmum' && mumbaiData) {
+      setActiveItems(mumbaiData?.activeItems);
+    } else if (network.name === 'arbitrum-goerli' && arbitrumGoerliData) {
+      setActiveItems(arbitrumGoerliData?.activeItems);
     }
-  }, [network.chainId, goerliDataLoading]);
+
+    // if (
+    //   !goerliData ||
+    //   !mumbaiData ||
+    //   !arbitrumGoerliData ||
+    //   goerliDataLoading ||
+    //   mumbaiDataLoading ||
+    //   arbitrumGoerliDataLoading
+    // )
+    //   return;
+
+    // if (!!mumbaiData && network.name === 'maticmum') {
+    //   setActiveItems(mumbaiData.activeItems);
+    // } else if (!!arbitrumGoerliData && network.name === 'arbitrum-goerli') {
+    //   setActiveItems(arbitrumGoerliData.activeItems);
+    // } else if (!!goerliData) {
+    //   setActiveItems(goerliData.activeItems);
+    // }
+  }, [
+    network.chainId,
+    goerliData,
+    mumbaiData,
+    arbitrumGoerliData,
+    goerliDataLoading,
+  ]);
 
   return (
     <main className={styles.main}>
@@ -79,7 +104,7 @@ export default function Home() {
 
           <div className='home-actions'>
             {!isDisconnected ? (
-              activeItemsForNetwork && activeItemsForNetwork?.length === 0 ? (
+              activeItems && activeItems?.length === 0 ? (
                 <div></div>
               ) : (
                 <div className='action-filters'>
@@ -129,14 +154,14 @@ export default function Home() {
           </div>
           {!isDisconnected ? (
             !isWrongNetwork ? (
-              activeItemsForNetwork && activeItemsForNetwork?.length === 0 ? (
+              activeItems && activeItems?.length === 0 ? (
                 <div className='box-container error'>
                   No NFT listed on the marketplace yet.
                 </div>
               ) : (
                 <div className='home-nft'>
-                  {activeItemsForNetwork &&
-                    activeItemsForNetwork
+                  {activeItems &&
+                    activeItems
                       .filter((nft) => {
                         return !isItemsFiltered || nft.seller === userAddress;
                       })
