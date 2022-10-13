@@ -3,6 +3,7 @@
 
 :root {
   --main-font: 'Inter', sans-serif;
+  --alt-font: 'Outfit', sans-serif;
   --main-gradient: linear-gradient(
     45deg,
     hsla(319, 74%, 64%, 1) 0%,
@@ -196,6 +197,7 @@ nav:after {
 }
 
 nav .title {
+  font-family: var(--alt-font);
   font-size: 1.3rem;
   font-weight: 500;
   color: #fff;
@@ -574,7 +576,7 @@ nav .links::after {
 }
 
 .caption {
-  font-family: 'Outfit';
+  font-family: var(--alt-font);
   font-size: 1.2rem;
   font-weight: 500;
   opacity: 0.7;
