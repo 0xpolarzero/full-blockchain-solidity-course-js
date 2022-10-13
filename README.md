@@ -402,7 +402,9 @@ yarn hardhat coverage
 - Building a subgraph to index the marketplace contract events (The Graph Studio)
 - Using The Graph CLI to deploy the subgraph
 - Querying the subgraph with GraphQL & Apollo client
-- HOSTING ---------------
+- Hosting the Marketplace:
+  - Fleek (IPFS): https://calm-forest-4357.on.fleek.co/
+  - Vercel: https://nextjs-nft-marketplace-thegraph-murex.vercel.app/
 
 ### Bonus achievements
 
@@ -420,6 +422,7 @@ yarn hardhat coverage
 [![ReactJS]](https://reactjs.org/)
 [![NextJS]](https://nextjs.org/)
 [![TheGraph]](https://thegraph.com/en/)
+[![ApolloGraphQL]](https://www.apollographql.com/)
 [![GraphQL]](https://graphql.org/)
 [![Rainbow]](https://www.rainbowkit.com/)
 [![Wagmi]](https://wagmi.sh/)
@@ -476,4 +479,5 @@ A deep appreciation goes to Patrick Collins for this free and thorough course. T
 [wagmi]: https://custom-icon-badges.demolab.com/badge/Wagmi-1C1B1B?style=for-the-badge&logo=wagmi
 [antd]: https://img.shields.io/badge/Ant%20Design-0170FE.svg?style=for-the-badge&logo=Ant-Design&logoColor=white
 [thegraph]: https://custom-icon-badges.demolab.com/badge/TheGraph-0C0A1C?style=for-the-badge&logo=thegraph&logoColor=white
+[apollographql]: https://img.shields.io/badge/Apollo%20GraphQL-311C87.svg?style=for-the-badge&logo=Apollo-GraphQL&logoColor=white
 [graphql]: https://img.shields.io/badge/GraphQL-E10098.svg?style=for-the-badge&logo=GraphQL&logoColor=white
