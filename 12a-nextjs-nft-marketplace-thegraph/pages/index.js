@@ -46,13 +46,13 @@ export default function Home({ activeItems }) {
 
     if (!!activeItems) return;
 
-    if (network.name === 'maticmum') {
-      setActiveItemsForNetwork(activeItems.mumbai);
-    } else if (network.name === 'arbitrum-goerli') {
-      setActiveItemsForNetwork(activeItems.arbitrumGoerli);
-    } else {
-      setActiveItemsForNetwork(activeItems.goerli);
-    }
+    // if (network.name === 'maticmum') {
+    //   setActiveItemsForNetwork(activeItems.mumbai);
+    // } else if (network.name === 'arbitrum-goerli') {
+    //   setActiveItemsForNetwork(activeItems.arbitrumGoerli);
+    // } else {
+    setActiveItemsForNetwork(activeItems.goerli);
+    // }
   }, [network.chainId, activeItems]);
 
   return (
@@ -170,27 +170,27 @@ const apolloClientGoerli = new ApolloClient({
   },
 });
 
-const apolloClientMumbai = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
-  defaultOptions: {
-    query: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'all',
-    },
-  },
-});
+// const apolloClientMumbai = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
+//   defaultOptions: {
+//     query: {
+//       fetchPolicy: 'no-cache',
+//       errorPolicy: 'all',
+//     },
+//   },
+// });
 
-const apolloClientArbitrumGoerli = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
-  defaultOptions: {
-    query: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'all',
-    },
-  },
-});
+// const apolloClientArbitrumGoerli = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   uri: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
+//   defaultOptions: {
+//     query: {
+//       fetchPolicy: 'no-cache',
+//       errorPolicy: 'all',
+//     },
+//   },
+// });
 
 export async function getStaticProps() {
   // const [activeClient, setActiveClient] = useState(apolloClientGoerli);
@@ -214,20 +214,20 @@ export async function getStaticProps() {
     query: GET_ACTIVE_ITEMS,
   });
 
-  const { data: mumbaiData } = await apolloClientMumbai.query({
-    query: GET_ACTIVE_ITEMS,
-  });
+  // const { data: mumbaiData } = await apolloClientMumbai.query({
+  //   query: GET_ACTIVE_ITEMS,
+  // });
 
-  const { data: arbitrumGoerliData } = await apolloClientArbitrumGoerli.query({
-    query: GET_ACTIVE_ITEMS,
-  });
+  // const { data: arbitrumGoerliData } = await apolloClientArbitrumGoerli.query({
+  //   query: GET_ACTIVE_ITEMS,
+  // });
 
   return {
     props: {
       activeItems: {
         goerli: goerliData.activeItems,
-        mumbai: mumbaiData.activeItems,
-        arbitrumGoerli: arbitrumGoerliData.activeItems,
+        // mumbai: mumbaiData.activeItems,
+        // arbitrumGoerli: arbitrumGoerliData.activeItems,
       },
     },
   };
