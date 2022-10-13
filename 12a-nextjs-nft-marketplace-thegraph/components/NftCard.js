@@ -137,8 +137,6 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
       />
 
       <div className='image'>
-        {/* We're using the <Image> tag that does some optimization for us */}
-        {/* But since it's using a server, it's no longer a static website */}
         {imageURI ? (
           <Image
             src={imageURI}
@@ -165,7 +163,6 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
         <Skeleton paragraph={{ rows: 1 }} loading={!isURILoaded} active />
       </div>
       <div className='info'>
-        {/* NFT Address: {nftAddress} */}
         <div className='price'>
           {network.name === 'maticmum' ? (
             <CryptoIcon name='matic' width={20} style={'color'} />
@@ -177,7 +174,6 @@ export default function NftCard({ nftAttributes, marketplaceAddress }) {
         <div className='seller'>
           {isUserSeller ? 'You' : truncateAddress(seller)}
         </div>
-        {/* Seller: {seller} */}
       </div>
 
       <div className='actions'>

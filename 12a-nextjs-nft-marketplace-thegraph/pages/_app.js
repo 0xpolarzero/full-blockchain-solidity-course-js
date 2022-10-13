@@ -20,9 +20,9 @@ import {
   InMemoryCache,
   ApolloLink,
   ApolloProvider,
+  createHttpLink,
 } from '@apollo/client';
 import { MultiAPILink } from '@habx/apollo-multi-endpoint-link';
-import { createHttpLink } from 'apollo-link-http';
 import { onError } from '@apollo/client/link/error';
 import { ToastContainer } from 'react-toastify';
 
@@ -73,11 +73,11 @@ const apolloClient = new ApolloClient({
         mumbai: process.env.NEXT_PUBLIC_SUBGRAPH_URL_MUMBAI,
         arbitrumGoerli: process.env.NEXT_PUBLIC_SUBGRAPH_URL_ARBITRUM_GOERLI,
       },
-      // defaultEndpoint: process.env.NEXT_PUBLIC_SUBGRAPH_URL_GOERLI,
       createHttpLink: () => createHttpLink(),
       httpSuffix: '',
     }),
   ]),
+  cachePolicy: 'network-only',
 });
 
 function MyApp({ Component, pageProps }) {

@@ -9,7 +9,7 @@ import {
   GET_ACTIVE_ITEMS_ARBITRUM_GOERLI,
 } from '../constants/subgraphQueries';
 import { Button, Radio } from 'antd';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { useAccount, useProvider } from 'wagmi';
 import { useEffect, useState } from 'react';
 
@@ -24,14 +24,14 @@ export default function Home() {
   const [marketplaceAddress, setMarketplaceAddress] = useState('');
   const chainId = network.chainId ? network.chainId.toString() : '31337';
 
-  const { data: goerliData, loading: goerliDataLoading } = useQuery(
-    GET_ACTIVE_ITEMS_GOERLI,
-  );
-  const { data: mumbaiData, loading: mumbaiDataLoading } = useQuery(
-    GET_ACTIVE_ITEMS_MUMBAI,
-  );
-  const { data: arbitrumGoerliData, loading: arbitrumGoerliDataLoading } =
-    useQuery(GET_ACTIVE_ITEMS_ARBITRUM_GOERLI);
+  const [getGoerliData, { data: goerliData, refetch: refetchGoerliData }] =
+    useLazyQuery(GET_ACTIVE_ITEMS_GOERLI);
+  const [getMumbaiData, { data: mumbaiData, refetch: refetchMumbaiData }] =
+    useLazyQuery(GET_ACTIVE_ITEMS_MUMBAI);
+  const [
+    getArbitrumGoerliData,
+    { data: arbitrumGoerliData, refetch: refetchArbitrumGoerliData },
+  ] = useLazyQuery(GET_ACTIVE_ITEMS_ARBITRUM_GOERLI);
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -46,49 +46,22 @@ export default function Home() {
       setMarketplaceAddress(networkMapping[chainId]['NftMarketplace'][0]);
     }
 
-    if (network.name === 'goerli' && goerliData) {
-      console.log('goerli');
-      console.log(goerliData);
-      setActiveItems(goerliData?.activeItems);
+    if (network.name === 'goerli') {
+      refetchGoerliData();
+      goerliData && setActiveItems(goerliData.activeItems);
       setIsWrongNetwork(false);
-    } else if (network.name === 'maticmum' && mumbaiData) {
-      console.log('mumbai');
-      console.log(mumbaiData);
-      setActiveItems(mumbaiData?.activeItems);
+    } else if (network.name === 'maticmum') {
+      refetchMumbaiData();
+      mumbaiData && setActiveItems(mumbaiData.activeItems);
       setIsWrongNetwork(false);
-    } else if (network.name === 'arbitrum-goerli' && arbitrumGoerliData) {
-      console.log('arbitrum');
-      console.log(arbitrumGoerliData);
-      setActiveItems(arbitrumGoerliData?.activeItems);
+    } else if (network.name === 'arbitrum-goerli') {
+      refetchArbitrumGoerliData();
+      arbitrumGoerliData && setActiveItems(arbitrumGoerliData.activeItems);
       setIsWrongNetwork(false);
     } else {
       setIsWrongNetwork(true);
     }
-
-    // if (
-    //   !goerliData ||
-    //   !mumbaiData ||
-    //   !arbitrumGoerliData ||
-    //   goerliDataLoading ||
-    //   mumbaiDataLoading ||
-    //   arbitrumGoerliDataLoading
-    // )
-    //   return;
-
-    // if (!!mumbaiData && network.name === 'maticmum') {
-    //   setActiveItems(mumbaiData.activeItems);
-    // } else if (!!arbitrumGoerliData && network.name === 'arbitrum-goerli') {
-    //   setActiveItems(arbitrumGoerliData.activeItems);
-    // } else if (!!goerliData) {
-    //   setActiveItems(goerliData.activeItems);
-    // }
-  }, [
-    network.chainId,
-    goerliData,
-    mumbaiData,
-    arbitrumGoerliData,
-    goerliDataLoading,
-  ]);
+  }, [network.chainId, goerliData, mumbaiData, arbitrumGoerliData]);
 
   return (
     <main className={styles.main}>

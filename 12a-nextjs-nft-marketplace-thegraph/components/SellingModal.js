@@ -2,7 +2,6 @@ import marketplaceAbi from '../constants/NftMarketplace.json';
 import nftAbi from '../constants/BasicNft.json';
 import networkMapping from '../constants/networkMapping';
 import { writeToContract } from '../systems/interactWithContract';
-import { roundEth } from '../utils/formatting';
 import { Modal, Input, InputNumber, Tooltip, Button } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { CryptoIcon } from 'next-crypto-icons';
@@ -199,7 +198,6 @@ export default function SellingModal({ isVisible, hideModal }) {
             id='list-address-input'
             type='text'
             value={nftAddress}
-            // prefix='#'
             suffix={
               <div className='nft-address-tooltip'>
                 <i className='fa-solid fa-copy' onClick={copyNftAddress}></i>
