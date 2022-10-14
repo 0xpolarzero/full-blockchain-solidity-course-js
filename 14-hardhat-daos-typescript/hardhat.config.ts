@@ -8,12 +8,12 @@ import 'solidity-coverage';
 import 'hardhat-deploy';
 import { HardhatUserConfig } from 'hardhat/config';
 
-const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || '';
 const GOERLI_RPC_URL =
   process.env.GOERLI_RPC_URL ||
   'https://eth-goerli.alchemyapi.io/v2/your-api-key';
-const PRIVATE_KEY = process.env.PRIVATE_KEY || 'privatKey';
+const PRIVATE_KEY = process.env.PRIVATE_KEY || 'privateKey';
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || '';
+const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || '';
 
 const config: HardhatUserConfig = {
   defaultNetwork: 'hardhat',
@@ -53,12 +53,15 @@ const config: HardhatUserConfig = {
   },
   namedAccounts: {
     deployer: {
-      default: 0, // here this will by default take the first account as deployer
-      1: 0, // similarly on mainnet it will take the first account as deployer. Note though that depending on how hardhat network are configured, the account 0 on one network can be different than on another
+      default: 0,
+      // similarly on mainnet it will take the first account as deployer.
+      // Note though that depending on how hardhat network are configured,
+      // ... the account 0 on one network can be different than on another
+      1: 0,
     },
   },
   mocha: {
-    timeout: 200000, // 200 seconds max for running tests
+    timeout: 200000,
   },
 };
 
