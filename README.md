@@ -41,6 +41,12 @@
         <li><a href="#mission-07">Mission 07: Hardhat - ERC20 Token</a></li>
         <li><a href="#mission-08">Mission 08: DeFi</a></li>
         <li><a href="#mission-09">Mission 09: NFT - IPFS, fully on-chain, randomized, dynamic...</a></li>
+        <li><a href="#mission-10">Mission 10: Hardhat - NFT Marketplace</a></li>
+        <li><a href="#mission-11">Mission 11: Next.js & Moralis - NFT Marketplace</a></li>
+        <li><a href="#mission-12">Mission 12: Next.js & TheGraph - NFT Marketplace</a></li>
+        <li><a href="#mission-13">Mission 13: Hardhat - Upgrades</a></li>
+        <li><a href="#mission-14">Mission 14: Hardhat - DAOs</a></li>
+        <li><a href="#mission-15">Mission 15: Hardhat - Security & Auditing</a></li>
       </ul>
     </li>
     <li><a href="#license">License</a></li>
@@ -60,20 +66,24 @@ While following this course, I frequently pushed my progress to GitHub, to keep 
 <p align="center">
 <img src="images/ethereum.svg" alt="Solidity" width="60" height="60">
 <img src="images/javascript.svg" alt="JavaScript" width="60" height="60">
-<img src="images/ethers.svg" alt="EthersJS" width="60" height="60">
 <img src="images/hardhat.svg" alt="Hardhat" width="60" height="60">
+<img src="images/ethers.svg" alt="EthersJS" width="60" height="60">
 <img src="images/ganache.svg" alt="Ganache" width="60" height="60">
-<img src="images/nodejs.svg" alt="NodeJS" width="60" height="60">
-<img src="images/react.svg" alt="ReactJS" width="60" height="60">
-<img src="images/nextjs.svg" alt="NextJS" width="60" height="60">
-<img src="images/mocha.svg" alt="Remix" width="60" height="60">
-<img src="images/tailwind.svg" alt="Tailwind" width="60" height="60">
 <img src="images/remix.png" alt="Remix" width="60" height="60">
+<img src="images/rainbow.png" alt="Rainbow" width="60" height="60">
+<img src="images/wagmi.png" alt="Wagmi" width="60" height="60">
+<img src="images/thegraph.svg" alt="TheGraph" width="60" height="60">
+<img src="images/apollographql.svg" alt="ApolloGraphQL" width="60" height="60">
 <img src="images/chainlink.png" alt="Chainlink" width="60" height="60">
 <img src="images/moralis.png" alt="Moralis" width="60" height="60">
 <img src="images/alchemy.png" alt="Alchemy" width="60" height="60">
 <img src="images/aave.png" alt="Aave" width="60" height="60">
 <img src="images/ipfs.svg" alt="IPFS" width="60" height="60">
+<img src="images/react.svg" alt="ReactJS" width="60" height="60">
+<img src="images/nextjs.svg" alt="NextJS" width="60" height="60">
+<img src="images/nodejs.svg" alt="NodeJS" width="60" height="60">
+<img src="images/mocha.svg" alt="Remix" width="60" height="60">
+
 </p>
 
 <!-- GETTING STARTED -->
