@@ -1,0 +1,14 @@
+node_modules
+.env
+coverage
+coverage.json
+gas-report.txt
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+# Hide the contract
+contracts/GrabNFT.sol

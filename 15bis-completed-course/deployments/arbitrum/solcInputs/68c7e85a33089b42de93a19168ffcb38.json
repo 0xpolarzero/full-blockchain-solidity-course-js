@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/GrabNFT.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.7;\n\ncontract GrabNFT {\n    // Make a call to 'CourseCompletedNFT' with 'mintNft' (contract address + fct selector)\n    // In the vulnerable contract:\n    // 1. callContract will perform 'delegatecall' and borrow 'doSomething()' from here\n    // → 'doSomething()' needs to turn 1st storage slot to '123' (slot 0)\n    // 2. callContractAgain will call this contract with the selector given\n    // → Here, we need to attack with reentrancy, to trigger again the calling function\n    // ... and get 's_otherVar = s_otherVar + 1' to run AGAIN before it checks if 's_otherVar == 2'\n    // → Here 'fallback' will call the calling contract 'callContractAgain' (via 'doSomething()' again)\n    // ... but not reenter again, so we use a counter for instance to trigger only once\n\n    uint256 public s_variable = 0;\n    uint256 private s_otherVar = 0;\n    address private immutable i_owner;\n\n    event DidNotDoSomething();\n\n    constructor() {\n        i_owner = msg.sender;\n    }\n\n    function doSomething() public {\n        s_variable = 123;\n        s_otherVar = 1;\n    }\n\n    function dontDoSomething() public {\n        emit DidNotDoSomething();\n    }\n\n    function getOwner() external view returns (address) {\n        return i_owner;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
