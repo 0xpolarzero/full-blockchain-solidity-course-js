@@ -343,6 +343,8 @@ yarn hardhat coverage
 [![Chainlink]](https://chain.link/)
 [![Pinata]](https://www.pinata.cloud/)
 
+#
+
 <!-- MISSION 10 -->
 
 <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/10-hardhat-nft-marketplace" id="mission-10"><img src="https://shields.io/badge/Mission%2010%20-%20Hardhat%20●%20NFT%20Marketplace%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
@@ -366,6 +368,8 @@ yarn hardhat coverage
 [![Chai]](https://www.chaijs.com/)
 [![Mocha]](https://mochajs.org/)
 
+#
+
 <!-- MISSION 11 -->
 
 <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/11-nextjs-nft-marketplace-moralis" id="mission-11"><img src="https://shields.io/badge/Mission%2011%20-%20Next.js%20&%20Moralis%20●%20NFT%20Marketplace%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
@@ -384,6 +388,8 @@ yarn hardhat coverage
 [![ReactJS]](https://reactjs.org/)
 [![NextJS]](https://nextjs.org/)
 [![Moralis]](https://moralis.io/)
+
+#
 
 <!-- MISSION 12 -->
 
@@ -421,6 +427,74 @@ yarn hardhat coverage
 [![ApolloGraphQL]](https://www.apollographql.com/)
 [![GraphQL]](https://graphql.org/)
 [![Antd]](https://ant.design/)
+
+#
+
+<!-- MISSION 13 -->
+
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/13-hardhat-upgrades" id="mission-13"><img src="https://shields.io/badge/Mission%2013%20-%20Hardhat%20●%20Upgrades%20(Lesson%2016)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+
+### Achievements
+
+- Overview of the different ways to upgrade a contract (directly through parameters, social migration, proxy)
+- Manually upgrading a contract with Hardhat
+- Using the OpenZeppelin Upgrades plugin to deploy & upgrade a smart contract
+- Proxies & Implementations, `delegatecall`, storage & function selector clashes
+- Proxy patterns: Transparent, Upgradeable (UUPS), Diamond
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![Hardhat]](https://hardhat.org/)
+
+#
+
+<!-- MISSION 14 -->
+
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/14-hardhat-daos-typescript" id="mission-14"><img src="https://shields.io/badge/Mission%2014%20-%20Hardhat%20●%20DAOs%20(Lesson%2017)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+
+### Achievements
+
+- Building a fully on-chain DAO with a governance token (ERC20) & a voting contract (ERC20)
+- The Compound Governance model & OpenZeppelin Contract Wizard:
+  - Governance token & Proxy contract
+  - The Implementation
+  - A `TimeLock` contract to hold the Governance contract for a certain amount of time
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![TypeScript]](https://www.typescriptlang.org/)
+[![Hardhat]](https://hardhat.org/)
+
+#
+
+<!-- MISSION 15 -->
+
+<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/15-hardhat-security-auditing" id="mission-15"><img src="https://shields.io/badge/Mission%2015%20-%20Hardhat%20●%20Security%20&%20Auditing%20(Lesson%2018)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+
+### Achievements
+
+- Going through the usual auditing process
+- Running some preliminary tests with fast & slow tools
+  - Slither to expose major vulnerabilities (reentrancy, integer overflow...)
+  - Fuzzing with Echidna & using Docker to run a bundle of tools
+- Known attacks & best practices to avoid them
+
+### Skills
+
+[![Solidity]](https://soliditylang.org/)
+[![JavaScript]](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![Hardhat]](https://hardhat.org/)
+
+Introduced to security & auditing tools:
+
+[![OpenZeppelin]](https://openzeppelin.com/)
+[![Python]](https://www.python.org/)
+[![Docker]](https://www.docker.com/)
+[![Slither]](https://github.com/crytic/slither)
+[![Echnida]](https://github.com/crytic/echidna)
 
 # License
 
@@ -475,3 +549,9 @@ A deep appreciation goes to Patrick Collins for this free and thorough course. T
 [thegraph]: https://custom-icon-badges.demolab.com/badge/TheGraph-0C0A1C?style=for-the-badge&logo=thegraph&logoColor=white
 [apollographql]: https://img.shields.io/badge/Apollo%20GraphQL-311C87.svg?style=for-the-badge&logo=Apollo-GraphQL&logoColor=white
 [graphql]: https://img.shields.io/badge/GraphQL-E10098.svg?style=for-the-badge&logo=GraphQL&logoColor=white
+[typescript]: https://img.shields.io/badge/TypeScript-007ACC.svg?style=for-the-badge&logo=TypeScript&logoColor=white
+[openzeppelin]: https://img.shields.io/badge/OpenZeppelin-4E5EE4.svg?style=for-the-badge&logo=OpenZeppelin&logoColor=white
+[python]: https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white
+[docker]: https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=Docker&logoColor=white
+[slither]: https://custom-icon-badges.demolab.com/badge/Slither-181B22?style=for-the-badge&logo=slither
+[echnida]: https://custom-icon-badges.demolab.com/badge/Echnida-181B22?style=for-the-badge&logo=echnida
