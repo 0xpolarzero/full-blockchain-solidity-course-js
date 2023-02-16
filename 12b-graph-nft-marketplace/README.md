@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/polar0/full-blockchain-solidity-course-js">
+  <a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js">
     <img src="../images/blockchain.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -27,7 +27,7 @@
 
 1. Clone the whole repo:
    ```sh
-   git clone https://github.com/polar0/full-blockchain-solidity-course-js.git
+   git clone https://github.com/0xpolarzero/full-blockchain-solidity-course-js.git
    ```
 2. Navigate into the subdirectory:
    ```sh
@@ -61,11 +61,11 @@ The command to deploy the subgraph will depend on the chain you are deploying to
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/12a-nextjs-nft-marketplace-thegraph" id="mission-12"><img src="https://shields.io/badge/Mission%2012%20-%20Next.js%20&%20TheGraph%20●%20NFT%20Marketplace%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js/tree/main/12a-nextjs-nft-marketplace-thegraph" id="mission-12"><img src="https://shields.io/badge/Mission%2012%20-%20Next.js%20&%20TheGraph%20●%20NFT%20Marketplace%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/12a-nextjs-nft-marketplace">Go to the Next.js front end which uses TheGraph to query these subgraphs</a>
+<a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js/tree/main/12a-nextjs-nft-marketplace">Go to the Next.js front end which uses TheGraph to query these subgraphs</a>
 
-The process of building this module is documented in the previous one → <a href='https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/12a-nextjs-nft-marketplace-thegraph'>12a-nextjs-nft-marketplace-thegraph</a>.
+The process of building this module is documented in the previous one → <a href='https://github.com/0xpolarzero/full-blockchain-solidity-course-js/tree/main/12a-nextjs-nft-marketplace-thegraph'>12a-nextjs-nft-marketplace-thegraph</a>.
 
 ### Skills
 
@@ -74,7 +74,7 @@ The process of building this module is documented in the previous one → <a hre
 
 #
 
-### [Back to the main repo](https://github.com/polar0/full-blockchain-solidity-course-js)
+### [Back to the main repo](https://github.com/0xpolarzero/full-blockchain-solidity-course-js)
 
 [thegraph]: https://custom-icon-badges.demolab.com/badge/TheGraph-0C0A1C?style=for-the-badge&logo=thegraph&logoColor=white
 [graphql]: https://img.shields.io/badge/GraphQL-E10098.svg?style=for-the-badge&logo=GraphQL&logoColor=white

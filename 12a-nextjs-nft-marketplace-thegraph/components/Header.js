@@ -24,7 +24,6 @@ export default function Header() {
         <div className='connect-btn'>
           <ConnectButton
             showBalance={false}
-            showNe
             accountStatus={{
               smallScreen: 'avatar',
               largeScreen: 'avatar',

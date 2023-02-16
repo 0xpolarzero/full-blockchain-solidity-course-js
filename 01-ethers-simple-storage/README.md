@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/polar0/full-blockchain-solidity-course-js">
+  <a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js">
     <img src="../images/blockchain.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -27,7 +27,7 @@
 
 1. Clone the whole repo:
    ```sh
-   git clone https://github.com/polar0/full-blockchain-solidity-course-js.git
+   git clone https://github.com/0xpolarzero/full-blockchain-solidity-course-js.git
    ```
 2. Navigate into the subdirectory:
    ```sh
@@ -57,7 +57,7 @@ node encryptKey.js
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage" id="mission-01"><img src="https://shields.io/badge/Mission%2001%20-%20Ethers%20●%20Simple%20Storage%20(Lesson%205)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js/tree/main/01-ethers-simple-storage" id="mission-01"><img src="https://shields.io/badge/Mission%2001%20-%20Ethers%20●%20Simple%20Storage%20(Lesson%205)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 ### Achievements
 
@@ -78,7 +78,7 @@ node encryptKey.js
 
 #
 
-### [Back to the main repo](https://github.com/polar0/full-blockchain-solidity-course-js)
+### [Back to the main repo](https://github.com/0xpolarzero/full-blockchain-solidity-course-js)
 
 [solidity]: https://custom-icon-badges.demolab.com/badge/Solidity-3C3C3D?style=for-the-badge&logo=solidity&logoColor=white
 [javascript]: https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black

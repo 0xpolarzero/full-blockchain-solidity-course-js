@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/polar0/full-blockchain-solidity-course-js">
+  <a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js">
     <img src="../../images/blockchain.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -27,7 +27,7 @@
 
 1. Clone the whole repo:
    ```sh
-   git clone https://github.com/polar0/full-blockchain-solidity-course-js.git
+   git clone https://github.com/0xpolarzero/full-blockchain-solidity-course-js.git
    ```
 2. Navigate into the subdirectory:
    ```sh
@@ -36,7 +36,7 @@
 
 #
 
-## <a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/00-remix-solidity-basics/contracts"><img src="https://shields.io/badge/Mission%2000%20-%20Remix%20&%20Solidity%20Basics%20(Lessons%202,%203,%204)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+## <a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js/tree/main/00-remix-solidity-basics/contracts"><img src="https://shields.io/badge/Mission%2000%20-%20Remix%20&%20Solidity%20Basics%20(Lessons%202,%203,%204)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 These contracts are supposed to be copied into <a href="https://remix.ethereum.org/">Remix IDE</a>, so you can deploy them and start interacting.
 
@@ -56,7 +56,7 @@ These contracts are supposed to be copied into <a href="https://remix.ethereum.o
 
 #
 
-### [Back to the main repo](https://github.com/polar0/full-blockchain-solidity-course-js)
+### [Back to the main repo](https://github.com/0xpolarzero/full-blockchain-solidity-course-js)
 
 [solidity]: https://custom-icon-badges.demolab.com/badge/Solidity-3C3C3D?style=for-the-badge&logo=solidity&logoColor=white
 [remix]: https://custom-icon-badges.demolab.com/badge/Remix-222335?style=for-the-badge&logo=remix-min&logoColor=white

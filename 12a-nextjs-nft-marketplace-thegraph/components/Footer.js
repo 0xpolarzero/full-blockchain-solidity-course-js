@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css';
 export default function Footer() {
   function openGithub() {
     window.open(
-      'https://github.com/polar0/full-blockchain-solidity-course-js',
+      'https://github.com/0xpolarzero/full-blockchain-solidity-course-js',
       '_blank',
     );
   }

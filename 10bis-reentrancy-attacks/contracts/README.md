@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/polar0/full-blockchain-solidity-course-js">
+  <a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js">
     <img src="../../images/blockchain.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -20,7 +20,7 @@
 
 #
 
-<a href="https://github.com/polar0/full-blockchain-solidity-course-js/tree/main/10bis-reentrancy-attacks" id="mission-10"><img src="https://shields.io/badge/Mission%2010bis%20-%20Reentrancy%20attacks%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
+<a href="https://github.com/0xpolarzero/full-blockchain-solidity-course-js/tree/main/10bis-reentrancy-attacks" id="mission-10"><img src="https://shields.io/badge/Mission%2010bis%20-%20Reentrancy%20attacks%20(Lesson%2015)-742EC0?style=for-the-badge&logo=target" height="35" /></a>
 
 These are just notes on the video, to keep track of good practices and things to remember to keep a smart contract secure and avoid this kind of frequent attacks.
 
@@ -30,6 +30,6 @@ These are just notes on the video, to keep track of good practices and things to
 
 #
 
-### [Back to the main repo](https://github.com/polar0/full-blockchain-solidity-course-js)
+### [Back to the main repo](https://github.com/0xpolarzero/full-blockchain-solidity-course-js)
 
 [solidity]: https://custom-icon-badges.demolab.com/badge/Solidity-3C3C3D?style=for-the-badge&logo=solidity&logoColor=white
